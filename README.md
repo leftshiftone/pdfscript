@@ -11,7 +11,7 @@ of a page.
 A PDF script is initiated by calling one of the static methods e.g. dinA4.
 The static method call opens a new PDFScriptStream, which is used to create
 an evaluation graph. By calling **execute** on the script stream, the PDF
-pages gets rendered.
+pages gets rendered and the PDF is returned as a byte array.
 
 ```
 dinA4 { text("Hello World") }.execute()

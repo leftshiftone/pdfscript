@@ -1,9 +1,9 @@
-package pdfscript.stream.writable
+package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
 import java.net.URL
 
-class PdfsImage(val url: URL, val width: Float, val height: Float) : AbstractWritable() {
+class Image(val url: URL, val width: Float, val height: Float) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         // val mmWidth = width / (1 / (10 * 2.54f) * 72)

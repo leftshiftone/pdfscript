@@ -1,4 +1,4 @@
-package pdfscript.stream.writable.decorator
+package pdfscript.stream.renderable.decorator
 
 import pdfscript.PdfScriptStream
 

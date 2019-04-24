@@ -1,7 +1,8 @@
-package pdfscript.stream.writable
+package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
 
+@Deprecated("use Paragraph instead")
 class LineBreak : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {

@@ -11,8 +11,8 @@ import pdfscript.model.PageMargin.Companion.standard
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.PdfWriter
-import pdfscript.stream.writable.Context
-import pdfscript.stream.writable.Table
+import pdfscript.stream.renderable.Context
+import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
 
 class PdfScript(private val format: PageFormat, private val margin: PageMargin) {
@@ -34,8 +34,8 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun table(config: Table.TableWriter.() -> Unit) = centerWriter.table(config)
     fun table(style:Context.() -> Unit, config:Table.TableWriter.() -> Unit) = centerWriter.table(style, config)
     fun font(font: PDFont, size: Float = 10f) = centerWriter.setFont(font, size)
-    fun addText(text: String) = centerWriter.text(text)
-    fun addText(style:Context.() -> Unit, text: String) = centerWriter.text(style, text)
+    fun text(text: String) = centerWriter.text(text)
+    fun text(style:Context.() -> Unit, text: String) = centerWriter.text(style, text)
 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)

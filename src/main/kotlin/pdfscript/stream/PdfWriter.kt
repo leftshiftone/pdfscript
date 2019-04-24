@@ -1,7 +1,7 @@
 package pdfscript.stream
 
 import org.apache.pdfbox.pdmodel.font.PDFont
-import pdfscript.stream.writable.*
+import pdfscript.stream.renderable.*
 import java.net.URL
 import java.util.*
 
@@ -48,8 +48,8 @@ class PdfWriter(val context: Context) {
         evaluations.addAll(PdfsFont(font, size.toFloat()).evaluate(context))
     }
 
-    fun addImage(image: String, width: Number, height: Number) {
-        evaluations.addAll(PdfsImage(URL(image), width.toFloat(), height.toFloat()).evaluate(context))
+    fun image(image: String, width: Number, height: Number) {
+        evaluations.addAll(Image(URL(image), width.toFloat(), height.toFloat()).evaluate(context))
     }
 
     fun superscript(text: String) = evaluations.addAll(Superscript(text, {}).evaluate(context))

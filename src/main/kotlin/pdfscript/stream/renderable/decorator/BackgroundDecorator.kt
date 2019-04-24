@@ -1,8 +1,8 @@
-package pdfscript.stream.writable.decorator
+package pdfscript.stream.renderable.decorator
 
 import pdfscript.PdfScriptStream
 import pdfscript.stream.Coordinates
-import pdfscript.stream.writable.Context
+import pdfscript.stream.renderable.Context
 
 class BackgroundDecorator(val context: Context) {
 

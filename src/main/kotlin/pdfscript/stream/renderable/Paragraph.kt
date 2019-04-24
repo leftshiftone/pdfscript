@@ -1,4 +1,4 @@
-package pdfscript.stream.writable
+package pdfscript.stream.renderable
 
 import pdfscript.extension.maxOrDefault
 import pdfscript.stream.Evaluation

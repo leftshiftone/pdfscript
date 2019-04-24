@@ -1,4 +1,4 @@
-package pdfscript.stream.writable
+package pdfscript.stream.renderable
 
 import pdfscript.PdfScriptStream
 import pdfscript.extension.maxOrDefault
@@ -6,8 +6,8 @@ import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.PdfWriter
-import pdfscript.stream.writable.decorator.BackgroundDecorator
-import pdfscript.stream.writable.decorator.BorderDecorator
+import pdfscript.stream.renderable.decorator.BackgroundDecorator
+import pdfscript.stream.renderable.decorator.BorderDecorator
 import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.math.min
 

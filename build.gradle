@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2016-2019, Leftshift One
+ * __________________
+ * [2019] Leftshift One
+ * All Rights Reserved.
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Leftshift One and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Leftshift One
+ * and its suppliers and may be covered by Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Leftshift One.
+ */
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:1.2.71"
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: "kotlin"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-reflect"
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.15'
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.2'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}

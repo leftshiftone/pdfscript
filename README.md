@@ -14,7 +14,7 @@ an evaluation graph. By calling **execute** on the script stream, the PDF
 pages gets rendered.
 
 ```
-dinA4 { text("Hello World") }.execute(interceptor)
+dinA4 { text("Hello World") }.execute()
 ``` 
 
 A PDFScriptStream automatically takes care of the boundaries of a PDF page format (e.g. dinA4).

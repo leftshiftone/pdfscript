@@ -38,23 +38,8 @@ targetCompatibility = JavaVersion.VERSION_1_8
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile "org.jetbrains.kotlin:kotlin-reflect"
-    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.15'
-    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+    compile "org.apache.pdfbox:pdfbox:2.0.15"
+    compile "net.coobird:thumbnailator:0.4.8"
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.2'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
+    testCompile "org.junit.jupiter:junit-jupiter:5.4.2"
 }

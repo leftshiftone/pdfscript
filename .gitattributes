@@ -1,0 +1,9 @@
+# default
+* text=auto
+
+# use UNIX line endings for shell scripts
+*.sh text eol=lf
+gradlew text eol=lf
+
+# use WIN line endings for batch scripts
+*.bat text eol=crlf

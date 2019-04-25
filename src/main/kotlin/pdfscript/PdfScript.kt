@@ -24,23 +24,23 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     companion object {
         @JvmStatic
         @JvmOverloads
-        fun dinA4(margin: PageMargin = standard(), config: PdfScript.() -> Unit):PdfScript {
+        fun dinA4(margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
             return PdfScript(PageFormat.dinA4(), margin).apply(config)
         }
     }
 
-    fun paragraph(style:Context.() -> Unit, config: PdfWriter.() -> Unit) = centerWriter.paragraph(style, config)
+    fun paragraph(style: Context.() -> Unit, config: PdfWriter.() -> Unit) = centerWriter.paragraph(style, config)
     fun paragraph(config: PdfWriter.() -> Unit) = centerWriter.paragraph(config)
     fun table(config: Table.TableWriter.() -> Unit) = centerWriter.table(config)
-    fun table(style:Context.() -> Unit, config:Table.TableWriter.() -> Unit) = centerWriter.table(style, config)
+    fun table(style: Context.() -> Unit, config: Table.TableWriter.() -> Unit) = centerWriter.table(style, config)
     fun font(font: PDFont, size: Float = 10f) = centerWriter.setFont(font, size)
     fun text(text: String) = centerWriter.text(text)
-    fun text(style:Context.() -> Unit, text: String) = centerWriter.text(style, text)
+    fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)
 
-    fun execute(interceptor:PdfsInterceptor = PdfsInterceptor()):ByteArray {
+    fun execute(interceptor: PdfsInterceptor = PdfsInterceptor()): ByteArray {
         val document = PDDocument()
         val stream = PdfScriptStream(document, this.format, interceptor)
 
@@ -70,7 +70,7 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
         return baos.toByteArray()
     }
 
-    private fun write(stream: PdfScriptStream, evaluation:Evaluation, coordinates: Coordinates, newPage:Boolean) {
+    private fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, newPage: Boolean) {
         val footerHeight = footerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
         val calcHeight = margin.bottom + footerHeight // margin.bottom + footerHeight - (margin.bottom - margin.footer)
 

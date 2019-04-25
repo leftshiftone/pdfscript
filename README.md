@@ -3,8 +3,7 @@
 PDFScript is an open source software library for script based PDF generation
 using a rendering evaluation graph. The graph nodes are used to evaluate the
 bounding boxes of each renderable before it gets rendered. The evaluation 
-graphs enables **PDFScript** to auto-adjust the renderables within the boundaries 
-of a page.
+graphs enables **PDFScript** to auto-adjust the renderables within the boundaries of a page.
 
 ## Quickstart
 

@@ -54,7 +54,7 @@ jobs:
       - checkout
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
-      - run: ./gradlew final publish -Prelease.useLastTag=true --stacktrace
+      - run: ./gradlew final bintrayUpload -Prelease.useLastTag=true --stacktrace
       - save_cache:
           paths:
             - ~/.gradle

@@ -22,6 +22,9 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
         classpath "org.jetbrains.kotlin:kotlin-allopen:1.2.71"
+        classpath "com.netflix.nebula:nebula-release-plugin:8.0.3"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
@@ -31,6 +34,10 @@ repositories {
 }
 
 apply plugin: "kotlin"
+apply plugin: "nebula.nebula-release"
+apply plugin: "org.jetbrains.dokka"
+apply plugin: "maven-publish"
+apply plugin: "com.jfrog.bintray"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,4 +49,70 @@ dependencies {
     compile "net.coobird:thumbnailator:0.4.8"
 
     testCompile "org.junit.jupiter:junit-jupiter:5.4.2"
+}
+
+release {
+    defaultVersionStrategy = nebula.plugin.release.NetflixOssStrategies.SNAPSHOT
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = "${buildDir}/dokkaJavadoc"
+}
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier "sources"
+}
+task javadocJar(type: Jar) {
+    from dokkaJavadoc
+    classifier "javadoc"
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = project.name
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+            pom.withXml {
+                Node root = asNode()
+                root.appendNode("name", "PDFScript")
+                root.appendNode("description", "PDFScript is an open source software library for script based PDF generation\n" +
+                        "using a rendering evaluation graph.")
+                root.appendNode("url", "https://github.com/leftshiftone/pdfscript")
+
+                Node licenses = root.appendNode("licenses")
+                Node license = licenses.appendNode("license")
+                license.appendNode("name", "The Apache License, Version 2.0")
+                license.appendNode("url", "http://www.apache.org/licenses/LICENSE-2.0.txt")
+
+                Node developers = root.appendNode("developers")
+                Node developer = developers.appendNode("developer")
+                developer.appendNode("id", "leftshiftone")
+                developer.appendNode("name", "Leftshift One")
+                developer.appendNode("email", "contact@leftshift.one")
+                developer.appendNode("organization", "Leftshift One Software GmbH")
+                developer.appendNode("organizationUrl", "https://www.leftshift.one")
+
+                Node scm = root.appendNode("scm")
+                scm.appendNode("connection", "scm:git:git://github.com/leftshiftone/pdfscript.git")
+                scm.appendNode("developerConnection", "scm:git:ssh://github.com:leftshiftone/pdfscript.git")
+                scm.appendNode("url", "https://github.com/leftshiftone/pdfscript")
+            }
+        }
+    }
+}
+
+bintray {
+    logger.info "Bintray deploy with user [${System.getenv('BINTRAY_USER')}] while working on ${project.name}"
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    pkg {
+        repo = "pdfscript"
+        name = "${project.group}.${project.name}"
+        userOrg = "leftshiftone"
+        licenses = ["Apache-2.0"]
+        vcsUrl = "https://github.com/leftshiftone/pdfscript.git"
+        publications = ["mavenJava"]
+    }
 }

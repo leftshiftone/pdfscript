@@ -1,0 +1,88 @@
+version: 2.1
+jobs:
+  webhook-completed:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    steps:
+      - run:
+          name: Webhook completed
+          command: |
+            curl $BUILD_STATUS_URL\?flow\=circleci-completed -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_PREVIOUS_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    environment:
+      TZ: "/usr/share/zoneinfo/Europe/Vienna"
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+      TEST_RESULTS_PATH: build/circleci/test-results
+    steps:
+      - run:
+          name: Webhook created
+          command: |
+            curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+      - checkout
+      - run: chmod a+x gradlew
+      - restore_cache:
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - run: ./gradlew dependencies
+      - run: mkdir -p $TEST_RESULTS_PATH
+      - run: ./gradlew test --stacktrace
+      - run: find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} $TEST_RESULTS_PATH \;
+      - run: ./gradlew build publish
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - store_test_results:
+          path: build/circleci/test-results
+      - run:
+          name: Webhook completed
+          when: on_fail
+          command: |
+            curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+  release:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    environment:
+      TZ: "/usr/share/zoneinfo/Europe/Vienna"
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+    steps:
+      - run:
+          name: Webhook created
+          command: |
+            curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+      - checkout
+      - restore_cache:
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - run: ./gradlew final publish -Prelease.useLastTag=true --stacktrace
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - run:
+          name: Webhook completed
+          when: on_fail
+          command: |
+            curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context: bintray-jcenter
+      - webhook-completed:
+          requires:
+            - build
+  release:
+    jobs:
+      - release:
+          context: bintray-jcenter
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
+      - webhook-completed:
+          requires:
+            - release

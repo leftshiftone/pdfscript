@@ -39,7 +39,7 @@ class RawCommandsInterceptor : PdfsInterceptor() {
         commands.add("setNonStrokingColor($colorStr)")
     }
 
-    override open fun drawLine(x1:Float, y1:Float, x2:Float, y2:Float) {
+    override fun drawLine(x1:Float, y1:Float, x2:Float, y2:Float) {
         commands.add("drawLine($x1, $y1, $x2, $y2)")
     }
 }

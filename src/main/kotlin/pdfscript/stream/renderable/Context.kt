@@ -13,7 +13,7 @@ class Context(val format:PageFormat, val margin:PageMargin) {
     init {
         properties.put("fontName", PDType1Font.HELVETICA)
         properties.put("fontSize", 12f)
-        properties.put("border", true)
+        properties.put("border", "black")
     }
 
     fun fontName():PDFont = properties.get("fontName") as PDFont
@@ -22,26 +22,26 @@ class Context(val format:PageFormat, val margin:PageMargin) {
     fun fontSize():Float = properties.get("fontSize") as Float
     fun fontSize(fontSize:Number) = properties.set("fontSize", fontSize.toFloat())
 
-    fun foregroundColor():Optional<String> = Optional.ofNullable(properties.get("foregroundColor")?.toString())
-    fun foregroundColor(color:String) = properties.set("foregroundColor", color)
+    fun foreground():Optional<String> = Optional.ofNullable(properties.get("foreground")?.toString())
+    fun foreground(color:String) = properties.set("foreground", color)
 
-    fun backgroundColor():Optional<String> = Optional.ofNullable(properties.get("backgroundColor")?.toString())
-    fun backgroundColor(color:String) = properties.set("backgroundColor", color)
+    fun background():Optional<String> = Optional.ofNullable(properties.get("background")?.toString())
+    fun background(color:String) = properties.set("background", color)
 
-    fun border():Optional<Boolean> = Optional.ofNullable(properties.get("border")).map { it as Boolean }
-    fun border(border:Boolean) = properties.set("border", border)
+    fun border():Optional<String> = Optional.ofNullable(properties.get("border")).map { it as String }
+    fun border(border:String) = properties.set("border", border)
 
-    fun borderBottomColor():Optional<String> = Optional.ofNullable(properties.get("borderBottomColor")?.toString())
-    fun borderBottomColor(color:String) = properties.set("borderBottomColor", color)
+    fun borderBottom():Optional<String> = Optional.ofNullable(properties.get("borderBottom")?.toString())
+    fun borderBottom(color:String) = properties.set("borderBottom", color)
 
-    fun borderTopColor():Optional<String> = Optional.ofNullable(properties.get("borderTopColor")?.toString())
-    fun borderTopColor(color:String) = properties.set("borderTopColor", color)
+    fun borderTop():Optional<String> = Optional.ofNullable(properties.get("borderTop")?.toString())
+    fun borderTop(color:String) = properties.set("borderTop", color)
 
-    fun borderLeftColor():Optional<String> = Optional.ofNullable(properties.get("borderLeftColor")?.toString())
-    fun borderLeftColor(color:String) = properties.set("borderLeftColor", color)
+    fun borderLeft():Optional<String> = Optional.ofNullable(properties.get("borderLeft")?.toString())
+    fun borderLeft(color:String) = properties.set("borderLeft", color)
 
-    fun borderRightColor():Optional<String> = Optional.ofNullable(properties.get("borderRightColor")?.toString())
-    fun borderRightColor(color:String) = properties.set("borderRightColor", color)
+    fun borderRight():Optional<String> = Optional.ofNullable(properties.get("borderRight")?.toString())
+    fun borderRight(color:String) = properties.set("borderRight", color)
 
     fun paddingTop():Optional<Float> = Optional.ofNullable(properties.get("paddingTop")).map { it as Float }
     fun paddingTop(paddingTop:Number) = properties.set("paddingTop", paddingTop.toFloat())

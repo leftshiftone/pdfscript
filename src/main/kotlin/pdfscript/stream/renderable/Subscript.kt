@@ -13,8 +13,8 @@ class Subscript(val text: String, val config: Context.() -> Unit) : AbstractWrit
 
     private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
         return TextEvaluation({ styler.lineWidth(text, styler.fontSize() / 5 * 3) }, { styler.boxHeight() }) { stream, coordinates ->
-            if (styler.foregroundColor().isPresent())
-                stream.setNonStrokingColor(styler.foregroundColor().get())
+            if (styler.foreground().isPresent())
+                stream.setNonStrokingColor(styler.foreground().get())
 
             stream.setFont(styler.fontName(), styler.fontSize() / 5 * 3)
             stream.beginText()

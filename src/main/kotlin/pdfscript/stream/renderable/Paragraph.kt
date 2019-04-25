@@ -28,7 +28,7 @@ class Paragraph(val config: PdfWriter.() -> Unit, val style: Context.() -> Unit)
         }
 
         return listOf(Evaluation(width, height) { stream, coordinates ->
-            // if (style.backgroundColor().isPresent) {
+            // if (style.background().isPresent) {
             //     val calcWidth = width(EvaluationBase(coordinates.width, 0f))
             //     val calcHeight = height(EvaluationBase(coordinates.width, 0f))
             //     stream.addRect(coordinates.x, coordinates.y, calcWidth, -calcHeight)
@@ -37,8 +37,8 @@ class Paragraph(val config: PdfWriter.() -> Unit, val style: Context.() -> Unit)
             val curWidth = width(EvaluationBase(coordinates.width, 0f))
 
             val xInit = coordinates.x
-            if (style.foregroundColor().isPresent)
-                stream.setNonStrokingColor(style.foregroundColor().get())
+            if (style.foreground().isPresent)
+                stream.setNonStrokingColor(style.foreground().get())
             if (style.align().isPresent && style.align().get().equals("center"))
                 coordinates.moveX((context.format.width() - context.margin.left - context.margin.right - curWidth)  / 2)
 
@@ -46,7 +46,7 @@ class Paragraph(val config: PdfWriter.() -> Unit, val style: Context.() -> Unit)
             coordinates.moveY(-context.boxHeight())
             coordinates.x = xInit
 
-            if (style.foregroundColor().isPresent)
+            if (style.foreground().isPresent)
                 stream.setNonStrokingColor("black")
         })
     }

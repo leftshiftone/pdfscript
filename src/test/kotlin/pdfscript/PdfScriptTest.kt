@@ -18,7 +18,7 @@ class PdfScriptTest {
         val interceptor = RawCommandsInterceptor()
         val document = dinA4 {
             withHeader {
-                table({ border(false) }) {
+                table({ border("none") }) {
                     row {
                         col {
                             image("https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg", 150, 200)
@@ -32,14 +32,14 @@ class PdfScriptTest {
             withFooter {
                 setFont(PDType1Font.HELVETICA, 7f)
 
-                table({ border(false);backgroundColor("#E0E0E0") }) {
+                table({ border("none");background("#E0E0E0") }) {
                     row({ fontName(PDType1Font.HELVETICA_BOLD); fontSize(8) }) {
                         col { text("Lorem ipsum") }
                         col({ align("right") }) { text({ align("right") }, "Page x of x") }
                     }
                 }
                 paragraph { tab() }
-                paragraph({ foregroundColor("gray");align("center") }) {
+                paragraph({ foreground("gray");align("center") }) {
                     text("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
                 }
             }
@@ -50,7 +50,7 @@ class PdfScriptTest {
             paragraph { tab() }
 
             font(PDType1Font.HELVETICA, 9f)
-            table({ border(false) }) {
+            table({ border("none") }) {
                 row {
                     col {
                         paragraph { text("Bubba Gump Shrimps") }
@@ -83,21 +83,21 @@ class PdfScriptTest {
             paragraph { tab() }
             paragraph { tab() }
 
-            table({ align("center");borderLeftColor("white");borderRightColor("white");borderTopColor("white") }) {
-                row({ fontName(PDType1Font.HELVETICA_BOLD); borderBottomColor("#C00000");paddingBottom(5) }) {
+            table({ align("center");borderLeft("white");borderRight("white");borderTop("white") }) {
+                row({ fontName(PDType1Font.HELVETICA_BOLD); borderBottom("#C00000");paddingBottom(5) }) {
                     col { text("One") }
                     col { text("Two") }
                     col { text("Three") }
                 }
                 row({ paddingTop(5);paddingBottom(5) }) {
-                    col({ borderBottomColor("#E0E0E0") }) { text("Foo") }
-                    col({ backgroundColor("#E0E0E0");borderBottomColor("white") }) { text("Foo") }
-                    col({ backgroundColor("#E0E0E0");borderBottomColor("white") }) { text("Foo") }
+                    col({ borderBottom("#E0E0E0") }) { text("Foo") }
+                    col({ background("#E0E0E0");borderBottom("white") }) { text("Foo") }
+                    col({ background("#E0E0E0");borderBottom("white") }) { text("Foo") }
                 }
                 row({ paddingTop(5);paddingBottom(5) }) {
-                    col({ borderBottomColor("#E0E0E0") }) { text("Bar") }
-                    col({ backgroundColor("#E0E0E0");borderBottomColor("white") }) { text("") }
-                    col({ backgroundColor("#E0E0E0");borderBottomColor("white") }) { text("Bar") }
+                    col({ borderBottom("#E0E0E0") }) { text("Bar") }
+                    col({ background("#E0E0E0");borderBottom("white") }) { text("") }
+                    col({ background("#E0E0E0");borderBottom("white") }) { text("Bar") }
                 }
             }
             text(({ fontSize(8) }), "Source: Wikipedia")

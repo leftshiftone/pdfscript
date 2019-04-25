@@ -10,33 +10,33 @@ import kotlin.math.round
 class BorderDecorator(val context: Context) {
 
     fun evaluate(stream: PdfScriptStream, registry: CopyOnWriteArraySet<String>, coordinates: Coordinates) {
-        if (context.border().isPresent && context.border().get()) {
+        if (context.border().isPresent && !context.border().get().equals("none")) {
             // top
-            if (context.borderTopColor().isPresent)
-                stream.setStrokingColor(context.borderTopColor().get())
+            if (context.borderTop().isPresent)
+                stream.setStrokingColor(context.borderTop().get())
             drawTopBorder(registry, coordinates, stream)
-            if (context.borderTopColor().isPresent)
+            if (context.borderTop().isPresent)
                 stream.setStrokingColor("black")
 
             // left
-            if (context.borderLeftColor().isPresent)
-                stream.setStrokingColor(context.borderLeftColor().get())
+            if (context.borderLeft().isPresent)
+                stream.setStrokingColor(context.borderLeft().get())
             drawLeftBorder(registry, coordinates, stream)
-            if (context.borderLeftColor().isPresent)
+            if (context.borderLeft().isPresent)
                 stream.setStrokingColor("black")
 
             // right
-            if (context.borderRightColor().isPresent)
-                stream.setStrokingColor(context.borderRightColor().get())
+            if (context.borderRight().isPresent)
+                stream.setStrokingColor(context.borderRight().get())
             drawRightBorder(registry, coordinates, stream)
-            if (context.borderRightColor().isPresent)
+            if (context.borderRight().isPresent)
                 stream.setStrokingColor("black")
 
             // bottom
-            if (context.borderBottomColor().isPresent)
-                stream.setStrokingColor(context.borderBottomColor().get())
+            if (context.borderBottom().isPresent)
+                stream.setStrokingColor(context.borderBottom().get())
             drawBottomBorder(registry, coordinates, stream)
-            if (context.borderBottomColor().isPresent)
+            if (context.borderBottom().isPresent)
                 stream.setStrokingColor("black")
         }
     }

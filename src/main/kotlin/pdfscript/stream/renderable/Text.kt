@@ -18,8 +18,8 @@ class Text(val text: String, val config: Context.() -> Unit) : AbstractWritable(
 
     private fun toEvaluation(styler: Context, context:Context, text: String): Evaluation {
         return TextEvaluation({ styler.lineWidth(text) }, { styler.boxHeight() }) { stream, coordinates ->
-            if (styler.foregroundColor().isPresent())
-                stream.setNonStrokingColor(styler.foregroundColor().get())
+            if (styler.foreground().isPresent())
+                stream.setNonStrokingColor(styler.foreground().get())
 
             stream.setFont(styler.fontName(), styler.fontSize())
 

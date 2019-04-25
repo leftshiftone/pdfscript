@@ -128,17 +128,57 @@ subscript("A")
 ```
 
 ## Paragraph
-TODO
+A paragraph groups multiple renderables and separates them from other elements by a newline before and after the paragraph.
+```
+paragraph {
+   text("A")
+   text("B")
+   text("C")
+}
+paragraph {
+   text("D")
+   text("E")
+   text("F")
+}
+```
 
 ## Styling
-TODO
+PDFScript allows the styling of each renderable by applying a **styler** function as the first parameter.
+
+```
+paragraph({paddingTop(5); paddingBottom(5)}) {
+    text("B")
+}
+```
+
+| name          | description                                                    | values         
+|---------------|----------------------------------------------------------------|----------------
+| fontName      | the name of the font to use                                    | [font qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/font.properties "Font Qualifiers")
+| fontSize      | the size of the font to use                                    | number
+| foreground    | the color which is used to render text and line elements       | hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| background    | the color which is used to render element backgrounds          | hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| border        | determines if and how the borders should be rendered           | "none", hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| borderBottom  | determines if and how the bottom border should be rendered     | "none", hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| borderTop     | determines if and how the top border should be rendered        | "none", hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| borderLeft    | determines if and how the left border should be rendered       | "none", hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| borderRight   | determines if and how the right border should be rendered      | "none", hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
+| paddingTop    | determines the top padding                                     | number
+| paddingBottom | determines the bottom padding                                  | number
+| align         | indicates the text alignment                                   | "left", "center", "right"
+| ratio         | the ratio of the row columns                                   | number varargs
 
 ## Interceptor
-TODO
+The PDFScript execute method accepts an interceptor instance which can be used to hook into the events of the
+PDF generation.
+```
+val interceptor = RawCommandsInterceptor()
+dinA4 { text("Hello World") }.execute(interceptor)
+print(interceptor.commands)
+```
 
 ## Unit Testing
 PDFScript supports pixel perfect PDF rendering unit tests by using the **RawCommandsInterceptor**.
-The **RawCommandsInterceptor** collects the raw PDF instructions. A unit test simple asserts the
+The **RawCommandsInterceptor** collects the raw PDF instructions so that a unit test simple asserts the
 actual raw commands with the expected commands. (collected from a previous pdf rendering run)
 
 ```

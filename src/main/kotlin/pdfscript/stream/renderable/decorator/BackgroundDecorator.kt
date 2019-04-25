@@ -7,8 +7,8 @@ import pdfscript.stream.renderable.Context
 class BackgroundDecorator(val context: Context) {
 
     fun evaluate(stream: PdfScriptStream, coordinates: Coordinates) {
-        if (context.backgroundColor().isPresent) {
-            stream.setNonStrokingColor(context.backgroundColor().get())
+        if (context.background().isPresent) {
+            stream.setNonStrokingColor(context.background().get())
             stream.addRect(coordinates.x, coordinates.y - coordinates.height, coordinates.width, coordinates.height)
             stream.setNonStrokingColor("black")
         }

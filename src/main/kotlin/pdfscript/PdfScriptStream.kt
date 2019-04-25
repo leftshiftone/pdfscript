@@ -21,6 +21,9 @@ import javax.imageio.ImageIO
 
 class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: PdfsInterceptor) {
 
+    private val currentFontName = AtomicReference<PDFont>()
+    private val currentFontSize = AtomicReference<Float>()
+
     val colors: Properties = Properties().apply {
         load(PdfScriptStream::class.java.getResourceAsStream("/color.properties"))
     }
@@ -56,8 +59,12 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
     }
 
     fun setFont(font: PDFont, size: Float) {
-        interceptor.setFont(font, size)
-        contentStream.get().setFont(font, size)
+        if (this.currentFontName.get() != font || this.currentFontSize.get() != size) {
+             interceptor.setFont(font, size)
+             contentStream.get().setFont(font, size)
+        }
+        this.currentFontName.set(font)
+        this.currentFontSize.set(size)
     }
 
     fun newLineAtOffset(x: Float, y: Float) {

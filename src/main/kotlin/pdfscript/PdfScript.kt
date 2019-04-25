@@ -2,7 +2,6 @@ package pdfscript
 
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDFont
-import org.apache.pdfbox.pdmodel.font.PDType1Font
 import pdfscript.extension.sumOrDefault
 import pdfscript.interceptor.PdfsInterceptor
 import pdfscript.model.PageFormat
@@ -38,6 +37,11 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun text(text: String) = centerWriter.text(text)
     fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
 
+    fun superscript(text: String) = centerWriter.superscript({}, text)
+    fun superscript(style: Context.() -> Unit, text: String) = centerWriter.superscript(style, text)
+    fun subscript(text: String) = centerWriter.subscript({}, text)
+    fun subscript(style: Context.() -> Unit, text: String) = centerWriter.subscript(style, text)
+
     fun image(image: String, width: Number, height: Number) = centerWriter.image(image, width, height)
     fun image(image: () -> InputStream, width: Number, height: Number) = centerWriter.image(image, width, height)
     fun image(image: ByteArray, width: Number, height: Number) = centerWriter.image(image, width, height)
@@ -53,7 +57,7 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
         val document = PDDocument()
         val stream = PdfScriptStream(document, this.format, interceptor)
 
-        stream.setFont(PDType1Font.HELVETICA_BOLD, 12f)
+        // stream.setFont(PDType1Font.HELVETICA_BOLD, 12f)
 
         val headerCoordinates = Coordinates(margin.left, format.height() - margin.header)
         val footerCoordinates = Coordinates(margin.left, margin.bottom, format.width(), format.height())

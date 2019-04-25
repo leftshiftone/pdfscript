@@ -85,10 +85,25 @@ dinA4 {
 ``` 
 
 ## Image
-PDFScript renders an image by calling **image** with an url, width and height argument. 
+PDFScript renders an jpg or png image by calling **image** with an image source, width and height argument.
+The image source can be a url, a byte array or a supplier of an input stream. The supplier handling is necessary
+because of the possibility of multiple image render executions. For example an image within a header or footer
+is rendered for each page. 
 
 ```
 image("https://example.com/image.jpg", 150, 100)
+image(getByteArray(), 150, 100)
+image({getInputStream()}, 150, 100)
+```
+
+## Svg
+Analogous to the **image** call the **svg** method lets define a svg renderable. The given svg image
+gets encoded to a png image on the fly.
+
+```
+svg("https://example.com/image.jpg", 150, 100)
+svg(getByteArray(), 150, 100)
+svg({getInputStream()}, 150, 100)
 ```
 
 ## Tabulator
@@ -102,8 +117,15 @@ text("B")
 tab(200)
 ```
 
-## Superscript
-TODO
+## Subscript and Superscript
+Subscript and superscript renderables are elements that are set slightly below or above the normal line of text. 
+They are smaller than the standard text and appear either below the baseline (subscript) or above the baseline (superscript).
+
+```
+superscript("A")
+text("B")
+subscript("A")
+```
 
 ## Paragraph
 TODO
@@ -115,7 +137,35 @@ TODO
 TODO
 
 ## Unit Testing
-TODO
+PDFScript supports pixel perfect PDF rendering unit tests by using the **RawCommandsInterceptor**.
+The **RawCommandsInterceptor** collects the raw PDF instructions. A unit test simple asserts the
+actual raw commands with the expected commands. (collected from a previous pdf rendering run)
+
+```
+@Test
+fun `create a superscript text`() {
+    val interceptor = RawCommandsInterceptor()
+    dinA4 {
+        text("text")
+        superscript("superscript")
+    }.execute(interceptor)
+
+    val expected = listOf(
+            "setFont[Helvetica, 12.0]",
+            "beginText:[]",
+            "newLineAtOffset:[70.86614, 758.7796]",
+            "showText:[text ]",
+            "endText:[]",
+            "setFont[Helvetica, 7.2000003]",
+            "beginText:[]",
+            "newLineAtOffset:[93.54614, 764.2796]",
+            "showText:[superscript]",
+            "endText:[]",
+            "setFont[Helvetica, 12.0]"
+    )
+    assertEquals(expected, interceptor.commands)
+}
+```
 
 ## Development
 
@@ -130,3 +180,8 @@ Run `./gradlew final -x bintrayUpload -Prelease.scope=minor` locally.
 
 #### Patch
 Run `./gradlew final -x bintrayUpload -Prelease.scope=patch` locally.
+
+#### Upcoming Features
+
+* Footnotes support
+* Endnotes support

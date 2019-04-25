@@ -21,11 +21,7 @@ class Text(val text: String, val config: Context.() -> Unit) : AbstractWritable(
             if (styler.foregroundColor().isPresent())
                 stream.setNonStrokingColor(styler.foregroundColor().get())
 
-            // if (styler.border().isPresent && styler.border().get())
-            //     stream.drawLine(coordinates.x, coordinates.y - styler.boxHeight(), coordinates.x + 200, coordinates.y - styler.boxHeight())
-
-            // if (!styler.fontName().equals(context.fontName()) || !styler.fontSize().equals(context.fontSize()))
-                stream.setFont(styler.fontName(), styler.fontSize())
+            stream.setFont(styler.fontName(), styler.fontSize())
 
             stream.beginText()
             stream.newLineAtOffset(coordinates.x, coordinates.y - (styler.capHeight() + ((styler.boxHeight() - styler.capHeight()) / 2)))

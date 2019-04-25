@@ -7,13 +7,13 @@ import pdfscript.interceptor.RawCommandsInterceptor
 import java.io.File
 import java.io.FileOutputStream
 
-class ImageTest {
+class SvgTest {
 
     @Test
     fun `create a pdf with a classpath svg image`() {
         val interceptor = RawCommandsInterceptor()
         val document = dinA4 {
-            svg({ImageTest::class.java.getResourceAsStream("/image.svg")}, 100, 100)
+            svg({SvgTest::class.java.getResourceAsStream("/image.svg")}, 100, 100)
         }.execute(interceptor)
         interceptor.commands.forEach { println(it) }
 

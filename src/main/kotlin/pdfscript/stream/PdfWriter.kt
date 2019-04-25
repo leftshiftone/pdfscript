@@ -76,4 +76,7 @@ class PdfWriter(val context: Context) {
     fun superscript(text: String) = evaluations.addAll(Superscript(text, {}).evaluate(context))
     fun superscript(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Superscript(text, style).evaluate(context))
 
+    fun subscript(text: String) = evaluations.addAll(Subscript(text, {}).evaluate(context))
+    fun subscript(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Subscript(text, style).evaluate(context))
+
 }

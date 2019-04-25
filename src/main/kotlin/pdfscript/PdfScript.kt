@@ -14,6 +14,7 @@ import pdfscript.stream.PdfWriter
 import pdfscript.stream.renderable.Context
 import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class PdfScript(private val format: PageFormat, private val margin: PageMargin) {
 
@@ -36,6 +37,14 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun font(font: PDFont, size: Float = 10f) = centerWriter.setFont(font, size)
     fun text(text: String) = centerWriter.text(text)
     fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
+
+    fun image(image: String, width: Number, height: Number) = centerWriter.image(image, width, height)
+    fun image(image: () -> InputStream, width: Number, height: Number) = centerWriter.image(image, width, height)
+    fun image(image: ByteArray, width: Number, height: Number) = centerWriter.image(image, width, height)
+
+    fun svg(image: String, width: Number, height: Number) = centerWriter.svg(image, width, height)
+    fun svg(image: () -> InputStream, width: Number, height: Number) = centerWriter.svg(image, width, height)
+    fun svg(image: ByteArray, width: Number, height: Number) = centerWriter.svg(image, width, height)
 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)

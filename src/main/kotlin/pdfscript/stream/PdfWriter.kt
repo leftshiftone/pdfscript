@@ -2,6 +2,7 @@ package pdfscript.stream
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.stream.renderable.*
+import java.io.InputStream
 import java.net.URL
 import java.util.*
 
@@ -50,6 +51,26 @@ class PdfWriter(val context: Context) {
 
     fun image(image: String, width: Number, height: Number) {
         evaluations.addAll(Image(URL(image), width.toFloat(), height.toFloat()).evaluate(context))
+    }
+
+    fun image(image: () -> InputStream, width: Number, height: Number) {
+        evaluations.addAll(Image(image, width.toFloat(), height.toFloat()).evaluate(context))
+    }
+
+    fun image(image: ByteArray, width: Number, height: Number) {
+        evaluations.addAll(Image(image, width.toFloat(), height.toFloat()).evaluate(context))
+    }
+
+    fun svg(image: String, width: Number, height: Number) {
+        evaluations.addAll(Svg(URL(image), width.toFloat(), height.toFloat()).evaluate(context))
+    }
+
+    fun svg(image: () -> InputStream, width: Number, height: Number) {
+        evaluations.addAll(Svg(image, width.toFloat(), height.toFloat()).evaluate(context))
+    }
+
+    fun svg(image: ByteArray, width: Number, height: Number) {
+        evaluations.addAll(Svg(image, width.toFloat(), height.toFloat()).evaluate(context))
     }
 
     fun superscript(text: String) = evaluations.addAll(Superscript(text, {}).evaluate(context))

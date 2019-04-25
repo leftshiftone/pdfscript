@@ -1,17 +1,23 @@
 package pdfscript
 
 import net.coobird.thumbnailator.Thumbnailator
+import org.apache.batik.transcoder.TranscoderInput
+import org.apache.batik.transcoder.TranscoderOutput
+import org.apache.batik.transcoder.image.PNGTranscoder
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDFont
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory
 import pdfscript.interceptor.PdfsInterceptor
 import pdfscript.model.PageFormat
 import java.awt.Color
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.net.URL
+import java.io.InputStream
 import java.util.*
 import java.util.concurrent.atomic.AtomicReference
+import javax.imageio.ImageIO
+
 
 class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: PdfsInterceptor) {
 
@@ -59,14 +65,30 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         contentStream.get().newLineAtOffset(x, y)
     }
 
-    fun drawImage(url: URL, width: Int, height: Int, x: Float, y: Float) {
-        interceptor.drawImage(url, x, y)
+    fun drawSvg(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
+        val pngTranscoder = PNGTranscoder()
+        pngTranscoder.addTranscodingHint( PNGTranscoder.KEY_WIDTH, width.toFloat() )
+        pngTranscoder.addTranscodingHint( PNGTranscoder.KEY_HEIGHT, height.toFloat() )
 
+        val os = ByteArrayOutputStream()
+        pngTranscoder.transcode(TranscoderInput(stream), TranscoderOutput(os))
+        val `is` = ByteArrayInputStream(os.toByteArray())
+
+        val bim = ImageIO.read(`is`)
+        val pdImage = LosslessFactory.createFromImage(document, bim)
+
+        contentStream.get().drawImage(pdImage, x, y)
+    }
+
+    fun drawImage(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
+        val timestamp = System.currentTimeMillis()
         val baos = ByteArrayOutputStream()
-        Thumbnailator.createThumbnail(url.openStream(), baos, "png", width, height)
+        Thumbnailator.createThumbnail(stream, baos, "png", width, height)
 
-        val image = PDImageXObject.createFromByteArray(document, baos.toByteArray(), "asdf")
+        val bim = ImageIO.read(ByteArrayInputStream(baos.toByteArray()))
+        val image = LosslessFactory.createFromImage(document, bim)
         contentStream.get().drawImage(image, x, y)
+        println(System.currentTimeMillis() - timestamp)
     }
 
     fun setStrokingColor(colorStr: String) {

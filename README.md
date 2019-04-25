@@ -1,3 +1,6 @@
+[![CircleCI branch](https://img.shields.io/circleci/project/github/leftshiftone/pdfscript/master.svg?style=flat-square)](https://circleci.com/gh/leftshiftone/pdfscript)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/leftshiftone/pdfscript.svg?style=flat-square)](https://github.com/leftshiftone/pdfscript/tags)
+
 # PDFScript
 
 PDFScript is an open source software library for script based PDF generation
@@ -113,3 +116,17 @@ TODO
 
 ## Unit Testing
 TODO
+
+## Development
+
+### Release
+Releases are triggered locally. Just a tag will be pushed and CI pipelines take care of the rest.
+
+#### Major
+Run `./gradlew final -Prelease.scope=major` locally.
+
+#### Minor
+Run `./gradlew final -Prelease.scope=minor` locally.
+
+#### Patch
+Run `./gradlew final -Prelease.scope=patch` locally.

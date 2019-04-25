@@ -71,6 +71,9 @@ workflows:
     jobs:
       - build:
           context: bintray-jcenter
+          filters:
+            tags:
+              ignore: /.*/
       - webhook-completed:
           requires:
             - build

@@ -3,7 +3,7 @@ package pdfscript.interceptor
 import org.apache.pdfbox.pdmodel.font.PDFont
 import java.net.URL
 
-class RawCommandsInterceptor : PdfsInterceptor() {
+class RawCommandsInterceptor : Interceptor() {
 
     val commands = ArrayList<String>()
 

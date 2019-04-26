@@ -13,7 +13,7 @@ class Superscript(val text: String, val config: Context.() -> Unit) : AbstractWr
 
     private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
         return TextEvaluation({ styler.lineWidth(text, styler.fontSize() / 5 * 3) }, { styler.boxHeight() }) { stream, coordinates ->
-            if (styler.foreground().isPresent())
+            if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
             stream.setFont(styler.fontName(), styler.fontSize() / 5 * 3)
@@ -21,7 +21,6 @@ class Superscript(val text: String, val config: Context.() -> Unit) : AbstractWr
             stream.newLineAtOffset(coordinates.x, coordinates.y - (styler.capHeight() / 1.5f))
             stream.showText(text)
             stream.endText()
-
             stream.setFont(context.fontName(), context.fontSize())
 
             coordinates.moveX(styler.lineWidth(text))

@@ -8,18 +8,22 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory
-import pdfscript.interceptor.PdfsInterceptor
+import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
 import java.awt.Color
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 import javax.imageio.ImageIO
 
 
-class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: PdfsInterceptor) {
+class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages:Int) {
+
+    private val page = AtomicInteger(1)
+    private val pages = AtomicInteger(pages)
 
     private val currentFontName = AtomicReference<PDFont>()
     private val currentFontSize = AtomicReference<Float>()
@@ -41,6 +45,7 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         document.addPage(page)
         this.contentStream.get().close()
         this.contentStream.set(PDPageContentStream(document, page))
+        this.page.incrementAndGet()
     }
 
     fun beginText() {
@@ -125,5 +130,8 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
     fun close() {
         contentStream.get().close()
     }
+
+    fun pages() = pages.get()
+    fun page() = page.get()
 
 }

@@ -3,7 +3,7 @@ package pdfscript.interceptor
 import org.apache.pdfbox.pdmodel.font.PDFont
 import java.net.URL
 
-open class PdfsInterceptor {
+open class Interceptor {
 
     open fun beginText() {
         // do nothing

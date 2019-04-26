@@ -3,7 +3,7 @@ package pdfscript
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.extension.sumOrDefault
-import pdfscript.interceptor.PdfsInterceptor
+import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
 import pdfscript.model.PageMargin
 import pdfscript.model.PageMargin.Companion.standard
@@ -33,7 +33,9 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun paragraph(config: PdfWriter.() -> Unit) = centerWriter.paragraph(config)
     fun table(config: Table.TableWriter.() -> Unit) = centerWriter.table(config)
     fun table(style: Context.() -> Unit, config: Table.TableWriter.() -> Unit) = centerWriter.table(style, config)
+    @Deprecated("use the Context")
     fun font(font: PDFont, size: Float = 10f) = centerWriter.setFont(font, size)
+
     fun text(text: String) = centerWriter.text(text)
     fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
 
@@ -53,18 +55,27 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)
 
-    fun execute(interceptor: PdfsInterceptor = PdfsInterceptor()): ByteArray {
+    fun execute(interceptor: Interceptor = Interceptor()): ByteArray {
         val document = PDDocument()
-        val stream = PdfScriptStream(document, this.format, interceptor)
 
-        // stream.setFont(PDType1Font.HELVETICA_BOLD, 12f)
+        // evaluate renderables
+        // ********************
+        val headerHeight = headerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
+        val footerHeight = footerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
+        val centerHeight = centerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
 
+        val availableCenterHeight = format.height() -
+                Math.max(margin.top, headerHeight + margin.header) -
+                Math.max(margin.bottom, footerHeight + margin.bottom)
+
+        val pageCount = Math.ceil(centerHeight.toDouble() / availableCenterHeight.toDouble()).toInt()
+        val stream = PdfScriptStream(document, this.format, interceptor, pageCount)
+
+        // execute renderables
+        // *******************
         val headerCoordinates = Coordinates(margin.left, format.height() - margin.header)
         val footerCoordinates = Coordinates(margin.left, margin.bottom, format.width(), format.height())
         val centerCoordinates = Coordinates(margin.left, format.height() - margin.top - 1)
-
-        val headerHeight = headerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
-        val footerHeight = footerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
 
         if (headerHeight > margin.header)
             centerCoordinates.moveY(margin.header - headerHeight)

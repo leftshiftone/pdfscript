@@ -142,6 +142,14 @@ paragraph {
 }
 ```
 
+## Page and Pages
+Within a **text** renderable it is possible to render the current page number as well as the total amount of pages.
+To do this, simple add either the **{{page}}** and/or **{pages}}** expression within the text string.
+
+```
+text("Page {{page}} of {{pages}}")
+```
+
 ## Styling
 PDFScript allows the styling of each renderable by applying a **styler** function as the first parameter.
 

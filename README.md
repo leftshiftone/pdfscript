@@ -101,7 +101,7 @@ Analogous to the **image** call the **svg** method lets define a svg renderable.
 gets encoded to a png image on the fly.
 
 ```
-svg("https://example.com/image.jpg", 150, 100)
+svg("https://example.com/image.svg", 150, 100)
 svg(getByteArray(), 150, 100)
 svg({getInputStream()}, 150, 100)
 ```

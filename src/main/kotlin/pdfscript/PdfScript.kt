@@ -55,6 +55,7 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)
 
+    @JvmOverloads
     fun execute(interceptor: Interceptor = Interceptor()): ByteArray {
         val document = PDDocument()
 

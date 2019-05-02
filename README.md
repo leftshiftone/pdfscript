@@ -8,6 +8,8 @@ using a rendering evaluation graph. The graph nodes are used to evaluate the
 bounding boxes of each renderable before it gets rendered. The evaluation 
 graphs enables **PDFScript** to auto-adjust the renderables within the boundaries of a page.
 
+Available in [jcenter](https://bintray.com/leftshiftone/pdfscript/pdfscript.pdfscript/_latestVersion). Can be included like `compile 'pdfscript:pdfscript:0.1.0'`.
+
 ## Quickstart
 
 A PDF script is initiated by calling one of the static methods e.g. dinA4.

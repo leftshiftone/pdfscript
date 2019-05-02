@@ -105,7 +105,7 @@ class PdfScriptTest {
         }.execute(interceptor)
         interceptor.commands.forEach { println(it) }
 
-        val result = File("/tmp/result.pdf")
+        val result = File("result.pdf")
         FileOutputStream(result).write(document)
 
         assertTrue(result.exists())

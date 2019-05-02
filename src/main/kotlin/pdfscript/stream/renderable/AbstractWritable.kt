@@ -5,6 +5,7 @@ import pdfscript.extension.maxOrDefault
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
+import pdfscript.stream.configurable.Context
 import kotlin.math.max
 
 abstract class AbstractWritable {
@@ -44,7 +45,7 @@ abstract class AbstractWritable {
 
     }
 
-    abstract fun evaluate(context:Context):List<Evaluation>;
+    abstract fun evaluate(context: Context):List<Evaluation>;
 
     protected fun widthSum(evaluations:List<Evaluation>, availableWidth:Float):Float {
         var sum = 0f
@@ -58,7 +59,7 @@ abstract class AbstractWritable {
         return evaluations.map { it.width(EvaluationBase(availableWidth, 0f)) }.max()!!
     }
 
-    protected fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, context:Context) {
+    protected fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, context: Context) {
         val availableWidth = context.format.width() - coordinates.x - context.margin.right
         if (availableWidth < evaluation.width(EvaluationBase(context.format.width(), context.format.width() - coordinates.x))) {
             coordinates.moveY(-(context.fontName().boundingBox.height / 1000) * context.fontSize())

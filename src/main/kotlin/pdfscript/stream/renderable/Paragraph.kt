@@ -4,6 +4,7 @@ import pdfscript.extension.maxOrDefault
 import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.PdfWriter
+import pdfscript.stream.configurable.Context
 import kotlin.math.min
 
 class Paragraph(val config: PdfWriter.() -> Unit, val style: Context.() -> Unit) : AbstractWritable() {

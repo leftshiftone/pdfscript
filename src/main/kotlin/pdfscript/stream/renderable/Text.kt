@@ -3,6 +3,7 @@ package pdfscript.stream.renderable
 import pdfscript.PdfScriptStream
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 import java.util.regex.Pattern
 
 class Text(val text: String, val config: Context.() -> Unit) : AbstractWritable() {
@@ -14,7 +15,7 @@ class Text(val text: String, val config: Context.() -> Unit) : AbstractWritable(
         return parts.map { toEvaluation(style, context, it) }
     }
 
-    private fun toEvaluation(styler: Context, context:Context, text: String): Evaluation {
+    private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
         return TextEvaluation({ styler.lineWidth(mask(text)) }, { styler.boxHeight() }) { stream, coordinates ->
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())

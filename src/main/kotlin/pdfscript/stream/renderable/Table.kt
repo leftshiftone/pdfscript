@@ -6,6 +6,7 @@ import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.PdfWriter
+import pdfscript.stream.configurable.Context
 import pdfscript.stream.renderable.decorator.BackgroundDecorator
 import pdfscript.stream.renderable.decorator.BorderDecorator
 import java.util.concurrent.CopyOnWriteArraySet
@@ -134,7 +135,7 @@ class Table(val config: TableWriter.() -> Unit, val style: Context.() -> Unit) :
             })
         }
 
-        protected fun write(stream: PdfScriptStream, evaluation:Evaluation, coordinates: Coordinates, context:Context) {
+        protected fun write(stream: PdfScriptStream, evaluation:Evaluation, coordinates: Coordinates, context: Context) {
             val availableWidth = coordinates.width - (coordinates.x - coordinates.xInit)
             val calcWidth = evaluation.width(EvaluationBase(availableWidth, 0f))
             if (availableWidth < calcWidth) {

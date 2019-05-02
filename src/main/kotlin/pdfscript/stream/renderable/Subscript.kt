@@ -3,6 +3,7 @@ package pdfscript.stream.renderable
 import pdfscript.PdfScriptStream
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 
 class Subscript(val text: String, val config: Context.() -> Unit) : AbstractWritable() {
 

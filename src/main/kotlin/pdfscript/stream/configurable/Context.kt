@@ -1,9 +1,10 @@
-package pdfscript.stream.renderable
+package pdfscript.stream.configurable
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import pdfscript.model.PageFormat
 import pdfscript.model.PageMargin
+import pdfscript.stream.configurable.map.FontsMap
 import java.util.*
 
 class Context(val format:PageFormat, val margin:PageMargin) {
@@ -18,6 +19,7 @@ class Context(val format:PageFormat, val margin:PageMargin) {
 
     fun fontName():PDFont = properties.get("fontName") as PDFont
     fun fontName(fontName:PDFont) = properties.set("fontName", fontName)
+    fun fontName(fontName:String) = properties.set("fontName", FontsMap.resolve(fontName))
 
     fun fontSize():Float = properties.get("fontSize") as Float
     fun fontSize(fontSize:Number) = properties.set("fontSize", fontSize.toFloat())
@@ -55,7 +57,7 @@ class Context(val format:PageFormat, val margin:PageMargin) {
     fun ratio():Optional<List<Float>> = Optional.ofNullable(properties.get("ratio")).map { it as List<Float> }
     fun ratio(vararg ratio:Number) = properties.set("ratio", ratio.asList().map { it.toFloat() })
 
-    fun copy():Context {
+    fun copy(): Context {
         val newContext = Context(format, margin)
         newContext.properties.putAll(properties)
         return newContext

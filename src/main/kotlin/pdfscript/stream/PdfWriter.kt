@@ -1,6 +1,7 @@
 package pdfscript.stream
 
 import org.apache.pdfbox.pdmodel.font.PDFont
+import pdfscript.stream.configurable.Context
 import pdfscript.stream.renderable.*
 import java.io.InputStream
 import java.net.URL
@@ -33,6 +34,7 @@ class PdfWriter(val context: Context) {
     fun text(text: String) = evaluations.addAll(Text(text, {}).evaluate(context))
     fun text(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Text(text, style).evaluate(context))
 
+    @Deprecated("use paragraph() instead")
     fun linebreak() = evaluations.addAll(LineBreak().evaluate(context))
 
     fun tab() {

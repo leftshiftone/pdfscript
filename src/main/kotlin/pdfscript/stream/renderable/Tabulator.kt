@@ -1,6 +1,7 @@
 package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 import java.util.*
 
 class Tabulator(val width:Optional<Float> = Optional.empty()) : AbstractWritable() {

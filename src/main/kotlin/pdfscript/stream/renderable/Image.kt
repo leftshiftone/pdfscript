@@ -1,6 +1,7 @@
 package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.net.URL

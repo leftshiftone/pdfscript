@@ -2,6 +2,7 @@ package pdfscript.stream.renderable
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 
 @Deprecated("use the context configuration attributes instead")
 class PdfsFont(val font: PDFont, val size: Float) : AbstractWritable() {

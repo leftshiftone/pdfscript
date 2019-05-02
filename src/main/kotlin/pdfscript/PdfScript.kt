@@ -10,7 +10,7 @@ import pdfscript.model.PageMargin.Companion.standard
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.PdfWriter
-import pdfscript.stream.renderable.Context
+import pdfscript.stream.configurable.Context
 import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
 import java.io.InputStream

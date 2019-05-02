@@ -1,6 +1,7 @@
 package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
+import pdfscript.stream.configurable.Context
 
 @Deprecated("use Paragraph instead")
 class LineBreak : AbstractWritable() {

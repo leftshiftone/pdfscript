@@ -2,7 +2,7 @@ package pdfscript.stream.renderable.decorator
 
 import pdfscript.PdfScriptStream
 import pdfscript.stream.Coordinates
-import pdfscript.stream.renderable.Context
+import pdfscript.stream.configurable.Context
 import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.math.floor
 import kotlin.math.round

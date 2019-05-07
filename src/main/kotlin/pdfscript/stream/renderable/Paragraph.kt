@@ -23,7 +23,7 @@ import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
 import kotlin.math.min
 
-class Paragraph(val config: PdfWriter.() -> Unit, val style: Context.() -> Unit) : AbstractWritable() {
+class Paragraph(private val config: PdfWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(style)

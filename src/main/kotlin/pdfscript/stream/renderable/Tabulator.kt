@@ -20,7 +20,7 @@ import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
 import java.util.*
 
-class Tabulator(val width:Optional<Float> = Optional.empty()) : AbstractWritable() {
+class Tabulator(private val width:Optional<Float> = Optional.empty()) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val tabSize = width.orElse(100f)

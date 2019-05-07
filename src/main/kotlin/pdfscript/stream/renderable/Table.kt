@@ -28,7 +28,7 @@ import pdfscript.stream.renderable.decorator.BorderDecorator
 import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.math.min
 
-class Table(val config: TableWriter.() -> Unit, val style: Context.() -> Unit) : AbstractWritable() {
+class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(style)
@@ -53,7 +53,7 @@ class Table(val config: TableWriter.() -> Unit, val style: Context.() -> Unit) :
         })
     }
 
-    class TableWriter(val context: Context, val lineRegistry: CopyOnWriteArraySet<String>) {
+    class TableWriter(private val context: Context, private val lineRegistry: CopyOnWriteArraySet<String>) {
         val evaluations = ArrayList<Evaluation>()
 
         fun row(config: TableColWriter.() -> Unit) = row({}, config)
@@ -107,7 +107,7 @@ class Table(val config: TableWriter.() -> Unit, val style: Context.() -> Unit) :
         }
     }
 
-    class TableColWriter(val context: Context, val lineRegistry: CopyOnWriteArraySet<String>) {
+    class TableColWriter(private val context: Context, private val lineRegistry: CopyOnWriteArraySet<String>) {
         val evaluations = ArrayList<Evaluation>()
 
         fun col(config: PdfWriter.() -> Unit) = col({}, config)

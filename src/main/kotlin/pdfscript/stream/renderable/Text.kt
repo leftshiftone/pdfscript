@@ -22,7 +22,7 @@ import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
 import java.util.regex.Pattern
 
-class Text(val text: String, val config: Context.() -> Unit) : AbstractWritable() {
+class Text(private val text: String, private val config: Context.() -> Unit) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(config)

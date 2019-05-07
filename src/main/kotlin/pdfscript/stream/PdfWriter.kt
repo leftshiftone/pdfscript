@@ -23,7 +23,7 @@ import java.io.InputStream
 import java.net.URL
 import java.util.*
 
-class PdfWriter(val context: Context) {
+class PdfWriter(private val context: Context) {
 
     val evaluations = ArrayList<Evaluation>()
 

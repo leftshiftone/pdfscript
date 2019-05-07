@@ -22,7 +22,7 @@ import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.net.URL
 
-class Image (val supplier: () -> InputStream, val width: Float, val height: Float) : AbstractWritable() {
+class Image (private val supplier: () -> InputStream, private val width: Float, private val height: Float) : AbstractWritable() {
 
     constructor(url: URL, width: Float, height: Float) : this(url::openStream, width, height)
     constructor(bytes: ByteArray, width: Float, height: Float) : this({ByteArrayInputStream(bytes)}, width, height)

@@ -21,7 +21,7 @@ import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
 
-class Subscript(val text: String, val config: Context.() -> Unit) : AbstractWritable() {
+class Subscript(private val text: String, private val config: Context.() -> Unit) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(config)

@@ -17,7 +17,6 @@
 package pdfscript
 
 import org.apache.pdfbox.pdmodel.PDDocument
-import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.extension.sumOrDefault
 import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
@@ -31,17 +30,29 @@ import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-class PdfScript(private val format: PageFormat, private val margin: PageMargin) {
+class PdfScript(private val style: Context.() -> Unit, private val format: PageFormat, private val margin: PageMargin) {
 
     val headerWriter = PdfWriter(Context(format, margin))
     val footerWriter = PdfWriter(Context(format, margin))
     val centerWriter = PdfWriter(Context(format, margin))
 
+    init {
+        headerWriter.withContext(style)
+        footerWriter.withContext(style)
+        centerWriter.withContext(style)
+    }
+
     companion object {
         @JvmStatic
         @JvmOverloads
         fun dinA4(margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
-            return PdfScript(PageFormat.dinA4(), margin).apply(config)
+            return PdfScript({}, PageFormat.dinA4(), margin).apply(config)
+        }
+
+        @JvmStatic
+        @JvmOverloads
+        fun dinA4(style: Context.() -> Unit, margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
+            return PdfScript(style, PageFormat.dinA4(), margin).apply(config)
         }
     }
 
@@ -49,8 +60,6 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
     fun paragraph(config: PdfWriter.() -> Unit) = centerWriter.paragraph(config)
     fun table(config: Table.TableWriter.() -> Unit) = centerWriter.table(config)
     fun table(style: Context.() -> Unit, config: Table.TableWriter.() -> Unit) = centerWriter.table(style, config)
-    @Deprecated("use the Context")
-    fun font(font: PDFont, size: Float = 10f) = centerWriter.setFont(font, size)
 
     fun text(text: String) = centerWriter.text(text)
     fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
@@ -70,6 +79,16 @@ class PdfScript(private val format: PageFormat, private val margin: PageMargin) 
 
     fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
     fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)
+
+    fun withHeader(style: Context.() -> Unit, config: PdfWriter.() -> Unit) {
+        headerWriter.withContext(style)
+        headerWriter.apply(config)
+    }
+
+    fun withFooter(style: Context.() -> Unit, config: PdfWriter.() -> Unit) {
+        footerWriter.withContext(style)
+        footerWriter.apply(config)
+    }
 
     @JvmOverloads
     fun execute(interceptor: Interceptor = Interceptor()): ByteArray {

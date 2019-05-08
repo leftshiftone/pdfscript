@@ -16,7 +16,6 @@
 
 package pdfscript.stream
 
-import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.renderable.*
 import java.io.InputStream
@@ -61,12 +60,6 @@ class PdfWriter(private val context: Context) {
         evaluations.addAll(Tabulator(Optional.ofNullable(tabSize.toFloat())).evaluate(context))
     }
 
-    fun setFont(font: PDFont, size: Number) {
-        context.fontName(font)
-        context.fontSize(size.toFloat())
-        evaluations.addAll(PdfsFont(font, size.toFloat()).evaluate(context))
-    }
-
     fun image(image: String, width: Number, height: Number) {
         evaluations.addAll(Image(URL(image), width.toFloat(), height.toFloat()).evaluate(context))
     }
@@ -96,5 +89,7 @@ class PdfWriter(private val context: Context) {
 
     fun subscript(text: String) = evaluations.addAll(Subscript(text, {}).evaluate(context))
     fun subscript(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Subscript(text, style).evaluate(context))
+
+    fun withContext(configurer:Context.() -> Unit) = this.context.apply(configurer)
 
 }

@@ -62,6 +62,8 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         this.contentStream.get().close()
         this.contentStream.set(PDPageContentStream(document, page))
         this.page.incrementAndGet()
+        this.currentFontName.set(null)
+        this.currentFontSize.set(null)
     }
 
     fun beginText() {
@@ -80,6 +82,9 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
     }
 
     fun setFont(font: PDFont, size: Float) {
+        requireNotNull(font) {"font must not be null"}
+        requireNotNull(size) {"size must not be null"}
+
         if (this.currentFontName.get() != font || this.currentFontSize.get() != size) {
              interceptor.setFont(font, size)
              contentStream.get().setFont(font, size)

@@ -28,29 +28,27 @@ class Paragraph(private val config: PdfWriter.() -> Unit, private val style: Con
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(style)
 
+        val padding = style.paddingTop().orElse(0f) + style.paddingBottom().orElse(style.boxHeight() / 2);
+
         val writer = PdfWriter(style).apply(config)
 
-        if (writer.evaluations.isEmpty())
-            return listOf(Evaluation({0f}, {0f}, { _, _ -> }))
+        if (writer.evaluations.isEmpty()) {
+            val height = padding + context.lineHeight()
+            return listOf(Evaluation({ 0f }, { height }, { _, coords -> coords.moveY(-height)}))
+        }
 
         val width = { base: EvaluationBase -> min(base.available, widthSum(writer.evaluations, base.available)) }
         val height = { base: EvaluationBase ->
             val calcWidth = widthSum(writer.evaluations, base.available)
             if (base.available < calcWidth) {
                 val addHeight = Math.floor((calcWidth / base.available).toDouble()) * context.lineHeight()
-                (writer.evaluations.map { it.height(base) }.maxOrDefault(0f) + addHeight).toFloat()
+                ((writer.evaluations.map { it.height(base) }.maxOrDefault(0f) + addHeight).toFloat()) + padding
             } else {
-                writer.evaluations.map { it.height(base) }.maxOrDefault(0f)
+                writer.evaluations.map { it.height(base) }.maxOrDefault(0f) + padding
             }
         }
 
         return listOf(Evaluation(width, height) { stream, coordinates ->
-            // if (style.background().isPresent) {
-            //     val calcWidth = width(EvaluationBase(coordinates.width, 0f))
-            //     val calcHeight = height(EvaluationBase(coordinates.width, 0f))
-            //     stream.addRect(coordinates.x, coordinates.y, calcWidth, -calcHeight)
-            // }
-
             val curWidth = width(EvaluationBase(coordinates.width, 0f))
 
             val xInit = coordinates.x
@@ -60,7 +58,7 @@ class Paragraph(private val config: PdfWriter.() -> Unit, private val style: Con
                 coordinates.moveX((context.format.width() - context.margin.left - context.margin.right - curWidth)  / 2)
 
             writer.evaluations.forEach { write(stream, it, coordinates, style) }
-            coordinates.moveY(-context.boxHeight())
+            coordinates.moveY(-(context.boxHeight() + padding))
             coordinates.x = xInit
 
             if (style.foreground().isPresent)

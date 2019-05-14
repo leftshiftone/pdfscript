@@ -79,7 +79,7 @@ class Context(val format:PageFormat, val margin:PageMargin) {
         return newContext
     }
 
-    fun lineHeight() = (fontName().boundingBox.height / 1000) * fontSize()
+    fun lineHeight() = boxHeight()
     fun lineWidth(text:String, size:Float = fontSize()) = (fontName().getStringWidth(text) / 1000) * fontSize()
 
     fun capHeight() = (fontName().fontDescriptor.capHeight / 1000) * fontSize()

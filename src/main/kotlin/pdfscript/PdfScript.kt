@@ -132,7 +132,7 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
 
     private fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, newPage: Boolean) {
         val footerHeight = footerWriter.evaluations.map { it.height(Evaluation.EvaluationBase(format.width(), 0f)) }.sumOrDefault(0f)
-        val calcHeight = margin.bottom + footerHeight // margin.bottom + footerHeight - (margin.bottom - margin.footer)
+        val calcHeight = margin.footer + Math.max(footerHeight, margin.bottom - margin.footer) + 10 // margin.bottom + footerHeight - (margin.bottom - margin.footer)
 
         if (newPage && (coordinates.y - evaluation.height(Evaluation.EvaluationBase(format.width(), 0f))) < calcHeight) {
             stream.newPage(format)
@@ -156,7 +156,6 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
 
         val availableWidth = format.width() - coordinates.x - margin.right
         if (availableWidth < evaluation.width(Evaluation.EvaluationBase(format.width(), 0f))) {
-            coordinates.moveY(-10f)
             coordinates.x = coordinates.xInit
         }
         evaluation.execute(stream, coordinates)

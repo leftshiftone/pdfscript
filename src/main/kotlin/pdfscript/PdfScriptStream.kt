@@ -31,9 +31,12 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.util.*
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 import javax.imageio.ImageIO
+import kotlin.math.floor
+import kotlin.math.round
 
 
 class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages:Int) {
@@ -43,6 +46,8 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
 
     private val currentFontName = AtomicReference<PDFont>()
     private val currentFontSize = AtomicReference<Float>()
+
+    private val lineRegistry = CopyOnWriteArraySet<String>()
 
     val colors: Properties = Properties().apply {
         load(PdfScriptStream::class.java.getResourceAsStream("/color.properties"))
@@ -64,6 +69,7 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         this.page.incrementAndGet()
         this.currentFontName.set(null)
         this.currentFontSize.set(null)
+        this.lineRegistry.clear()
     }
 
     fun beginText() {
@@ -154,5 +160,13 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
 
     fun pages() = pages.get()
     fun page() = page.get()
+
+    fun checkAndAdd(x1: Float, y1: Float, x2: Float, y2: Float): Boolean {
+        lineRegistry.add("${page()}@${floor(x1 + 1)}:${floor(y1)}-${floor(x2 + 1)}:${floor(y2)}")
+        lineRegistry.add("${page()}@${floor(x1 - 1)}:${floor(y1)}-${floor(x2 - 1)}:${floor(y2)}")
+        lineRegistry.add("${page()}@${floor(x1)}:${floor(y1 + 1)}-${floor(x2)}:${floor(y2 + 1)}")
+        lineRegistry.add("${page()}@${floor(x1)}:${floor(y1 - 1)}-${floor(x2)}:${floor(y2 - 1)}")
+        return lineRegistry.add("${page()}@${round(floor(x1))}:${round(floor(y1))}-${round(floor(x2))}:${round(floor(y2))}")
+    }
 
 }

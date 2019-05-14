@@ -25,42 +25,37 @@ import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.renderable.decorator.BackgroundDecorator
 import pdfscript.stream.renderable.decorator.BorderDecorator
-import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.math.min
 
 class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
-        val style = context.copy().apply(style)
-        val set = CopyOnWriteArraySet<String>()
-        val writer = TableWriter(style, set).apply(config)
+        val style = context.copy().apply(style).apply {paddingBottom(context.paddingBottom().orElse(0f))}
+        val writer = TableWriter(style).apply(config)
 
         if (writer.evaluations.isEmpty())
             return listOf(Evaluation({ 0f }, { 0f }, { _, _ -> }))
 
-        val width = writer.evaluations.map { it.width(EvaluationBase(context.format.width(), 0f)) }.sum()
-        val height = writer.evaluations.map { it.height(EvaluationBase(context.format.width(), 0f)) }.sum()
+        return writer.evaluations.mapIndexed { index, e ->
+            val width = e.width(EvaluationBase(context.format.width(), 0f))
+            val height = e.height(EvaluationBase(context.format.width(), 0f))
 
-        return listOf(Evaluation({ width }, { height }) { stream, coordinates ->
-            writer.evaluations.forEachIndexed() { index, it ->
+            return@mapIndexed Evaluation({ width }, { height }) { stream, coordinates ->
+                e.execute(stream, Coordinates(coordinates, width, height))
                 val tmp: Float = if (index % 2 == 0) 0.25f else 0f
-                it.execute(stream, Coordinates(coordinates, width, height))
-                // coordinates.moveY(-(context.lineHeight()) - tmp) // 1 stroke of table
                 coordinates.moveY(-tmp) // 1 stroke of table
             }
-            // coordinates.moveY(-(height - ((writer.evaluations.size) * context.lineHeight())))
-            coordinates.x = coordinates.xInit
-        })
+        }
     }
 
-    class TableWriter(private val context: Context, private val lineRegistry: CopyOnWriteArraySet<String>) {
+    class TableWriter(private val context: Context) {
         val evaluations = ArrayList<Evaluation>()
 
         fun row(config: TableColWriter.() -> Unit) = row({}, config)
 
         fun row(style: Context.() -> Unit = {}, config: TableColWriter.() -> Unit) {
             val styler = context.copy().apply(style)
-            val writer = TableColWriter(styler, lineRegistry).apply(config)
+            val writer = TableColWriter(styler).apply(config)
 
             val availableWidth = (context.format.width() - context.margin.left - context.margin.right)
 
@@ -107,7 +102,7 @@ class Table(private val config: TableWriter.() -> Unit, private val style: Conte
         }
     }
 
-    class TableColWriter(private val context: Context, private val lineRegistry: CopyOnWriteArraySet<String>) {
+    class TableColWriter(private val context: Context) {
         val evaluations = ArrayList<Evaluation>()
 
         fun col(config: PdfWriter.() -> Unit) = col({}, config)
@@ -123,15 +118,16 @@ class Table(private val config: TableWriter.() -> Unit, private val style: Conte
                 val calcHeight = AbstractWritable.calcSumHeight(writer.evaluations, base)
 
                 if (base.available < calcWidth) {
-                    // calcHeight + context.lineHeight()
-                       ((Math.floor((calcWidth / base.available).toDouble()) * calcHeight) + context.lineHeight()).toFloat()
+                    val value = (calcWidth / base.available).toDouble()
+                    val extra = if (value % 1 > 0.5) Math.ceil(value).toFloat() else Math.floor(value).toFloat()
+                    (extra * calcHeight) + context.lineHeight()
                 } else
                     calcHeight
             }
 
-            evaluations.add(Evaluation({it.available}, height) { stream, coordinates ->
+            evaluations.add(Evaluation({ it.available }, height) { stream, coordinates ->
                 BackgroundDecorator(styler).evaluate(stream, coordinates)
-                BorderDecorator(styler).evaluate(stream, lineRegistry, coordinates)
+                BorderDecorator(styler).evaluate(stream, coordinates)
                 if (styler.isAlignCenter()) {
                     coordinates.moveX((coordinates.width - getWidth(EvaluationBase(coordinates.width, 0f))) / 2)
                 }
@@ -151,7 +147,7 @@ class Table(private val config: TableWriter.() -> Unit, private val style: Conte
             })
         }
 
-        protected fun write(stream: PdfScriptStream, evaluation:Evaluation, coordinates: Coordinates, context: Context) {
+        protected fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, context: Context) {
             val availableWidth = coordinates.width - (coordinates.x - coordinates.xInit)
             val calcWidth = evaluation.width(EvaluationBase(availableWidth, 0f))
             if (availableWidth < calcWidth) {

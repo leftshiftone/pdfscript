@@ -1,3 +1,13 @@
+webhook-created: &webhook-created
+  name: Webhook created
+  command: |
+    curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+webhook-failed: &webhook-failed
+  name: Webhook completed
+  when: on_fail
+  command: |
+    curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+
 version: 2.1
 jobs:
   webhook-completed:
@@ -17,9 +27,7 @@ jobs:
       TEST_RESULTS_PATH: build/circleci/test-results
     steps:
       - run:
-          name: Webhook created
-          command: |
-            curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+          <<: *webhook-created
       - checkout
       - run: chmod a+x gradlew
       - restore_cache:
@@ -36,10 +44,7 @@ jobs:
       - store_test_results:
           path: build/circleci/test-results
       - run:
-          name: Webhook completed
-          when: on_fail
-          command: |
-            curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+          <<: *webhook-failed
   release:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -48,9 +53,7 @@ jobs:
       GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
     steps:
       - run:
-          name: Webhook created
-          command: |
-            curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+          <<: *webhook-created
       - checkout
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
@@ -60,10 +63,7 @@ jobs:
             - ~/.gradle
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run:
-          name: Webhook completed
-          when: on_fail
-          command: |
-            curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+          <<: *webhook-failed
 
 workflows:
   version: 2

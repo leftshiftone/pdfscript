@@ -75,6 +75,9 @@ workflows:
             tags:
               ignore: /.*/
       - webhook-completed:
+          filters:
+            tags:
+              ignore: /.*/
           requires:
             - build
   release:
@@ -87,5 +90,10 @@ workflows:
             tags:
               only: /^v\d+\.\d+\.\d+$/
       - webhook-completed:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
           requires:
             - release

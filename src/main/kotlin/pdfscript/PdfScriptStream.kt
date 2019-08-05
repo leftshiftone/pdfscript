@@ -17,6 +17,7 @@
 package pdfscript
 
 import net.coobird.thumbnailator.Thumbnailator
+import net.coobird.thumbnailator.Thumbnails
 import org.apache.batik.transcoder.TranscoderInput
 import org.apache.batik.transcoder.TranscoderOutput
 import org.apache.batik.transcoder.image.PNGTranscoder
@@ -121,8 +122,13 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
 
     fun drawImage(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
         val timestamp = System.currentTimeMillis()
+        val bufImageIO = ImageIO.read(ByteArrayInputStream(stream.readBytes()))
+        val dimensions = Pair(bufImageIO.getWidth(), bufImageIO.getHeight())
         val baos = ByteArrayOutputStream()
-        Thumbnailator.createThumbnail(stream, baos, "png", width, height)
+
+        val scale = if(dimensions.first > dimensions.second)  width.toDouble().div(dimensions.first.toDouble())
+            else height.toDouble().div(dimensions.second.toDouble())
+        Thumbnails.of(bufImageIO).scale(scale).outputQuality(1.0).outputFormat("png").toOutputStream(baos)
 
         val bim = ImageIO.read(ByteArrayInputStream(baos.toByteArray()))
         val image = LosslessFactory.createFromImage(document, bim)

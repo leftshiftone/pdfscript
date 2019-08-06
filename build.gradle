@@ -31,8 +31,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect"
     compile "org.apache.pdfbox:pdfbox:2.0.15"
     compile "net.coobird:thumbnailator:0.4.8"
-    compile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.11'
-    compile group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
+    compileOnly group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.11'
+    compileOnly group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
 
     testCompile "org.junit.jupiter:junit-jupiter:5.4.2"
 }

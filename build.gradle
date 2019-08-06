@@ -35,6 +35,8 @@ dependencies {
     compileOnly group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
 
     testCompile "org.junit.jupiter:junit-jupiter:5.4.2"
+    testCompile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.11'
+    testCompile group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
 }
 
 release {

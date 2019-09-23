@@ -91,8 +91,8 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
     }
 
     @JvmOverloads
-    fun execute(interceptor: Interceptor = Interceptor()): ByteArray {
-        val document = PDDocument()
+    fun execute(interceptor: Interceptor = Interceptor(), document:PDDocument = PDDocument()): ByteArray {
+        centerWriter.withContext(style)
 
         // evaluate renderables
         // ********************

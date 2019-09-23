@@ -32,7 +32,7 @@ class PdfScriptTest {
     @Test
     fun `pdf is generated from DSL`() {
         val interceptor = RawCommandsInterceptor()
-        val document = dinA4({fontSize(9)}) {
+        val document = dinA4({ fontSize(9) }) {
             withHeader {
                 table({ border("none") }) {
                     row {
@@ -45,7 +45,7 @@ class PdfScriptTest {
                     }
                 }
             }
-            withFooter({fontSize(7)}) {
+            withFooter({ fontSize(7) }) {
                 table({ border("none");background("#E0E0E0") }) {
                     row({ fontName(PDType1Font.HELVETICA_BOLD); fontSize(8) }) {
                         col { text("Lorem ipsum") }

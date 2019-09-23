@@ -30,27 +30,19 @@ class TextTest {
         val bytes = dinA4 {
             text("äöü")
         }.execute(interceptor)
-
-        // val fos = FileOutputStream(File("D:/tmp/result.pdf"))
-        // fos.write(bytes)
-        // fos.close()
     }
 
     @Test
     fun textWithHatschek() {
         val document = PDDocument()
 
-        val fontStream = TextTest::class.java.getResourceAsStream("/font/ArialUnicodeMS.ttf")
+        val fontStream = TextTest::class.java.getResourceAsStream("/font/OpenSans-Regular.ttf")
         val font = PDType0Font.load(document, fontStream)
 
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4({fontName(font)}) {
+        val bytes = dinA4({ fontName(font) }) {
             text("č")
         }.execute(interceptor, document)
-
-        // val fos = FileOutputStream(File("D:/tmp/result.pdf"))
-        // fos.write(bytes)
-        // fos.close()
     }
 
 }

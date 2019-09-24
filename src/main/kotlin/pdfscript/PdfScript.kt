@@ -77,8 +77,13 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
     fun svg(image: () -> InputStream, width: Number, height: Number) = centerWriter.svg(image, width, height)
     fun svg(image: ByteArray, width: Number, height: Number) = centerWriter.svg(image, width, height)
 
-    fun withHeader(config: PdfWriter.() -> Unit) = headerWriter.apply(config)
-    fun withFooter(config: PdfWriter.() -> Unit) = footerWriter.apply(config)
+    fun withHeader(config: PdfWriter.() -> Unit) {
+        headerWriter.apply(config)
+    }
+
+    fun withFooter(config: PdfWriter.() -> Unit) {
+        footerWriter.apply(config)
+    }
 
     fun withHeader(style: Context.() -> Unit, config: PdfWriter.() -> Unit) {
         headerWriter.withContext(style)

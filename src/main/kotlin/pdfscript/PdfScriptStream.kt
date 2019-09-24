@@ -16,7 +16,6 @@
 
 package pdfscript
 
-import net.coobird.thumbnailator.Thumbnailator
 import net.coobird.thumbnailator.Thumbnails
 import org.apache.batik.transcoder.TranscoderInput
 import org.apache.batik.transcoder.TranscoderOutput
@@ -30,6 +29,7 @@ import pdfscript.model.PageFormat
 import java.awt.Color
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.Closeable
 import java.io.InputStream
 import java.util.*
 import java.util.concurrent.CopyOnWriteArraySet
@@ -40,7 +40,7 @@ import kotlin.math.floor
 import kotlin.math.round
 
 
-class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages:Int) {
+class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages: Int) : Closeable {
 
     private val page = AtomicInteger(1)
     private val pages = AtomicInteger(pages)
@@ -89,12 +89,12 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
     }
 
     fun setFont(font: PDFont, size: Float) {
-        requireNotNull(font) {"font must not be null"}
-        requireNotNull(size) {"size must not be null"}
+        requireNotNull(font) { "font must not be null" }
+        requireNotNull(size) { "size must not be null" }
 
         if (this.currentFontName.get() != font || this.currentFontSize.get() != size) {
-             interceptor.setFont(font, size)
-             contentStream.get().setFont(font, size)
+            interceptor.setFont(font, size)
+            contentStream.get().setFont(font, size)
         }
         this.currentFontName.set(font)
         this.currentFontSize.set(size)
@@ -107,8 +107,8 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
 
     fun drawSvg(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
         val pngTranscoder = PNGTranscoder()
-        pngTranscoder.addTranscodingHint( PNGTranscoder.KEY_WIDTH, width.toFloat() )
-        pngTranscoder.addTranscodingHint( PNGTranscoder.KEY_HEIGHT, height.toFloat() )
+        pngTranscoder.addTranscodingHint(PNGTranscoder.KEY_WIDTH, width.toFloat())
+        pngTranscoder.addTranscodingHint(PNGTranscoder.KEY_HEIGHT, height.toFloat())
 
         val os = ByteArrayOutputStream()
         pngTranscoder.transcode(TranscoderInput(stream), TranscoderOutput(os))
@@ -126,8 +126,8 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         val dimensions = Pair(bufImageIO.getWidth(), bufImageIO.getHeight())
         val baos = ByteArrayOutputStream()
 
-        val scale = if(dimensions.first > dimensions.second)  width.toDouble().div(dimensions.first.toDouble())
-            else height.toDouble().div(dimensions.second.toDouble())
+        val scale = if (dimensions.first > dimensions.second) width.toDouble().div(dimensions.first.toDouble())
+        else height.toDouble().div(dimensions.second.toDouble())
         Thumbnails.of(bufImageIO).scale(scale).outputQuality(1.0).outputFormat("png").toOutputStream(baos)
 
         val bim = ImageIO.read(ByteArrayInputStream(baos.toByteArray()))
@@ -160,7 +160,7 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         contentStream.get().fill()
     }
 
-    fun close() {
+    override fun close() {
         contentStream.get().close()
     }
 

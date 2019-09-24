@@ -91,7 +91,7 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
     }
 
     @JvmOverloads
-    fun execute(interceptor: Interceptor = Interceptor(), document:PDDocument = PDDocument()): ByteArray {
+    fun execute(interceptor: Interceptor = Interceptor(), document: PDDocument = PDDocument()): ByteArray {
         centerWriter.withContext(style)
 
         // evaluate renderables
@@ -105,29 +105,28 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
                 Math.max(margin.bottom, footerHeight + margin.bottom)
 
         val pageCount = Math.ceil(centerHeight.toDouble() / availableCenterHeight.toDouble()).toInt()
-        val stream = PdfScriptStream(document, this.format, interceptor, pageCount)
+        document.use {
+            PdfScriptStream(document, this.format, interceptor, pageCount).use { stream ->
+                // execute renderables
+                // *******************
+                val headerCoordinates = Coordinates(margin.left, format.height() - margin.header)
+                val footerCoordinates = Coordinates(margin.left, margin.bottom, format.width(), format.height())
+                val centerCoordinates = Coordinates(margin.left, format.height() - margin.top - 1)
 
-        // execute renderables
-        // *******************
-        val headerCoordinates = Coordinates(margin.left, format.height() - margin.header)
-        val footerCoordinates = Coordinates(margin.left, margin.bottom, format.width(), format.height())
-        val centerCoordinates = Coordinates(margin.left, format.height() - margin.top - 1)
+                if (headerHeight > margin.header)
+                    centerCoordinates.moveY(margin.header - headerHeight)
+                if (footerHeight > margin.bottom - margin.footer)
+                    footerCoordinates.moveY(footerHeight - (margin.bottom - margin.footer))
 
-        if (headerHeight > margin.header)
-            centerCoordinates.moveY(margin.header - headerHeight)
-        if (footerHeight > margin.bottom - margin.footer)
-            footerCoordinates.moveY(footerHeight - (margin.bottom - margin.footer))
+                headerWriter.evaluations.forEach { write(stream, it, headerCoordinates, false) }
+                footerWriter.evaluations.forEach { write(stream, it, footerCoordinates, false) }
+                centerWriter.evaluations.forEach { write(stream, it, centerCoordinates, true) }
+            }
 
-        headerWriter.evaluations.forEach { write(stream, it, headerCoordinates, false) }
-        footerWriter.evaluations.forEach { write(stream, it, footerCoordinates, false) }
-        centerWriter.evaluations.forEach { write(stream, it, centerCoordinates, true) }
-
-        stream.close()
-        val baos = ByteArrayOutputStream()
-        document.save(baos)
-
-        document.close()
-        return baos.toByteArray()
+            val baos = ByteArrayOutputStream()
+            document.save(baos)
+            return baos.toByteArray()
+        }
     }
 
     private fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, newPage: Boolean) {

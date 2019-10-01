@@ -24,9 +24,11 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory
+import org.slf4j.LoggerFactory
 import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
 import java.awt.Color
+import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
@@ -41,6 +43,8 @@ import kotlin.math.round
 
 
 class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages: Int) : Closeable {
+
+    private val log = LoggerFactory.getLogger(this::class.java)
 
     private val page = AtomicInteger(1)
     private val pages = AtomicInteger(pages)
@@ -122,8 +126,13 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
 
     fun drawImage(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
         val timestamp = System.currentTimeMillis()
-        val bufImageIO = ImageIO.read(ByteArrayInputStream(stream.readBytes()))
-        val dimensions = Pair(bufImageIO.getWidth(), bufImageIO.getHeight())
+        val bufImageIO: BufferedImage? = ImageIO.read(ByteArrayInputStream(stream.readBytes()))
+        if (bufImageIO == null) {
+            log.error("Image buffer is corrupt; cannot draw image")
+            return
+        }
+
+        val dimensions = Pair(bufImageIO.width, bufImageIO.height)
         val baos = ByteArrayOutputStream()
 
         val scale = if (dimensions.first > dimensions.second) width.toDouble().div(dimensions.first.toDouble())
@@ -133,7 +142,7 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         val bim = ImageIO.read(ByteArrayInputStream(baos.toByteArray()))
         val image = LosslessFactory.createFromImage(document, bim)
         contentStream.get().drawImage(image, x, y)
-        println(System.currentTimeMillis() - timestamp)
+        log.debug("Drew image in ${System.currentTimeMillis() - timestamp}ms")
     }
 
     fun setStrokingColor(colorStr: String) {

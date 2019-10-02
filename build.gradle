@@ -31,12 +31,14 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect"
     compile "org.apache.pdfbox:pdfbox:2.0.15"
     compile "net.coobird:thumbnailator:0.4.8"
-    compileOnly group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.11'
-    compileOnly group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
+    compile "org.slf4j:slf4j-api:1.7.26"
+
+    compileOnly "org.apache.xmlgraphics:batik-transcoder:1.11"
+    compileOnly "org.apache.xmlgraphics:batik-codec:1.11"
 
     testCompile "org.junit.jupiter:junit-jupiter:5.4.2"
-    testCompile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.11'
-    testCompile group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.11'
+    testCompile "org.apache.xmlgraphics:batik-transcoder:1.11"
+    testCompile "org.apache.xmlgraphics:batik-codec:1.11"
 }
 
 release {

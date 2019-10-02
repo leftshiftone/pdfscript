@@ -38,6 +38,7 @@ class Context(val format: PageFormat, val margin: PageMargin) {
     fun font(font: PDFont) = properties.set("font", PDFontResolver(font))
     fun font(font: String) = properties.set("font", PDFontResolver(FontsMap.resolve(font)))
     fun font(font: PDFontResolver) = properties.set("font", font)
+    fun fontName(font: String) = properties.set("font", PDFontResolver(FontsMap.resolve(font)))
 
     fun fontSize(): Float = properties.get("fontSize") as Float
     fun fontSize(fontSize: Number) = properties.set("fontSize", fontSize.toFloat())

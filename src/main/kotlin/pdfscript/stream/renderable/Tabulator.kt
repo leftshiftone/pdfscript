@@ -29,10 +29,6 @@ class Tabulator(private val width:Optional<Float> = Optional.empty()) : Abstract
             tabSize - (base.accumulated % tabSize)
         }
         return listOf(Text.TextEvaluation(width, {context.boxHeight()}) { stream, coordinates ->
-            //println("tabulator: $tabSize --> ${tabSize - ((coordinates.x - coordinates.xInit) % tabSize)}")
-            //println("${coordinates.x} - ${coordinates.xInit}")
-            //
-            //stream.drawLine(coordinates.x, coordinates.y, coordinates.x + tabSize - ((coordinates.x - coordinates.xInit) % tabSize), coordinates.y)
             coordinates.moveX(tabSize - ((coordinates.x - coordinates.xInit) % tabSize))
         })
     }

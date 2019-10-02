@@ -78,7 +78,7 @@ abstract class AbstractWritable {
     protected fun write(stream: PdfScriptStream, evaluation: Evaluation, coordinates: Coordinates, context: Context) {
         val availableWidth = context.format.width() - coordinates.x - context.margin.right
         if (availableWidth < evaluation.width(EvaluationBase(context.format.width(), context.format.width() - coordinates.x))) {
-            coordinates.moveY(-(context.fontName().boundingBox.height / 1000) * context.fontSize())
+            coordinates.moveY(-(context.font()("").boundingBox.height / 1000) * context.fontSize())
             coordinates.x = coordinates.xInit
         }
         evaluation.execute(stream, coordinates)

@@ -47,7 +47,7 @@ class PdfScriptTest {
             }
             withFooter({ fontSize(7) }) {
                 table({ border("none");background("#E0E0E0") }) {
-                    row({ fontName(PDType1Font.HELVETICA_BOLD); fontSize(8) }) {
+                    row({ font(PDType1Font.HELVETICA_BOLD); fontSize(8) }) {
                         col { text("Lorem ipsum") }
                         col({ align("right") }) { text({ align("right") }, "Page x of x") }
                     }
@@ -78,7 +78,7 @@ class PdfScriptTest {
             paragraph { tab() }
 
             paragraph {
-                text(({ fontSize(12); fontName(PDType1Font.HELVETICA_BOLD) }), "Subject")
+                text(({ fontSize(12); font(PDType1Font.HELVETICA_BOLD) }), "Subject")
                 linebreak()
                 linebreak()
                 text("Dear Mr. Gump")
@@ -97,7 +97,7 @@ class PdfScriptTest {
             paragraph { tab() }
 
             table({ align("center");borderLeft("white");borderRight("white");borderTop("white") }) {
-                row({ fontName(PDType1Font.HELVETICA_BOLD); borderBottom("#C00000");paddingBottom(5) }) {
+                row({ font(PDType1Font.HELVETICA_BOLD); borderBottom("#C00000");paddingBottom(5) }) {
                     col { text("One") }
                     col { text("Two") }
                     col { text("Three") }

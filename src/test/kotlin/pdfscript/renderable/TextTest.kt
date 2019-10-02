@@ -17,10 +17,12 @@
 package pdfscript.renderable
 
 import org.apache.pdfbox.pdmodel.PDDocument
+import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType0Font
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
+import pdfscript.stream.configurable.font.PDFontResolver
 
 class TextTest {
 
@@ -36,13 +38,29 @@ class TextTest {
     fun textWithHatschek() {
         val document = PDDocument()
 
-        val fontStream = TextTest::class.java.getResourceAsStream("/font/OpenSans-Regular.ttf")
-        val font = PDType0Font.load(document, fontStream)
+        val font = loadFont(document, "/font/OpenSans-Regular.ttf")
 
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4({ fontName(font) }) {
+        val bytes = dinA4({ font(font) }) {
             text("č")
         }.execute(interceptor, document)
+    }
+
+    @Test
+    fun textWithArabicCharacter() {
+        val document = PDDocument()
+        val font1 = loadFont(document, "/font/OpenSans-Regular.ttf")
+        val font2 = loadFont(document, "/font/NotoSansArabic-Regular.ttf")
+
+        val interceptor = RawCommandsInterceptor()
+        val bytes = dinA4({ font(PDFontResolver(font1, font2)) }) {
+            text("\u0627")
+        }.execute(interceptor, document)
+    }
+
+    private fun loadFont(document: PDDocument, path:String): PDFont {
+        val fontStream = TextTest::class.java.getResourceAsStream(path)
+        return PDType0Font.load(document, fontStream)
     }
 
 }

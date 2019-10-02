@@ -20,6 +20,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import pdfscript.model.PageFormat
 import pdfscript.model.PageMargin
+import pdfscript.stream.configurable.font.PDFontResolver
 import pdfscript.stream.configurable.map.FontsMap
 import java.util.*
 
@@ -28,14 +29,15 @@ class Context(val format: PageFormat, val margin: PageMargin) {
     val properties = HashMap<String, Any>()
 
     init {
-        properties.put("fontName", PDType1Font.HELVETICA)
+        properties.put("font", PDFontResolver(PDType1Font.HELVETICA))
         properties.put("fontSize", 12f)
         properties.put("border", "black")
     }
 
-    fun fontName(): PDFont = properties.get("fontName") as PDFont
-    fun fontName(fontName: PDFont) = properties.set("fontName", fontName)
-    fun fontName(fontName: String) = properties.set("fontName", FontsMap.resolve(fontName))
+    fun font(): (String) -> PDFont = (properties.get("font") as PDFontResolver)::resolve
+    fun font(font: PDFont) = properties.set("font", PDFontResolver(font))
+    fun font(font: String) = properties.set("font", PDFontResolver(FontsMap.resolve(font)))
+    fun font(font: PDFontResolver) = properties.set("font", font)
 
     fun fontSize(): Float = properties.get("fontSize") as Float
     fun fontSize(fontSize: Number) = properties.set("fontSize", fontSize.toFloat())
@@ -80,10 +82,10 @@ class Context(val format: PageFormat, val margin: PageMargin) {
     }
 
     fun lineHeight() = boxHeight()
-    fun lineWidth(text: String, size: Float = fontSize()) = (fontName().getStringWidth(text) / 1000) * fontSize()
+    fun lineWidth(text: String, size: Float = fontSize()) = (font()(text).getStringWidth(text) / 1000) * size
 
-    fun capHeight() = (fontName().fontDescriptor.capHeight / 1000) * fontSize()
-    fun boxHeight() = (fontName().boundingBox.height / 1000) * fontSize()
+    fun capHeight() = (font()("").fontDescriptor.capHeight / 1000) * fontSize()
+    fun boxHeight() = (font()("").boundingBox.height / 1000) * fontSize()
 
     fun isAlignCenter() = align().isPresent && align().get().equals("center")
     fun isAlignRight() = align().isPresent && align().get().equals("right")

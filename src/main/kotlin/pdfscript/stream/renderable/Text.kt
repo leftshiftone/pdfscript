@@ -36,7 +36,7 @@ class Text(private val text: String, private val config: Context.() -> Unit) : A
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
-            stream.setFont(styler.fontName(), styler.fontSize())
+            stream.setFont(styler.font()(text), styler.fontSize())
             stream.beginText()
             stream.newLineAtOffset(coordinates.x, coordinates.y - (styler.capHeight() + ((styler.boxHeight() - styler.capHeight()) / 2)))
 
@@ -44,7 +44,7 @@ class Text(private val text: String, private val config: Context.() -> Unit) : A
             stream.showText(resolved)
 
             stream.endText()
-            stream.setFont(context.fontName(), context.fontSize())
+            stream.setFont(context.font()(text), context.fontSize())
 
             coordinates.moveX(styler.lineWidth(resolved))
         }

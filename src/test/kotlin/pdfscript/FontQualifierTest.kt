@@ -27,7 +27,7 @@ class FontQualifierTest {
     fun `set a font by a font qualifier`() {
         val interceptor = RawCommandsInterceptor()
         dinA4 {
-            text({fontName("courier")},"text")
+            text({font("courier")},"text")
         }.execute(interceptor)
 
         val expected = listOf(

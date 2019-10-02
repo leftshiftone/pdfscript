@@ -33,12 +33,12 @@ class Superscript(val text: String, val config: Context.() -> Unit) : AbstractWr
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
-            stream.setFont(styler.fontName(), styler.fontSize() / 5 * 3)
+            stream.setFont(styler.font()(text), styler.fontSize() / 5 * 3)
             stream.beginText()
             stream.newLineAtOffset(coordinates.x, coordinates.y - (styler.capHeight() / 1.5f))
             stream.showText(text)
             stream.endText()
-            stream.setFont(context.fontName(), context.fontSize())
+            stream.setFont(context.font()(text), context.fontSize())
 
             coordinates.moveX(styler.lineWidth(text))
         }

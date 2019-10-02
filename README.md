@@ -163,6 +163,7 @@ paragraph({paddingTop(5); paddingBottom(5)}) {
 
 | name          | description                                                    | values         
 |---------------|----------------------------------------------------------------|----------------
+| font          | the font to use                                                | [font qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/font.properties "Font Qualifiers")
 | fontName      | the name of the font to use                                    | [font qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/font.properties "Font Qualifiers")
 | fontSize      | the size of the font to use                                    | number
 | foreground    | the color which is used to render text and line elements       | hex code or [color qualifier](https://github.com/leftshiftone/pdfscript/blob/master/src/main/resources/color.properties "Color Qualifiers")
@@ -176,6 +177,39 @@ paragraph({paddingTop(5); paddingBottom(5)}) {
 | paddingBottom | determines the bottom padding                                  | number
 | align         | indicates the text alignment                                   | "left", "center", "right"
 | ratio         | the ratio of the row columns                                   | number varargs
+
+## Font
+PDFScript offers a convenient way to embed a font in a pdf document.
+
+```
+private fun loadFont(document: PDDocument, path:String): PDFont {
+   val fontStream = TextTest::class.java.getResourceAsStream(path)
+   return PDType0Font.load(document, fontStream)
+}
+
+val document = PDDocument()
+val font = loadFont(document, "/customFont.ttf")
+
+val interceptor = RawCommandsInterceptor()
+dinA4({ font(font) }) { text("č") }.execute(interceptor, document)
+```
+
+Sometimes it is necessary to have a fallback font, if glyphs were used which are not supported by the current font.
+For this case, a PDFontResolver can be used in order to build a font chain.
+
+```
+private fun loadFont(document: PDDocument, path:String): PDFont {
+   val fontStream = TextTest::class.java.getResourceAsStream(path)
+   return PDType0Font.load(document, fontStream)
+}
+
+val document = PDDocument()
+val font1 = loadFont(document, "/customFont1.ttf")
+val font2 = loadFont(document, "/customFont2.ttf")
+
+val interceptor = RawCommandsInterceptor()
+dinA4({ font(PDFontResolver(font1, font2)) }) { text("\u0627") }.execute(interceptor, document)
+```
 
 ## Interceptor
 The PDFScript execute method accepts an interceptor instance which can be used to hook into the events of the

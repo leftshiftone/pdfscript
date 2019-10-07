@@ -26,15 +26,19 @@ import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-class PdfScript(private val style: Context.() -> Unit, private val format: PageFormat, private val margin: PageMargin) {
+class PdfScript(private val style: Context.() -> Unit,
+                private val format: PageFormat,
+                private val margin: PageMargin,
+                private val fontProvider: FontProvider) {
 
-    val headerWriter = PdfWriter(Context(format, margin))
-    val footerWriter = PdfWriter(Context(format, margin))
-    val centerWriter = PdfWriter(Context(format, margin))
+    val headerWriter = PdfWriter(Context(format, margin), fontProvider)
+    val footerWriter = PdfWriter(Context(format, margin), fontProvider)
+    val centerWriter = PdfWriter(Context(format, margin), fontProvider)
 
     init {
         headerWriter.withContext(style)
@@ -45,14 +49,14 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
     companion object {
         @JvmStatic
         @JvmOverloads
-        fun dinA4(margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
-            return PdfScript({}, PageFormat.dinA4(), margin).apply(config)
+        fun dinA4(fontProvider: FontProvider = FontProvider(), margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
+            return PdfScript({}, PageFormat.dinA4(), margin, fontProvider).apply(config)
         }
 
         @JvmStatic
         @JvmOverloads
-        fun dinA4(style: Context.() -> Unit, margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
-            return PdfScript(style, PageFormat.dinA4(), margin).apply(config)
+        fun dinA4(style: Context.() -> Unit, fontProvider: FontProvider = FontProvider(), margin: PageMargin = standard(), config: PdfScript.() -> Unit): PdfScript {
+            return PdfScript(style, PageFormat.dinA4(), margin, fontProvider).apply(config)
         }
     }
 
@@ -96,7 +100,8 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
     }
 
     @JvmOverloads
-    fun execute(interceptor: Interceptor = Interceptor(), document: PDDocument = PDDocument()): ByteArray {
+    fun execute(interceptor: Interceptor = Interceptor(),
+                document: PDDocument = PDDocument()): ByteArray {
         centerWriter.withContext(style)
 
         // evaluate renderables
@@ -111,7 +116,7 @@ class PdfScript(private val style: Context.() -> Unit, private val format: PageF
 
         val pageCount = Math.ceil(centerHeight.toDouble() / availableCenterHeight.toDouble()).toInt()
         document.use {
-            PdfScriptStream(document, this.format, interceptor, pageCount).use { stream ->
+            PdfScriptStream(document, this.format, interceptor, fontProvider, pageCount).use { stream ->
                 // execute renderables
                 // *******************
                 val headerCoordinates = Coordinates(margin.left, format.height() - margin.header)

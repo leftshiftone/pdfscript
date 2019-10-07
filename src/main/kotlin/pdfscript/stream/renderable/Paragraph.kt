@@ -21,20 +21,23 @@ import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 import kotlin.math.min
 
-class Paragraph(private val config: PdfWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
+class Paragraph(private val config: PdfWriter.() -> Unit,
+                private val style: Context.() -> Unit,
+                private val fontProvider: FontProvider) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(style)
 
         val padding = style.paddingTop().orElse(0f) + style.paddingBottom().orElse(style.boxHeight() / 2);
 
-        val writer = PdfWriter(style).apply(config)
+        val writer = PdfWriter(style, fontProvider).apply(config)
 
         if (writer.evaluations.isEmpty()) {
             val height = padding + context.lineHeight()
-            return listOf(Evaluation({ 0f }, { height }, { _, coords -> coords.moveY(-height)}))
+            return listOf(Evaluation({ 0f }, { height }, { _, coords -> coords.moveY(-height) }))
         }
 
         val width = { base: EvaluationBase -> min(base.available, widthSum(writer.evaluations, base.available)) }
@@ -55,7 +58,7 @@ class Paragraph(private val config: PdfWriter.() -> Unit, private val style: Con
             if (style.foreground().isPresent)
                 stream.setNonStrokingColor(style.foreground().get())
             if (style.align().isPresent && style.align().get().equals("center"))
-                coordinates.moveX((context.format.width() - context.margin.left - context.margin.right - curWidth)  / 2)
+                coordinates.moveX((context.format.width() - context.margin.left - context.margin.right - curWidth) / 2)
 
             writer.evaluations.forEach { write(stream, it, coordinates, style) }
             coordinates.moveY(-(context.boxHeight() + padding))

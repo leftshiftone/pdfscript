@@ -27,6 +27,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory
 import org.slf4j.LoggerFactory
 import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
+import pdfscript.stream.configurable.font.FontProvider
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
@@ -42,14 +43,18 @@ import kotlin.math.floor
 import kotlin.math.round
 
 
-class PdfScriptStream(val document: PDDocument, val format: PageFormat, val interceptor: Interceptor, pages: Int) : Closeable {
+class PdfScriptStream(val document: PDDocument,
+                      val format: PageFormat,
+                      val interceptor: Interceptor,
+                      val fontProvider: FontProvider,
+                      pages: Int) : Closeable {
 
     private val log = LoggerFactory.getLogger(this::class.java)
 
     private val page = AtomicInteger(1)
     private val pages = AtomicInteger(pages)
 
-    private val currentFontName = AtomicReference<PDFont>()
+    private val currentFont = AtomicReference<PDFont>()
     private val currentFontSize = AtomicReference<Float>()
 
     private val lineRegistry = CopyOnWriteArraySet<String>()
@@ -72,7 +77,7 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         this.contentStream.get().close()
         this.contentStream.set(PDPageContentStream(document, page))
         this.page.incrementAndGet()
-        this.currentFontName.set(null)
+        this.currentFont.set(null)
         this.currentFontSize.set(null)
         this.lineRegistry.clear()
     }
@@ -88,19 +93,20 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
     }
 
     fun showText(text: String) {
-        interceptor.showText(text)
-        contentStream.get().showText(text)
+        val sanitizedText = fontProvider.sanitize(currentFont.get(), text)
+        interceptor.showText(sanitizedText)
+        contentStream.get().showText(sanitizedText)
     }
 
     fun setFont(font: PDFont, size: Float) {
         requireNotNull(font) { "font must not be null" }
         requireNotNull(size) { "size must not be null" }
 
-        if (this.currentFontName.get() != font || this.currentFontSize.get() != size) {
+        if (this.currentFont.get() != font || this.currentFontSize.get() != size) {
             interceptor.setFont(font, size)
             contentStream.get().setFont(font, size)
         }
-        this.currentFontName.set(font)
+        this.currentFont.set(font)
         this.currentFontSize.set(size)
     }
 
@@ -183,5 +189,4 @@ class PdfScriptStream(val document: PDDocument, val format: PageFormat, val inte
         lineRegistry.add("${page()}@${floor(x1)}:${floor(y1 - 1)}-${floor(x2)}:${floor(y2 - 1)}")
         return lineRegistry.add("${page()}@${round(floor(x1))}:${round(floor(y1))}-${round(floor(x2))}:${round(floor(y2))}")
     }
-
 }

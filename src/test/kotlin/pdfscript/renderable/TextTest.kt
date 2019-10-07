@@ -22,7 +22,7 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
-import pdfscript.stream.configurable.font.PDFontResolver
+import pdfscript.stream.configurable.font.FontProvider
 
 class TextTest {
 
@@ -30,37 +30,49 @@ class TextTest {
     fun textWithUmlaute() {
         val interceptor = RawCommandsInterceptor()
         val bytes = dinA4 {
-            text("äöü")
+            text("Förrest Gümp")
         }.execute(interceptor)
     }
 
     @Test
     fun textWithHatschek() {
         val document = PDDocument()
-
-        val font = loadFont(document, "/font/OpenSans-Regular.ttf")
+        val font = loadFont(document, "/font/NotoSans-Regular.ttf")
 
         val interceptor = RawCommandsInterceptor()
         val bytes = dinA4({ font(font) }) {
-            text("č")
+            text("Fórrest Gûmp")
         }.execute(interceptor, document)
     }
 
     @Test
     fun textWithArabicCharacter() {
         val document = PDDocument()
-        val font1 = loadFont(document, "/font/OpenSans-Regular.ttf")
-        val font2 = loadFont(document, "/font/NotoSansArabic-Regular.ttf")
+        val font = loadFont(document, "/font/NotoSansArabic-Regular.ttf")
+        val fontProvider = FontProvider()
+        fontProvider.addFont(font, '؟')
 
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4({ font(PDFontResolver(font1, font2)) }) {
-            text("\u0627")
+        val bytes = dinA4({ font(font) }, fontProvider) {
+            text("Fórrest اڵڶڷ Gûmp")
         }.execute(interceptor, document)
     }
 
-    private fun loadFont(document: PDDocument, path:String): PDFont {
-        val fontStream = TextTest::class.java.getResourceAsStream(path)
-        return PDType0Font.load(document, fontStream)
+    @Test
+    fun textWithHebrewCharacter() {
+        val document = PDDocument()
+        val font = loadFont(document, "/font/NotoSansHebrew-Regular.ttf")
+        val fontProvider = FontProvider()
+        fontProvider.addFont(font, '₪')
+
+        val interceptor = RawCommandsInterceptor()
+        val bytes = dinA4({ font(font) }, fontProvider) {
+            text("Fórrest לם Gûmp")
+        }.execute(interceptor, document)
     }
 
+    private fun loadFont(document: PDDocument, path: String): PDFont {
+        val fontStream = this::class.java.getResourceAsStream(path)
+        return PDType0Font.load(document, fontStream)
+    }
 }

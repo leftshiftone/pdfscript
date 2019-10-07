@@ -23,15 +23,16 @@ import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 import pdfscript.stream.renderable.decorator.BackgroundDecorator
 import pdfscript.stream.renderable.decorator.BorderDecorator
 import kotlin.math.min
 
-class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
+class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit, private val fontProvider: FontProvider) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(style).apply {paddingBottom(context.paddingBottom().orElse(0f))}
-        val writer = TableWriter(style).apply(config)
+        val writer = TableWriter(style, fontProvider).apply(config)
 
         if (writer.evaluations.isEmpty())
             return listOf(Evaluation({ 0f }, { 0f }, { _, _ -> }))
@@ -48,14 +49,14 @@ class Table(private val config: TableWriter.() -> Unit, private val style: Conte
         }
     }
 
-    class TableWriter(private val context: Context) {
+    class TableWriter(private val context: Context, private val fontProvider: FontProvider) {
         val evaluations = ArrayList<Evaluation>()
 
         fun row(config: TableColWriter.() -> Unit) = row({}, config)
 
         fun row(style: Context.() -> Unit = {}, config: TableColWriter.() -> Unit) {
             val styler = context.copy().apply(style)
-            val writer = TableColWriter(styler).apply(config)
+            val writer = TableColWriter(styler, fontProvider).apply(config)
 
             val availableWidth = (context.format.width() - context.margin.left - context.margin.right)
 
@@ -102,14 +103,14 @@ class Table(private val config: TableWriter.() -> Unit, private val style: Conte
         }
     }
 
-    class TableColWriter(private val context: Context) {
+    class TableColWriter(private val context: Context, private val fontProvider: FontProvider) {
         val evaluations = ArrayList<Evaluation>()
 
         fun col(config: PdfWriter.() -> Unit) = col({}, config)
 
         fun col(style: Context.() -> Unit = {}, config: PdfWriter.() -> Unit) {
             val styler = context.copy().apply(style)
-            val writer = PdfWriter(styler).apply(config)
+            val writer = PdfWriter(styler, fontProvider).apply(config)
 
             val getWidth = { base: EvaluationBase -> min(base.available, writer.evaluations.map { it.width(base) }.sum()) }
             val height = { base: EvaluationBase ->

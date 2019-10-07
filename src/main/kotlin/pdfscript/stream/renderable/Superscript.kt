@@ -20,12 +20,13 @@ import pdfscript.PdfScriptStream
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 
-class Superscript(val text: String, val config: Context.() -> Unit) : AbstractWritable() {
+class Superscript(val text: String, val config: Context.() -> Unit, private val fontProvider: FontProvider) : AbstractWritable() {
 
     override fun evaluate(context: Context): List<Evaluation> {
         val style = context.copy().apply(config)
-        return listOf(toEvaluation(style, context, text))
+        return listOf(toEvaluation(style, context, fontProvider.sanitize(style.font(), text)))
     }
 
     private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
@@ -33,12 +34,12 @@ class Superscript(val text: String, val config: Context.() -> Unit) : AbstractWr
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
-            stream.setFont(styler.font()(text), styler.fontSize() / 5 * 3)
+            stream.setFont(styler.font(), styler.fontSize() / 5 * 3)
             stream.beginText()
             stream.newLineAtOffset(coordinates.x, coordinates.y - (styler.capHeight() / 1.5f))
             stream.showText(text)
             stream.endText()
-            stream.setFont(context.font()(text), context.fontSize())
+            stream.setFont(context.font(), context.fontSize())
 
             coordinates.moveX(styler.lineWidth(text))
         }

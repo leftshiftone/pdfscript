@@ -17,6 +17,7 @@
 package pdfscript.renderable
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
@@ -38,14 +39,14 @@ class TableTest {
             }
         }.execute(interceptor)
 
-        val fos = FileOutputStream(File("D:/tmp/result.pdf"))
-        fos.write(bytes)
-        fos.close()
+        //val fos = FileOutputStream(File("D:/tmp/result.pdf"))
+        //fos.write(bytes)
+        //fos.close()
 
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 686.2916)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 687.2916)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 686.7916, 524.9095, 686.7916)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 686.2916)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 687.2916)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 686.7916, 524.9095, 686.7916)"))
     }
 
     @Test
@@ -88,39 +89,39 @@ class TableTest {
             }
         }.execute(interceptor)
 
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 806.4567, 524.9095, 806.4567)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 806.9567, 70.86614, 792.0847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 806.9567, 524.4095, 793.0847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 792.5847, 524.9095, 792.5847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 70.86614, 524.9095, 70.86614)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 71.36614, 70.86614, 56.49414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 71.36614, 524.4095, 57.49414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 56.99414, 524.9095, 56.99414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 616.93164)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 617.93164)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 617.43164, 524.9095, 617.43164)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 617.68164, 70.86614, 464.08966)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 617.68164, 524.4095, 465.08966)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 464.58966, 524.9095, 464.58966)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 465.08966, 70.86614, 311.49768)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 465.08966, 524.4095, 312.49768)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 311.99768, 524.9095, 311.99768)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 312.24768, 70.86614, 158.65569)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 312.24768, 524.4095, 159.65569)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 159.15569, 524.9095, 159.15569)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 806.4567, 524.9095, 806.4567)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 806.9567, 70.86614, 792.0847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 806.9567, 524.4095, 793.0847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 792.5847, 524.9095, 792.5847)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 70.86614, 524.9095, 70.86614)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 71.36614, 70.86614, 56.49414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 71.36614, 524.4095, 57.49414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 56.99414, 524.9095, 56.99414)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 616.93164)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 617.93164)"))
-        Assertions.assertTrue(interceptor.commands.contains("drawLine(70.36614, 617.43164, 524.9095, 617.43164)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 806.4567, 524.9095, 806.4567)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 806.9567, 70.86614, 792.0847)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 806.9567, 524.4095, 793.0847)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 792.5847, 524.9095, 792.5847)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 70.86614, 524.9095, 70.86614)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 71.36614, 70.86614, 56.49414)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 71.36614, 524.4095, 57.49414)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 56.99414, 524.9095, 56.99414)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 616.93164)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 617.93164)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 617.43164, 524.9095, 617.43164)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 617.68164, 70.86614, 464.08966)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 617.68164, 524.4095, 465.08966)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 464.58966, 524.9095, 464.58966)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 465.08966, 70.86614, 311.49768)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 465.08966, 524.4095, 312.49768)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 311.99768, 524.9095, 311.99768)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 312.24768, 70.86614, 158.65569)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 312.24768, 524.4095, 159.65569)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 159.15569, 524.9095, 159.15569)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 806.4567, 524.9095, 806.4567)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 806.9567, 70.86614, 792.0847)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 806.9567, 524.4095, 793.0847)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 792.5847, 524.9095, 792.5847)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 70.86614, 524.9095, 70.86614)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 71.36614, 70.86614, 56.49414)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 71.36614, 524.4095, 57.49414)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 56.99414, 524.9095, 56.99414)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 616.93164)"))
+        assertTrue(interceptor.commands.contains("drawLine(524.4095, 770.5236, 524.4095, 617.93164)"))
+        assertTrue(interceptor.commands.contains("drawLine(70.36614, 617.43164, 524.9095, 617.43164)"))
     }
 
 }

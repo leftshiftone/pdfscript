@@ -28,19 +28,26 @@ import org.slf4j.LoggerFactory
 class FontProvider {
 
     private val log = LoggerFactory.getLogger(this::class.java)
-    private val fonts: MutableMap<PDFont, CharArray> = mutableMapOf()
+    private val fonts: MutableMap<String, CharArray> = mutableMapOf()
 
     @JvmOverloads
     fun addFont(font: PDFont, charReplacement: Char? = null) {
-        if (fonts.containsKey(font)) return
-        fonts[font] = prepareReplacements(font, charReplacement)
+        if (fonts.containsKey(font.name)) return
+        fonts[font.name] = prepareReplacements(font, charReplacement)
     }
 
     fun sanitize(font: PDFont, string: String): String {
-        if (!fonts.containsKey(font)) {
+        try {
+            font.encode(string)
+            return string
+        } catch (ex: Exception) {
+            log.debug("'$string' cannot be encoded entirely")
+        }
+
+        if (!fonts.containsKey(font.name)) {
             addFont(font)
         }
-        val availableChars = fonts[font]
+        val availableChars = fonts[font.name]
         if (availableChars == null || availableChars.isEmpty()) {
             return string
         }

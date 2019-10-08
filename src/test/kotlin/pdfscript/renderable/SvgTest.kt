@@ -33,10 +33,9 @@ class SvgTest {
         }.execute(interceptor)
         interceptor.commands.forEach { println(it) }
 
-        val result = File("D:/tmp/result.pdf")
-        FileOutputStream(result).write(document)
+        //val result = File("D:/tmp/result.pdf")
+        //FileOutputStream(result).write(document)
 
-        assertTrue(result.exists())
         assertTrue(document.size > 32)
     }
 }

@@ -20,19 +20,13 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDType0Font
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 /**
  * @author Michael Mair
  */
 internal class FontProviderTest {
-
-    @Test
-    fun `string is sanitized for given font`() {
-        val font = PDType1Font.HELVETICA
-        val result = FontProvider().sanitize(font, "Fórrest اڵڶڷ Gûmp")
-        assertEquals("Fórrest AAAA Gûmp", result)
-    }
 
     @Test
     fun `string is sanitized for given font with custom replacement`() {
@@ -44,9 +38,26 @@ internal class FontProviderTest {
     }
 
     @Test
+    fun `string is sanitized for given font`() {
+        val font = PDType1Font.HELVETICA
+        var exception: Exception? = null
+        try {
+            FontProvider().sanitize(font, "Fórrest اڵڶڷ Gûmp")
+        } catch (e: Exception) {
+            exception = e
+        }
+        assertNull(exception)
+    }
+
+    @Test
     fun `string is sanitized for loaded font`() {
         val font = PDType0Font.load(PDDocument(), this::class.java.getResourceAsStream("/font/NotoSansArabic-Regular.ttf"))
-        val result = FontProvider().sanitize(font, "Fórrest اڵڶڷ Gûmp")
-        assertEquals("\u0001\u0001\u0001\u0001\u0001\u0001\u0001 اڵڶڷ \u0001\u0001\u0001\u0001", result)
+        var exception: Exception? = null
+        try {
+            FontProvider().sanitize(font, "Fórrest اڵڶڷ Gûmp")
+        } catch (e: Exception) {
+            exception = e
+        }
+        assertNull(exception)
     }
 }

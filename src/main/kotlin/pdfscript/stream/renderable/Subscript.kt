@@ -22,9 +22,9 @@ import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
 
-class Subscript(private val text: String, private val config: Context.() -> Unit, private val fontProvider: FontProvider) : AbstractWritable() {
+class Subscript(private val text: String, private val config: Context.() -> Unit) : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         val style = context.copy().apply(config)
         return listOf(toEvaluation(style, context, fontProvider.sanitize(style.font(), text)))
     }

@@ -22,6 +22,7 @@ import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.Evaluation.EvaluationBase
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 import kotlin.math.max
 
 abstract class AbstractWritable {
@@ -59,7 +60,7 @@ abstract class AbstractWritable {
 
     }
 
-    abstract fun evaluate(context: Context): List<Evaluation>
+    abstract fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation>
 
     protected fun widthSum(evaluations: List<Evaluation>, availableWidth: Float): Float {
         var sum = 0f

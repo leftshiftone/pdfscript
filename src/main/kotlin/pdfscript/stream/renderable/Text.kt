@@ -23,9 +23,9 @@ import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
 import java.util.regex.Pattern
 
-class Text(private val text: String, private val config: Context.() -> Unit, private val fontProvider: FontProvider) : AbstractWritable() {
+class Text(private val text: String, private val config: Context.() -> Unit) : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         val style = context.copy().apply(config)
         val sanitizedText = fontProvider.sanitize(style.font(), text)
         val parts = sanitizedText.split(Pattern.compile("[ ]")).map { "$it " }

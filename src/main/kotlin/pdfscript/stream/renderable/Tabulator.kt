@@ -18,11 +18,12 @@ package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 import java.util.*
 
 class Tabulator(private val width:Optional<Float> = Optional.empty()) : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         val tabSize = width.orElse(100f)
 
         val width = {base:Evaluation.EvaluationBase ->

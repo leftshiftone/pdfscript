@@ -18,11 +18,12 @@ package pdfscript.stream.renderable
 
 import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
+import pdfscript.stream.configurable.font.FontProvider
 
 @Deprecated("use Paragraph instead")
 class LineBreak : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         return listOf(Evaluation({0f}, {context.boxHeight()}) { stream, coordinates ->
             coordinates.x = coordinates.xInit
             coordinates.moveY(-context.boxHeight())

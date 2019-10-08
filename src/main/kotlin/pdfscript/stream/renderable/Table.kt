@@ -28,9 +28,9 @@ import pdfscript.stream.renderable.decorator.BackgroundDecorator
 import pdfscript.stream.renderable.decorator.BorderDecorator
 import kotlin.math.min
 
-class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit, private val fontProvider: FontProvider) : AbstractWritable() {
+class Table(private val config: TableWriter.() -> Unit, private val style: Context.() -> Unit) : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         val style = context.copy().apply(style).apply {paddingBottom(context.paddingBottom().orElse(0f))}
         val writer = TableWriter(style, fontProvider).apply(config)
 

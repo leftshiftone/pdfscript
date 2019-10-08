@@ -25,10 +25,9 @@ import pdfscript.stream.configurable.font.FontProvider
 import kotlin.math.min
 
 class Paragraph(private val config: PdfWriter.() -> Unit,
-                private val style: Context.() -> Unit,
-                private val fontProvider: FontProvider) : AbstractWritable() {
+                private val style: Context.() -> Unit) : AbstractWritable() {
 
-    override fun evaluate(context: Context): List<Evaluation> {
+    override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         val style = context.copy().apply(style)
 
         val padding = style.paddingTop().orElse(0f) + style.paddingBottom().orElse(style.boxHeight() / 2);

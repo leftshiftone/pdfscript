@@ -56,11 +56,14 @@ class Text(private val text: String, private val config: Context.() -> Unit) : A
                          height: (EvaluationBase) -> Float,
                          executionGraph: (PdfScriptStream, Coordinates) -> Unit) : Evaluation(width, height, executionGraph)
 
-    private fun mask(str: String) = if (str.equals("{{page}} ") || str.equals("{{pages}} ")) "00 " else str
+    private fun mask(str: String) = if (str.equals("{{page}} ") || str.equals("{{pages}} ")
+            || str.equals("#PAGE ") || str.equals("#PAGES ")) "00 " else str
 
     private fun resolve(str: String, stream: PdfScriptStream): String {
         if (str.equals("{{page}} ")) return "${stream.page()} "
+        else if (str.equals("#PAGE ")) return "${stream.page()} "
         else if (str.equals("{{pages}} ")) return "${stream.pages()} "
+        else if (str.equals("#PAGES ")) return "${stream.pages()} "
         else return str
     }
 

@@ -9,7 +9,7 @@ using a rendering evaluation graph. The graph nodes are used to evaluate the
 bounding boxes of each renderable before it gets rendered. The evaluation 
 graphs enables **PDFScript** to auto-adjust the renderables within the boundaries of a page.
 
-Available in [jcenter](https://bintray.com/leftshiftone/pdfscript/one.leftshift.pdfscript.pdfscript/_latestVersion). Can be included like `compile 'one.leftshift.pdfscript:pdfscript:0.1.0'`.
+Available in [jcenter](https://bintray.com/leftshiftone/pdfscript/one.leftshift.pdfscript.pdfscript/_latestVersion). Can be included like `compile 'one.leftshift.pdfscript:pdfscript:0.14.0'`.
 
 ## Quickstart
 

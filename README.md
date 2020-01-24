@@ -145,6 +145,24 @@ paragraph {
 }
 ```
 
+## Bold
+By using the bold renderable a text can be styled in a bold manner. The specific font is selected automatically.
+When using a non standard font the bold style font have to be registered.
+```
+val font1 = loadFont(document, "/SpecialFont-Regular.ttf")
+val font2 = loadFont(document, "/SpecialFont-Bold.ttf")
+
+val fontProvider = FontProvider()
+fontProvider.addFont(font1)
+fontProvider.addFont(font2)
+
+dinA4({ font(font1) }, fontProvider) {
+   text("A")
+   bold("B")
+   text("C")
+}
+```
+
 ## Page and Pages
 Within a **text** renderable it is possible to render the current page number as well as the total amount of pages.
 To do this, simple add either the **{{page}}** and/or **{pages}}** expression within the text string.

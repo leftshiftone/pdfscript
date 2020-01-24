@@ -30,6 +30,8 @@ import pdfscript.stream.configurable.font.FontProvider
 import pdfscript.stream.renderable.Table
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import kotlin.math.ceil
+import kotlin.math.max
 
 class PdfScript(private val style: Context.() -> Unit,
                 private val format: PageFormat,
@@ -117,7 +119,7 @@ class PdfScript(private val style: Context.() -> Unit,
                 Math.max(margin.top, headerHeight + margin.header) -
                 Math.max(margin.bottom, footerHeight + margin.bottom)
 
-        val pageCount = Math.ceil(centerHeight.toDouble() / availableCenterHeight.toDouble()).toInt()
+        val pageCount = max(ceil(centerHeight.toDouble() / availableCenterHeight.toDouble()).toInt(),1)
         document.use {
             PdfScriptStream(document, this.format, interceptor, fontProvider, pageCount).use { stream ->
                 // execute renderables

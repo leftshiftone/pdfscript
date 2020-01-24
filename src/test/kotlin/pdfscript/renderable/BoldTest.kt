@@ -19,11 +19,11 @@ package pdfscript.renderable
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType0Font
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
 import pdfscript.stream.configurable.font.FontProvider
-import java.io.FileOutputStream
 
 class BoldTest {
 
@@ -32,17 +32,35 @@ class BoldTest {
         val document = PDDocument()
 
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4 {
+        dinA4 {
             text("A")
             bold("B")
             text("C")
         }.execute(interceptor, document)
 
-        FileOutputStream("D:/tmp/result.pdf").write(bytes)
+        val expected = listOf(
+                "setFont[Helvetica, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[70.86614, 758.7796]",
+                "showText:[A ]",
+                "endText:[]",
+                "setFont[Helvetica-Bold, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[82.20615, 758.5756]",
+                "showText:[B ]",
+                "endText:[]",
+                "setFont[Helvetica, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[94.20615, 758.7796]",
+                "showText:[C ]",
+                "endText:[]"
+        )
+
+        Assertions.assertEquals(expected, interceptor.commands)
     }
 
     @Test
-    fun textWithHatschek() {
+    fun textWithCustomFont() {
         val document = PDDocument()
         val font1 = loadFont(document, "/font/NotoSans-Regular.ttf")
         val font2 = loadFont(document, "/font/NotoSans-Bold.ttf")
@@ -52,13 +70,31 @@ class BoldTest {
         fontProvider.addFont(font2)
 
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4({ font(font1) }, fontProvider) {
-            text("Fórrest Gûmp")
-            bold("Fórrest Gûmp")
-            text("Fórrest Gûmp")
+        dinA4({ font(font1) }, fontProvider) {
+            text("A")
+            bold("B")
+            text("C")
         }.execute(interceptor, document)
 
-        FileOutputStream("D:/tmp/result.pdf").write(bytes)
+        val expected = listOf(
+                "setFont[NotoSans-Regular, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[70.86614, 757.0036]",
+                "showText:[A ]",
+                "endText:[]",
+                "setFont[NotoSans-Bold, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[81.654144, 756.99164]",
+                "showText:[B ]",
+                "endText:[]",
+                "setFont[NotoSans-Regular, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[92.83814, 757.0036]",
+                "showText:[C ]",
+                "endText:[]"
+        )
+
+        Assertions.assertEquals(expected, interceptor.commands)
     }
 
     private fun loadFont(document: PDDocument, path: String): PDFont {

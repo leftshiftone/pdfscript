@@ -50,6 +50,9 @@ class PdfWriter(private val context: Context, private val fontProvider: FontProv
     fun text(text: String) = evaluations.addAll(Text(text, {}).evaluate(context, fontProvider))
     fun text(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Text(text, style).evaluate(context, fontProvider))
 
+    fun bold(text: String) = evaluations.addAll(Bold(text, {}).evaluate(context, fontProvider))
+    fun bold(style: Context.() -> Unit = {}, text: String) = evaluations.addAll(Bold(text, style).evaluate(context, fontProvider))
+
     @Deprecated("use paragraph() instead")
     fun linebreak() = evaluations.addAll(LineBreak().evaluate(context, fontProvider))
 

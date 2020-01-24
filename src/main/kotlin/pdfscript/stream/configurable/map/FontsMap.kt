@@ -47,6 +47,10 @@ class FontsMap {
             }
         }
 
+        fun hasFont(key:String):Boolean {
+            return fontsMap.containsKey(key)
+        }
+
         fun resolve(key:String):PDFont {
             if (fontsMap.containsKey(key))
                 return fontsMap.get(key)!!

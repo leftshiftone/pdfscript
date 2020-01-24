@@ -18,6 +18,7 @@ package pdfscript.stream.configurable.font
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.slf4j.LoggerFactory
+import pdfscript.stream.configurable.map.FontsMap
 
 /**
  * Handles fonts and holds replacements for characters not available in a specific font so that PDF generation is
@@ -29,11 +30,21 @@ class FontProvider {
 
     private val log = LoggerFactory.getLogger(this::class.java)
     private val fonts: MutableMap<String, CharArray> = mutableMapOf()
+    private val rawFonts : MutableMap<String, PDFont> = mutableMapOf()
 
     @JvmOverloads
     fun addFont(font: PDFont, charReplacement: Char? = null) {
         if (fonts.containsKey(font.name)) return
         fonts[font.name] = prepareReplacements(font, charReplacement)
+        rawFonts[font.name] = font
+    }
+
+    fun getFont(name:String):PDFont {
+        if (fonts.containsKey(name))
+            return rawFonts.get(name)!!
+        if (FontsMap.hasFont(name))
+            return FontsMap.resolve(name)
+        throw java.lang.RuntimeException("no font with name $name found")
     }
 
     fun sanitize(font: PDFont, string: String): String {

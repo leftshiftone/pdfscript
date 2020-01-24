@@ -68,6 +68,9 @@ class PdfScript(private val style: Context.() -> Unit,
     fun text(text: String) = centerWriter.text(text)
     fun text(style: Context.() -> Unit, text: String) = centerWriter.text(style, text)
 
+    fun bold(text: String) = centerWriter.bold(text)
+    fun bold(style: Context.() -> Unit, text: String) = centerWriter.bold(style, text)
+
     fun superscript(text: String) = centerWriter.superscript({}, text)
     fun superscript(style: Context.() -> Unit, text: String) = centerWriter.superscript(style, text)
     fun subscript(text: String) = centerWriter.subscript({}, text)

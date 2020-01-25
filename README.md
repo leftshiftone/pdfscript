@@ -166,6 +166,7 @@ dinA4({ font(font1) }, fontProvider) {
 ## Page and Pages
 Within a **text** renderable it is possible to render the current page number as well as the total amount of pages.
 To do this, simple add either the **{{page}}** and/or **{pages}}** expression within the text string.
+Alternatively the variables can be added by the expressions **#PAGE** and **#PAGES**.
 
 ```
 text("Page {{page}} of {{pages}}")

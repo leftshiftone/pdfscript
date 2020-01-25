@@ -170,6 +170,7 @@ Alternatively the variables can be added by the expressions **#PAGE** and **#PAG
 
 ```
 text("Page {{page}} of {{pages}}")
+text("Page #PAGE of #PAGES")
 ```
 
 ## Styling

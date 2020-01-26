@@ -270,6 +270,16 @@ fun `create a superscript text`() {
 }
 ```
 
+## Native PDF reader/writer
+PDFScript is supporting the native handling of  PDF elements by using one of the native reader/writer classes.
+The PdfTextReader for example extracts all text elements together with the corresponding bounding boxes from a pdf file
+while the PdfTextWriter creates a new pdf file by a list of pdfText bounding boxes.
+
+```
+val elements = PdfTextReader().read(/pdf/result.pdf)
+val pdfBytes = PdfTextWriter().write(elements)
+```
+
 ## Development
 
 ### Release

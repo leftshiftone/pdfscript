@@ -16,20 +16,17 @@
 
 package pdfscript.renderable
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
-import java.io.File
-import java.io.FileOutputStream
 
 class TableTest {
 
     @Test
     fun tooLongColumn() {
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4 {
+        dinA4 {
             table {
                 row {
                     col {
@@ -38,10 +35,6 @@ class TableTest {
                 }
             }
         }.execute(interceptor)
-
-        //val fos = FileOutputStream(File("D:/tmp/result.pdf"))
-        //fos.write(bytes)
-        //fos.close()
 
         assertTrue(interceptor.commands.contains("drawLine(70.36614, 770.0236, 524.9095, 770.0236)"))
         assertTrue(interceptor.commands.contains("drawLine(70.86614, 770.5236, 70.86614, 686.2916)"))
@@ -52,7 +45,7 @@ class TableTest {
     @Test
     fun tooLongTable() {
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4 {
+        dinA4 {
             withHeader { table { row { col { text("header") } } } }
             withFooter { table { row { col { text("footer") } } } }
             table {

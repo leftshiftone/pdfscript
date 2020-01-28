@@ -17,6 +17,7 @@
 package pdfscript.interceptor
 
 import org.apache.pdfbox.pdmodel.font.PDFont
+import org.apache.pdfbox.pdmodel.graphics.image.PDImage
 import java.net.URL
 
 class RawCommandsInterceptor : Interceptor() {
@@ -45,6 +46,10 @@ class RawCommandsInterceptor : Interceptor() {
 
     override fun drawImage(url: URL, x:Float, y:Float) {
         commands.add("drawImage(${url.path}, $x, $y]")
+    }
+
+    override fun drawImage(image: PDImage, x: Float, y: Float) {
+        commands.add("drawImage($x, $y)")
     }
 
     override fun setStrokingColor(colorStr: String) {

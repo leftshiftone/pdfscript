@@ -17,6 +17,7 @@
 package pdfscript.interceptor
 
 import org.apache.pdfbox.pdmodel.font.PDFont
+import org.apache.pdfbox.pdmodel.graphics.image.PDImage
 import java.net.URL
 
 open class Interceptor {
@@ -42,6 +43,10 @@ open class Interceptor {
     }
 
     open fun drawImage(url: URL, x:Float, y:Float) {
+        // do nothing
+    }
+
+    open fun drawImage(image: PDImage, x:Float, y:Float) {
         // do nothing
     }
 

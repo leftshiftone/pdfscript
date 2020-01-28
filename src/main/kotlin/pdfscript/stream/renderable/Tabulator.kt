@@ -29,7 +29,7 @@ class Tabulator(private val width:Optional<Float> = Optional.empty()) : Abstract
         val width = {base:Evaluation.EvaluationBase ->
             tabSize - (base.accumulated % tabSize)
         }
-        return listOf(Text.TextEvaluation(width, {context.boxHeight()}) { stream, coordinates ->
+        return listOf(Text.TextEvaluation(width, {context.boxHeight()}, {0f}) { stream, coordinates ->
             coordinates.moveX(tabSize - ((coordinates.x - coordinates.xInit) % tabSize))
         })
     }

@@ -34,7 +34,7 @@ class Text(private val text: String, private val config: Context.() -> Unit) : A
     }
 
     private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
-        return TextEvaluation({ styler.lineWidth(mask(text)) }, { styler.boxHeight() }) { stream, coordinates ->
+        return TextEvaluation({ styler.lineWidth(mask(text)) }, { styler.boxHeight() }, {getYOffset(context, styler)}) { stream, coordinates ->
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
@@ -52,8 +52,19 @@ class Text(private val text: String, private val config: Context.() -> Unit) : A
         }
     }
 
+    private fun getYOffset(context:Context, styler:Context):Float {
+        if (context.fontSize() == styler.fontSize())
+            return 0f
+
+        val boxDiff = context.boxHeight() - styler.boxHeight()
+        val capDiff = context.capHeight() - styler.capHeight()
+
+        return capDiff + ((boxDiff - capDiff) / 2)
+    }
+
     class TextEvaluation(width: (EvaluationBase) -> Float,
                          height: (EvaluationBase) -> Float,
+                         val yOffset: (EvaluationBase) -> Float,
                          executionGraph: (PdfScriptStream, Coordinates) -> Unit) : Evaluation(width, height, executionGraph)
 
     private fun mask(str: String) = if (str.equals("{{page}} ") || str.equals("{{pages}} ")

@@ -28,6 +28,7 @@ import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
 import pdfscript.stream.renderable.Table
+import pdfscript.stream.renderable.Text
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import kotlin.math.ceil
@@ -172,7 +173,19 @@ class PdfScript(private val style: Context.() -> Unit,
         if (availableWidth < evaluation.width(Evaluation.EvaluationBase(format.width(), 0f))) {
             coordinates.x = coordinates.xInit
         }
+
+        // adjust yOffset due to font size differences
+        if (evaluation is Text.TextEvaluation) {
+            val yOffset = evaluation.yOffset(Evaluation.EvaluationBase(format.width(), 0f))
+            coordinates.moveY(-yOffset)
+        }
+
         evaluation.execute(stream, coordinates)
+
+        if (evaluation is Text.TextEvaluation) {
+            val yOffset = evaluation.yOffset(Evaluation.EvaluationBase(format.width(), 0f))
+            coordinates.moveY(yOffset)
+        }
     }
 
 }

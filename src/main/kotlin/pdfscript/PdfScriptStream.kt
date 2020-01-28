@@ -127,6 +127,7 @@ class PdfScriptStream(val document: PDDocument,
         val bim = ImageIO.read(`is`)
         val pdImage = LosslessFactory.createFromImage(document, bim)
 
+        interceptor.drawImage(pdImage, x, y)
         contentStream.get().drawImage(pdImage, x, y)
     }
 
@@ -147,6 +148,8 @@ class PdfScriptStream(val document: PDDocument,
 
         val bim = ImageIO.read(ByteArrayInputStream(baos.toByteArray()))
         val image = LosslessFactory.createFromImage(document, bim)
+
+        interceptor.drawImage(image, x, y)
         contentStream.get().drawImage(image, x, y)
         log.debug("Drew image in ${System.currentTimeMillis() - timestamp}ms")
     }

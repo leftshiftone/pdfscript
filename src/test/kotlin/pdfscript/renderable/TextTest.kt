@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
 import pdfscript.interceptor.RawCommandsInterceptor
 import pdfscript.stream.configurable.font.FontProvider
-import java.io.FileOutputStream
 
 class TextTest {
 
@@ -141,8 +140,6 @@ class TextTest {
             text({ fontSize(10) }, "F")
             text({ fontSize(12) }, "G")
         }.execute(interceptor)
-
-        FileOutputStream("D:/tmp/result.pdf").write(bytes)
 
         interceptor.commands.forEach { println(it) }
 

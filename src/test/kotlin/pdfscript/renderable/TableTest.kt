@@ -16,6 +16,7 @@
 
 package pdfscript.renderable
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import pdfscript.PdfScript.Companion.dinA4
@@ -120,22 +121,135 @@ class TableTest {
     @Test
     fun tableWithBoldText() {
         val interceptor = RawCommandsInterceptor()
-        val bytes = dinA4 {
+        dinA4 {
             table({ border("none");background("#E0E0E0") }) {
                 row({ fontSize(8) }) {
-                    col{ text("die zeile hat richtiges spacing") }
-                    col({ align("right") }){ text("die zeile hat richtiges spacing") }
+                    col { text("die zeile hat richtiges spacing") }
+                    col({ align("right") }) { text("die zeile hat richtiges spacing") }
                 }
                 row({ fontSize(8) }) {
-                    col{ bold("die zeile sollte gleich hoch sein wie die obere") }
+                    col { bold("die zeile sollte gleich hoch sein wie die obere") }
                     col({ align("right") }) { bold("test") }
                 }
             }
         }.execute(interceptor)
 
-        interceptor.commands.forEach {
-            println(it)
-        }
+        val expected = listOf(
+                "setNonStrokingColor(#E0E0E0)",
+                "drawRect(70.86614, 760.77563, 226.77167, 9.248)",
+                "setNonStrokingColor(black)",
+                "setFont[Helvetica, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[75.86614, 762.52765]",
+                "showText:[die ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[88.762146, 762.52765]",
+                "showText:[zeile ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[107.43414, 762.52765]",
+                "showText:[hat ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[120.778145, 762.52765]",
+                "showText:[richtiges ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[152.78615, 762.52765]",
+                "showText:[spacing ]",
+                "endText:[]",
+                "setNonStrokingColor(#E0E0E0)",
+                "drawRect(297.63782, 760.77563, 226.77167, 9.248)",
+                "setNonStrokingColor(black)",
+                "beginText:[]",
+                "newLineAtOffset:[412.69748, 762.52765]",
+                "showText:[die ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[425.59348, 762.52765]",
+                "showText:[zeile ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[444.26547, 762.52765]",
+                "showText:[hat ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[457.60947, 762.52765]",
+                "showText:[richtiges ]",
+                "endText:[]",
+                "beginText:[]",
+                "newLineAtOffset:[489.61746, 762.52765]",
+                "showText:[spacing ]",
+                "endText:[]",
+                "setNonStrokingColor(#E0E0E0)",
+                "drawRect(70.86614, 751.0056, 226.77167, 9.52)",
+                "setNonStrokingColor(black)",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[75.86614, 752.8936]",
+                "showText:[die ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[89.65015, 752.8936]",
+                "showText:[zeile ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[109.21815, 752.8936]",
+                "showText:[sollte ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[132.33815, 752.8936]",
+                "showText:[gleich ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[157.68214, 752.8936]",
+                "showText:[hoch ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[179.01814, 752.8936]",
+                "showText:[sein ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[197.25014, 752.8936]",
+                "showText:[wie ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[212.37013, 752.8936]",
+                "showText:[die ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[226.15413, 752.8936]",
+                "showText:[obere ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]",
+                "setNonStrokingColor(#E0E0E0)",
+                "drawRect(297.63782, 751.0056, 226.77167, 9.52)",
+                "setNonStrokingColor(black)",
+                "setFont[Helvetica-Bold, 8.0]",
+                "beginText:[]",
+                "newLineAtOffset:[502.9615, 752.8936]",
+                "showText:[test ]",
+                "endText:[]",
+                "setFont[Helvetica, 8.0]"
+        )
+        Assertions.assertEquals(expected, interceptor.commands)
     }
 
 }

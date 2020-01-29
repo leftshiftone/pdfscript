@@ -174,6 +174,7 @@ class PdfScriptStream(val document: PDDocument,
     }
 
     fun addRect(x: Float, y: Float, width: Float, height: Float) {
+        interceptor.addRect(x, y, width, height)
         contentStream.get().addRect(x + 0.5f, y - 0.5f, width, height)
         contentStream.get().fill()
     }

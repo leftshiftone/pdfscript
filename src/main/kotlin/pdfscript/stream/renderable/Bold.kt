@@ -18,7 +18,6 @@ package pdfscript.stream.renderable
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.PdfScriptStream
-import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
@@ -42,7 +41,7 @@ class Bold(private val text: String, private val config: Context.() -> Unit) : A
     }
 
     private fun toEvaluation(styler: Context, context: Context, text: String): Evaluation {
-        return TextEvaluation({ styler.lineWidth(mask(text)) }, { styler.boxHeight() }) { stream, coordinates ->
+        return Text.TextEvaluation({ styler.lineWidth(mask(text)) }, { styler.boxHeight() }, {0f}) { stream, coordinates ->
             if (styler.foreground().isPresent)
                 stream.setNonStrokingColor(styler.foreground().get())
 
@@ -59,10 +58,6 @@ class Bold(private val text: String, private val config: Context.() -> Unit) : A
             coordinates.moveX(styler.lineWidth(resolved))
         }
     }
-
-    class TextEvaluation(width: (EvaluationBase) -> Float,
-                         height: (EvaluationBase) -> Float,
-                         executionGraph: (PdfScriptStream, Coordinates) -> Unit) : Evaluation(width, height, executionGraph)
 
     private fun mask(str: String) = if (str.equals("{{page}} ") || str.equals("{{pages}} ")
             || str.equals("#PAGE ") || str.equals("#PAGES ")) "00 " else str

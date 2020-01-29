@@ -117,4 +117,25 @@ class TableTest {
         assertTrue(interceptor.commands.contains("drawLine(70.36614, 617.43164, 524.9095, 617.43164)"))
     }
 
+    @Test
+    fun tableWithBoldText() {
+        val interceptor = RawCommandsInterceptor()
+        val bytes = dinA4 {
+            table({ border("none");background("#E0E0E0") }) {
+                row({ fontSize(8) }) {
+                    col{ text("die zeile hat richtiges spacing") }
+                    col({ align("right") }){ text("die zeile hat richtiges spacing") }
+                }
+                row({ fontSize(8) }) {
+                    col{ bold("die zeile sollte gleich hoch sein wie die obere") }
+                    col({ align("right") }) { bold("test") }
+                }
+            }
+        }.execute(interceptor)
+
+        interceptor.commands.forEach {
+            println(it)
+        }
+    }
+
 }

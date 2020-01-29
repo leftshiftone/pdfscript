@@ -63,4 +63,8 @@ class RawCommandsInterceptor : Interceptor() {
     override fun drawLine(x1:Float, y1:Float, x2:Float, y2:Float) {
         commands.add("drawLine($x1, $y1, $x2, $y2)")
     }
+
+    override fun addRect(x: Float, y: Float, width: Float, height: Float) {
+        commands.add("drawRect($x, $y, $width, $height)")
+    }
 }

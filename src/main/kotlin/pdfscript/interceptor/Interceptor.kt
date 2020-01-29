@@ -66,4 +66,8 @@ open class Interceptor {
         // do nothing
     }
 
+    open fun addRect(x:Float, y:Float, width:Float, height:Float) {
+        // do nothing
+    }
+
 }

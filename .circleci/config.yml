@@ -64,6 +64,25 @@ jobs:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run:
           <<: *webhook-failed
+  code-analytics:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    environment:
+      TZ: "/usr/share/zoneinfo/Europe/Vienna"
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+    steps:
+      - run:
+          <<: *webhook-created
+      - checkout
+      - restore_cache:
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - run: ./gradlew sonarqube -Dsonar.projectKey=one.leftshift.pdfscript -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: cache-gradle-{{ checksum "build.gradle" }}
+      - run:
+          <<: *webhook-failed
 
 workflows:
   version: 2
@@ -97,3 +116,17 @@ workflows:
               only: /^v\d+\.\d+\.\d+$/
           requires:
             - release
+  code-analytics:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - code-analytics:
+          context: leftshiftone-sonar
+      - webhook-completed:
+          requires:
+            - code-analytics

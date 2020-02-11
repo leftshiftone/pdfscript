@@ -14,6 +14,7 @@ buildscript {
         classpath "com.netflix.nebula:nebula-release-plugin:8.0.3"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8"
     }
 }
 
@@ -27,6 +28,7 @@ apply plugin: "nebula.nebula-release"
 apply plugin: "org.jetbrains.dokka"
 apply plugin: "maven-publish"
 apply plugin: "com.jfrog.bintray"
+apply plugin: "org.sonarqube"
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

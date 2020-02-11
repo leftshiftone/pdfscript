@@ -37,6 +37,8 @@ class Bold(private val text: String, private val config: Context.() -> Unit) : A
     private fun getFontName(font:PDFont):String {
         if (font.name.endsWith("Regular"))
             return font.name.substring(0, font.name.length - 7) + "Bold"
+        if (font.name.endsWith("Bold"))
+            return font.name
         return font.name + "Bold"
     }
 

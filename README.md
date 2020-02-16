@@ -278,7 +278,7 @@ The PdfTextReader for example extracts all text elements together with the corre
 while the PdfTextWriter creates a new pdf file by a list of pdfText bounding boxes.
 
 ```
-val elements = PdfTextReader().read(/pdf/result.pdf)
+val elements = PdfTextReader().read("/pdf/result.pdf")
 val pdfBytes = PdfTextWriter().write(elements)
 ```
 

@@ -29,9 +29,12 @@ class Svg (val supplier: () -> InputStream, val width: Float, val height: Float)
     constructor(bytes: ByteArray, width: Float, height: Float) : this({ByteArrayInputStream(bytes)}, width, height)
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
+        // eager svg content loading
+        val bytes = this.supplier().readBytes()
+
         return listOf(Evaluation({width}, {height}) { stream, coordinates ->
             coordinates.moveY(-height)
-            stream.drawSvg(this.supplier(), width.toInt(), height.toInt(), coordinates.x, coordinates.y)
+            stream.drawSvg(ByteArrayInputStream(bytes), width.toInt(), height.toInt(), coordinates.x, coordinates.y)
             coordinates.moveY(height)
 
             coordinates.moveX(width)

@@ -58,7 +58,9 @@ class PdfTextReader() {
                     _nth.x + _nth.width,
                     _nth.y + _nth.height,
                     _1st.fontSize,
-                    _1st.font))
+                    _1st.font,
+                    currentPageNo
+            ))
         }
     }
 

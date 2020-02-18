@@ -18,4 +18,4 @@ package pdfscript._native.text
 
 import org.apache.pdfbox.pdmodel.font.PDFont
 
-class PdfText(val text:String, val x1:Float, val y1:Float, val x2:Float, val y2:Float, val size:Float, val font:PDFont, val currentPageNo:Int)
+class PdfText(val text:String, val x1:Float, val y1:Float, val x2:Float, val y2:Float, val size:Float, val font:PDFont, val page:Int)

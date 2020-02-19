@@ -24,6 +24,9 @@ import pdfscript.stream.configurable.map.FontsMap
  * Handles fonts and holds replacements for characters not available in a specific font so that PDF generation is
  * possible even though some glyphs are not available in a font.
  *
+ * ATTENTION: Since PDFont objects depend on a document instance,
+ * the FontProvider is not save to be used for different document instances!
+ *
  * @author Michael Mair
  */
 class FontProvider {

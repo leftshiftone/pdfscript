@@ -19,7 +19,6 @@ package pdfscript._native.text
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPage
 import org.apache.pdfbox.pdmodel.PDPageContentStream
-import org.apache.pdfbox.pdmodel.font.PDFont
 import pdfscript.stream.configurable.font.FontProvider
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicReference
@@ -52,32 +51,6 @@ class PdfTextWriter(private val fontProvider:FontProvider = FontProvider()) {
 
             return bos.toByteArray()
         }
-    }
-
-    fun convertAndWrite(list:List<Map<String, Any>>):ByteArray {
-        return write(list.map(this::toPdfText))
-    }
-
-    private fun toPdfText(map:Map<String, Any>):PdfText {
-        requireNotNull(map["text"]) {"text must not be null"}
-        requireNotNull(map["x1"]) {"x1 must not be null"}
-        requireNotNull(map["y1"]) {"y1 must not be null"}
-        requireNotNull(map["x2"]) {"x2 must not be null"}
-        requireNotNull(map["y2"]) {"y2 must not be null"}
-        requireNotNull(map["size"]) {"size must not be null"}
-        requireNotNull(map["font"]) {"font must not be null"}
-        requireNotNull(map["page"]) {"page must not be null"}
-
-        val text:String = map["text"] as String
-        val x1:Float = map["x1"] as Float
-        val y1:Float = map["y1"] as Float
-        val x2:Float = map["x2"] as Float
-        val y2:Float = map["y2"] as Float
-        val size:Float = map["size"] as Float
-        val font:PDFont = fontProvider.getFont(map["font"] as String)
-        val page:Int = map["page"] as Int
-
-        return PdfText(text, x1, y1, x2, y2, size, font, page)
     }
 
 }

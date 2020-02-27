@@ -31,6 +31,8 @@ class PdfTextReader() {
 
     fun read(path:String) = read(File(path).inputStream())
 
+    fun read(bytes:ByteArray) = read(bytes.inputStream())
+
     fun read(stream:InputStream):List<PdfText> {
         PDDocument.load(stream).use {
             val stripper = CustomPDFTextStripper()

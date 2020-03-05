@@ -60,4 +60,13 @@ internal class FontProviderTest {
         }
         assertNull(exception)
     }
+
+    @Test
+    fun `has font`() {
+        val font = PDType0Font.load(PDDocument(), this::class.java.getResourceAsStream("/font/NotoSansArabic-Regular.ttf"))
+        val provider = FontProvider()
+        provider.addFont(font)
+        assert(provider.hasFont("NotoSansArabic-Regular"))
+        assert(!provider.hasFont("Test-Regular"))
+    }
 }

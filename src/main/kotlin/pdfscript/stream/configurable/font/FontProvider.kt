@@ -50,6 +50,10 @@ class FontProvider {
         throw java.lang.RuntimeException("no font with name $name found")
     }
 
+    fun hasFont(name:String):Boolean {
+        return fonts.containsKey(name) || FontsMap.hasFont(name)
+    }
+
     fun sanitize(font: PDFont, string: String): String {
         try {
             font.encode(string)

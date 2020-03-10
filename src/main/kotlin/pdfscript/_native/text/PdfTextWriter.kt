@@ -23,28 +23,46 @@ import pdfscript.stream.configurable.font.FontProvider
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicReference
 
-// TODO: add multi-page support
-class PdfTextWriter(private val fontProvider:FontProvider = FontProvider()) {
+class PdfTextWriter(private val fontProvider: FontProvider = FontProvider()) {
 
-    fun write(list:List<PdfText>):ByteArray {
+    fun write(list: List<PdfText>): ByteArray {
         PDDocument().use {
-            val page = PDPage()
-            it.addPage(page)
+            val pdHeight = AtomicReference<Float>()
+            val currPage = AtomicReference(0)
+            val contents = AtomicReference<PDPageContentStream>()
+            val xPointer = AtomicReference<Float>()
+            val yPointer = AtomicReference<Float>()
+            list.forEach { e ->
+                if (currPage.get() < e.page) {
+                    // init page
+                    val page = PDPage()
+                    it.addPage(page)
+                    if (contents.get() != null) contents.get().close()
+                    currPage.set(e.page)
+                    contents.set(PDPageContentStream(it, page))
+                    pdHeight.set(page.mediaBox.height)
+                    xPointer.set(page.mediaBox.height)
+                    yPointer.set(page.mediaBox.width)
+                }
 
-            val contents = PDPageContentStream(it, page)
-            val xPointer = AtomicReference<Float>(page.mediaBox.height)
-            val yPointer = AtomicReference<Float>(page.mediaBox.width)
-            list.forEach {
-                contents.beginText()
-                contents.setFont(it.font, it.size)
-                contents.newLineAtOffset(it.x1, page.mediaBox.height - it.y1)
-                contents.showText(it.text)
-                contents.endText()
-                xPointer.set(it.x1)
-                yPointer.set(it.y1)
+                if (e.text.isNotBlank()) {
+                    contents.get().beginText()
+
+                    val font = when (fontProvider.hasFont(e.font.name)) {
+                        true -> e.font
+                        else -> fontProvider.getFont("helvetica")
+                    }
+
+                    contents.get().setFont(font, e.size)
+                    contents.get().newLineAtOffset(e.x1, pdHeight.get() - e.y1)
+                    contents.get().showText(e.text)
+                    contents.get().endText()
+                }
+                xPointer.set(e.x1)
+                yPointer.set(e.y1)
             }
 
-            contents.close()
+            contents.get().close()
 
             val bos = ByteArrayOutputStream()
             it.save(bos)

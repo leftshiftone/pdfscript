@@ -42,6 +42,14 @@ class FontProvider {
         rawFonts[font.name] = font
     }
 
+    fun hasFont(name: String):Boolean {
+        if (fonts.containsKey(name))
+            return true
+        if (FontsMap.hasFont(name))
+            return true
+        return false
+    }
+
     fun getFont(name:String):PDFont {
         if (fonts.containsKey(name))
             return rawFonts.get(name)!!

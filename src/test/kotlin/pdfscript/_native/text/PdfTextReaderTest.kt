@@ -18,6 +18,8 @@ package pdfscript._native.text
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.io.File
+import java.io.FileOutputStream
 
 
 class PdfTextReaderTest {
@@ -27,6 +29,19 @@ class PdfTextReaderTest {
         val stream = PdfTextReaderTest::class.java.getResourceAsStream("/pdf/result.pdf")
         val incoming = PdfTextReader().read(stream)
         val outgoing = PdfTextWriter().write(incoming)
+
+        Assertions.assertNotNull(outgoing)
+        Assertions.assertTrue(outgoing.isNotEmpty())
+    }
+
+    @Test
+    fun multipage() {
+        val stream = PdfTextReaderTest::class.java.getResourceAsStream("/pdf/multipage.pdf")
+        val incoming = PdfTextReader().read(stream)
+        val outgoing = PdfTextWriter().write(incoming)
+
+        val fos = FileOutputStream(File("D:/tmp/multipage.pdf"))
+        fos.write(outgoing)
 
         Assertions.assertNotNull(outgoing)
         Assertions.assertTrue(outgoing.isNotEmpty())

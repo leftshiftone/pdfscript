@@ -26,7 +26,7 @@ class PdfTextReaderTest {
 
     @Test
     fun test() {
-        val stream = PdfTextReaderTest::class.java.getResourceAsStream("/pdf/result.pdf")
+        val stream = this::class.java.getResourceAsStream("/pdf/result.pdf")
         val incoming = PdfTextReader().read(stream)
         val outgoing = PdfTextWriter().write(incoming)
 
@@ -36,11 +36,11 @@ class PdfTextReaderTest {
 
     @Test
     fun multipage() {
-        val stream = PdfTextReaderTest::class.java.getResourceAsStream("/pdf/multipage.pdf")
+        val stream = this::class.java.getResourceAsStream("/pdf/result.pdf")
         val incoming = PdfTextReader().read(stream)
         val outgoing = PdfTextWriter().write(incoming)
 
-        val fos = FileOutputStream(File("D:/tmp/multipage.pdf"))
+        val fos = FileOutputStream(File.createTempFile("multipage", ".pdf"))
         fos.write(outgoing)
 
         Assertions.assertNotNull(outgoing)

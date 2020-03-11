@@ -33,7 +33,7 @@ class FontProvider {
 
     private val log = LoggerFactory.getLogger(this::class.java)
     private val fonts: MutableMap<String, CharArray> = mutableMapOf()
-    private val rawFonts : MutableMap<String, PDFont> = mutableMapOf()
+    private val rawFonts: MutableMap<String, PDFont> = mutableMapOf()
 
     @JvmOverloads
     fun addFont(font: PDFont, charReplacement: Char? = null) {
@@ -42,15 +42,7 @@ class FontProvider {
         rawFonts[font.name] = font
     }
 
-    fun hasFont(name: String):Boolean {
-        if (fonts.containsKey(name))
-            return true
-        if (FontsMap.hasFont(name))
-            return true
-        return false
-    }
-
-    fun getFont(name:String):PDFont {
+    fun getFont(name: String): PDFont {
         if (fonts.containsKey(name))
             return rawFonts.get(name)!!
         if (FontsMap.hasFont(name))
@@ -58,7 +50,7 @@ class FontProvider {
         throw java.lang.RuntimeException("no font with name $name found")
     }
 
-    fun hasFont(name:String):Boolean {
+    fun hasFont(name: String): Boolean {
         return fonts.containsKey(name) || FontsMap.hasFont(name)
     }
 

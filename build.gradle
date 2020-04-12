@@ -97,10 +97,6 @@ compileTestKotlin {
     }
 }
 
-release {
-    defaultVersionStrategy = nebula.plugin.release.NetflixOssStrategies.SNAPSHOT
-}
-
 test {
     useJUnitPlatform()
 }

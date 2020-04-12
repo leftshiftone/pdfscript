@@ -23,7 +23,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     environment:
       TZ: "/usr/share/zoneinfo/Europe/Vienna"
-      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-Xmx1024m"'
       TEST_RESULTS_PATH: build/circleci/test-results
     steps:
       - run:
@@ -50,7 +50,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     environment:
       TZ: "/usr/share/zoneinfo/Europe/Vienna"
-      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-Xmx1024m"'
     steps:
       - run:
           <<: *webhook-created
@@ -69,7 +69,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     environment:
       TZ: "/usr/share/zoneinfo/Europe/Vienna"
-      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
+      GRADLE_OPTS: '-Xmx128m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-Xmx1024m"'
     steps:
       - run:
           <<: *webhook-created

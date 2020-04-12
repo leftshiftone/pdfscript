@@ -1,12 +1,12 @@
 webhook-created: &webhook-created
   name: Webhook created
   command: |
-    curl $BUILD_STATUS_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+    curl $WEBHOOK_BUILD_URL\?flow\=circleci-created -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
 webhook-failed: &webhook-failed
   name: Webhook completed
   when: on_fail
   command: |
-    curl $BUILD_STATUS_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+    curl $WEBHOOK_BUILD_URL\?flow\=circleci-completed\&status\=FAILED -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
 
 version: 2.1
 jobs:
@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Webhook completed
           command: |
-            curl $BUILD_STATUS_URL\?flow\=circleci-completed -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_PREVIOUS_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
+            curl $WEBHOOK_BUILD_URL\?flow\=circleci-completed -d '{"repository":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","build_number":"'"$CIRCLE_PREVIOUS_BUILD_NUM"'","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i || true
   build:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -35,7 +35,10 @@ jobs:
       - run: ./gradlew dependencies
       - run: mkdir -p $TEST_RESULTS_PATH
       - run: ./gradlew test --stacktrace
-      - run: find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} $TEST_RESULTS_PATH \;
+      - run:
+          name: Collect test results
+          command: find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} $TEST_RESULTS_PATH \;
+          when: always
       - run: ./gradlew assemble --stacktrace
       - save_cache:
           paths:
@@ -89,11 +92,12 @@ workflows:
   build:
     jobs:
       - build:
-          context: bintray-jcenter
+          context: asteria
           filters:
             tags:
               ignore: /.*/
       - webhook-completed:
+          context: asteria
           filters:
             tags:
               ignore: /.*/
@@ -102,13 +106,14 @@ workflows:
   release:
     jobs:
       - release:
-          context: bintray-jcenter
+          context: asteria
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+$/
       - webhook-completed:
+          context: asteria
           filters:
             branches:
               ignore: /.*/
@@ -126,7 +131,8 @@ workflows:
                 - master
     jobs:
       - code-analytics:
-          context: leftshiftone-sonar
+          context: asteria
       - webhook-completed:
+          context: asteria
           requires:
             - code-analytics

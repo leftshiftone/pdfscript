@@ -79,7 +79,7 @@ jobs:
       - checkout
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
-      - run: ./gradlew sonarqube -Dsonar.projectKey=one.leftshift.pdfscript -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN
+      - run: ./gradlew sonarqube
       - save_cache:
           paths:
             - ~/.gradle

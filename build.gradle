@@ -62,6 +62,7 @@ asteriaDependency {
 asteriaCodeAnalytics {
     sonarUrl = System.getenv("SONAR_HOST_URL")
     sonarLoginToken = System.getenv("SONAR_LOGIN")
+    sonarProperties = ["sonar.test.inclusions": "**/*Test*/**"]
     xmlCoverageReportEnabled = true
     coverageExcludes = []
 }

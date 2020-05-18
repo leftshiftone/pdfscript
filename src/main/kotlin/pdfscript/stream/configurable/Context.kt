@@ -22,6 +22,7 @@ import pdfscript.model.PageFormat
 import pdfscript.model.PageMargin
 import pdfscript.stream.configurable.map.FontsMap
 import java.util.*
+import java.util.function.Supplier
 
 class Context(val format: PageFormat, val margin: PageMargin) {
 
@@ -33,15 +34,16 @@ class Context(val format: PageFormat, val margin: PageMargin) {
         properties.put("border", "black")
     }
 
-    fun font(): PDFont = properties.get("font") as PDFont
+    fun font(): PDFont = resolve(properties.get("font")) as PDFont
     fun font(font: PDFont) = properties.set("font", font)
     fun font(font: String) = properties.set("font", FontsMap.resolve(font))
+    fun font(font: Supplier<PDFont>) = properties.set("font", font)
 
     fun fontSize(): Float = properties.get("fontSize") as Float
     fun fontSize(fontSize: Number) = properties.set("fontSize", fontSize.toFloat())
 
-    fun foreground(): Optional<String> = Optional.ofNullable(properties.get("foreground")?.toString())
-    fun foreground(color: String) = properties.set("foreground", color)
+    fun foreground(): Optional<String> = Optional.ofNullable(properties.get("fill")?.toString())
+    fun foreground(color: String) = properties.set("fill", color)
 
     fun background(): Optional<String> = Optional.ofNullable(properties.get("background")?.toString())
     fun background(color: String) = properties.set("background", color)
@@ -91,4 +93,12 @@ class Context(val format: PageFormat, val margin: PageMargin) {
 
     fun isAlignCenter() = align().isPresent && align().get().equals("center")
     fun isAlignRight() = align().isPresent && align().get().equals("right")
+
+    private fun resolve(obj:Any?):Any? {
+        return when (obj) {
+            is Supplier<*> -> obj.get()
+            else -> obj
+        }
+    }
+
 }

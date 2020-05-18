@@ -64,7 +64,16 @@ class RawCommandsInterceptor : Interceptor() {
         commands.add("drawLine($x1, $y1, $x2, $y2)")
     }
 
-    override fun addRect(x: Float, y: Float, width: Float, height: Float) {
+    override fun drawRect(x: Float, y: Float, width: Float, height: Float) {
         commands.add("drawRect($x, $y, $width, $height)")
     }
+
+    override fun drawCircle(x: Float, y: Float, r: Float) {
+        commands.add("drawCircle($x, $y, $r)")
+    }
+
+    override fun drawSvg(x:Float, y:Float, s: Float) {
+        commands.add("drawSvg($x, $y, $s)")
+    }
+
 }

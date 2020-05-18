@@ -16,19 +16,28 @@
 
 package pdfscript
 
+import de.rototor.pdfbox.graphics2d.PdfBoxGraphics2D
 import net.coobird.thumbnailator.Thumbnails
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory
+import org.apache.batik.bridge.BridgeContext
+import org.apache.batik.bridge.DocumentLoader
+import org.apache.batik.bridge.GVTBuilder
+import org.apache.batik.bridge.UserAgentAdapter
 import org.apache.batik.transcoder.TranscoderInput
 import org.apache.batik.transcoder.TranscoderOutput
 import org.apache.batik.transcoder.image.PNGTranscoder
+import org.apache.batik.util.XMLResourceDescriptor
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDFont
+import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory
 import org.slf4j.LoggerFactory
 import pdfscript.interceptor.Interceptor
 import pdfscript.model.PageFormat
 import pdfscript.stream.configurable.font.FontProvider
 import java.awt.Color
+import java.awt.geom.AffineTransform
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -125,11 +134,43 @@ class PdfScriptStream(val document: PDDocument,
         val `is` = ByteArrayInputStream(os.toByteArray())
 
         val bim = ImageIO.read(`is`)
-        val pdImage = LosslessFactory.createFromImage(document, bim)
+        val pdImage = JPEGFactory.createFromImage(document, bim)
 
         interceptor.drawImage(pdImage, x, y)
         contentStream.get().drawImage(pdImage, x, y)
     }
+
+    fun drawSvg(stream: InputStream, x: Float, y: Float, scale: Float) {
+        // create the document
+        val parser = XMLResourceDescriptor.getXMLParserClassName();
+        val f = SAXSVGDocumentFactory(parser);
+        val document = f.createDocument("test", stream);
+
+        // create the GVT
+        val userAgent = UserAgentAdapter()
+        val loader = DocumentLoader(userAgent)
+        val bctx = BridgeContext(userAgent, loader)
+        bctx.setDynamicState(BridgeContext.STATIC)
+
+        val builder = GVTBuilder()
+        val gvtRoot = builder.build(bctx, document)
+
+        val pdfBoxGraphics2D = PdfBoxGraphics2D(this.document, 400f, 400f)
+
+        pdfBoxGraphics2D.scale(scale.toDouble(), scale.toDouble())
+        gvtRoot.paint(pdfBoxGraphics2D);
+
+        pdfBoxGraphics2D.dispose()
+
+        val appearanceStream = pdfBoxGraphics2D.getXFormObject()
+        val transform = AffineTransform.getTranslateInstance(x.toDouble(), y.toDouble() - (400 * scale))
+        transform.scale(scale.toDouble(), scale.toDouble())
+        appearanceStream.setMatrix(transform)
+
+        interceptor.drawSvg(x, y, scale)
+        contentStream.get().drawForm(appearanceStream)
+    }
+
 
     fun drawImage(stream: InputStream, width: Int, height: Int, x: Float, y: Float) {
         val timestamp = System.currentTimeMillis()
@@ -173,8 +214,22 @@ class PdfScriptStream(val document: PDDocument,
         contentStream.get().stroke()
     }
 
+    fun drawCircle(x: Float, y: Float, r: Float) {
+        interceptor.drawCircle(x, y, r)
+        // Bezier curves circle
+        // draw a circle by 4 points, (4/3)*tan(pi/8) = 4*(sqrt(2)-1)/3 = 0.552284749831
+        val k = 0.552284749831f
+
+        contentStream.get().moveTo(x - r, y);
+        contentStream.get().curveTo(x - r, y + k * r, x - k * r, y + r, x, y + r);
+        contentStream.get().curveTo(x + k * r, y + r, x + r, y + k * r, x + r, y);
+        contentStream.get().curveTo(x + r, y - k * r, x + k * r, y - r, x, y - r);
+        contentStream.get().curveTo(x - k * r, y - r, x - r, y - k * r, x - r, y);
+        contentStream.get().fill();
+    }
+
     fun addRect(x: Float, y: Float, width: Float, height: Float) {
-        interceptor.addRect(x, y, width, height)
+        interceptor.drawRect(x, y, width, height)
         contentStream.get().addRect(x + 0.5f, y - 0.5f, width, height)
         contentStream.get().fill()
     }

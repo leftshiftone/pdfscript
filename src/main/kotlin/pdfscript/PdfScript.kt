@@ -24,6 +24,7 @@ import pdfscript.model.PageMargin
 import pdfscript.model.PageMargin.Companion.standard
 import pdfscript.stream.Coordinates
 import pdfscript.stream.Evaluation
+import pdfscript.stream.PdfCanvas
 import pdfscript.stream.PdfWriter
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
@@ -42,11 +43,13 @@ class PdfScript(private val style: Context.() -> Unit,
     val headerWriter = PdfWriter(Context(format, margin), fontProvider)
     val footerWriter = PdfWriter(Context(format, margin), fontProvider)
     val centerWriter = PdfWriter(Context(format, margin), fontProvider)
+    val canvasWriter = PdfCanvas(Context(format, margin), fontProvider)
 
     init {
         headerWriter.withContext(style)
         footerWriter.withContext(style)
         centerWriter.withContext(style)
+        canvasWriter.withContext(style)
     }
 
     companion object {
@@ -105,6 +108,10 @@ class PdfScript(private val style: Context.() -> Unit,
         footerWriter.apply(config)
     }
 
+    fun withCanvas(config: PdfCanvas.() -> Unit) {
+        canvasWriter.apply(config)
+    }
+
     @JvmOverloads
     fun execute(interceptor: Interceptor = Interceptor(),
                 document: PDDocument = PDDocument()): ByteArray {
@@ -137,6 +144,7 @@ class PdfScript(private val style: Context.() -> Unit,
                 headerWriter.evaluations.forEach { write(stream, it, headerCoordinates, false) }
                 footerWriter.evaluations.forEach { write(stream, it, footerCoordinates, false) }
                 centerWriter.evaluations.forEach { write(stream, it, centerCoordinates, true) }
+                canvasWriter.evaluations.forEach { write(stream, it, centerCoordinates, false) }
             }
 
             val baos = ByteArrayOutputStream()

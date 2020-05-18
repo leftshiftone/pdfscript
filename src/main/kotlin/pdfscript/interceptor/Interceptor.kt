@@ -50,6 +50,10 @@ open class Interceptor {
         // do nothing
     }
 
+    open fun drawSvg(x:Float, y:Float, s: Float) {
+        // do nothing
+    }
+
     open fun close() {
         // do nothing
     }
@@ -66,7 +70,11 @@ open class Interceptor {
         // do nothing
     }
 
-    open fun addRect(x:Float, y:Float, width:Float, height:Float) {
+    open fun drawRect(x:Float, y:Float, width:Float, height:Float) {
+        // do nothing
+    }
+
+    open fun drawCircle(x:Float, y:Float, r:Float) {
         // do nothing
     }
 

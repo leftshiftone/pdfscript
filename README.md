@@ -9,7 +9,7 @@ using a rendering evaluation graph. The graph nodes are used to evaluate the
 bounding boxes of each renderable before it gets rendered. The evaluation 
 graphs enables **PDFScript** to auto-adjust the renderables within the boundaries of a page.
 
-Available in [jcenter](https://bintray.com/leftshiftone/pdfscript/one.leftshift.pdfscript.pdfscript/_latestVersion). Can be included like `compile 'one.leftshift.pdfscript:pdfscript:0.14.0'`.
+Available in [jcenter](https://bintray.com/leftshiftone/pdfscript/one.leftshift.pdfscript.pdfscript/_latestVersion). Can be included like `compile 'one.leftshift.pdfscript:pdfscript:0.25.0'`.
 
 ## Quickstart
 
@@ -160,6 +160,26 @@ dinA4({ font(font1) }, fontProvider) {
    text("A")
    bold("B")
    text("C")
+}
+```
+
+## Canvas
+A canvas supports to draw elements on an absolute position without adjusting the current position of the element flow.
+So by the use of a canvas it is possible to draw elements in a free way onto the pdf.
+
+Each function within the *withCanvas* block accepts the x and y coordinates on the pdf. While the x coordinate starts
+on the left of the page, the y coordinate starts on the bottom. A negative x value can be used to start on the right
+and a negative y value can be used to start from the top.
+
+```
+dinA4 {
+   withCanvas {
+      drawCircle(0, -100, 5)
+      drawLine(0, -200, 10, -200)
+      drawRect(0, -300, 10, 10)
+      drawSvg("/image.svg", -400, 0, 0.25)
+      drawText("text", -500, 0, 0.25)
+   }
 }
 ```
 

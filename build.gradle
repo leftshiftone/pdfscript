@@ -76,6 +76,8 @@ dependencies {
     compile "net.coobird:thumbnailator:0.4.8"
     compile "org.slf4j:slf4j-api:1.7.26"
 
+    compile 'de.rototor.pdfbox:graphics2d:0.25'
+    compileOnly 'org.apache.pdfbox:jbig2-imageio:3.0.2'
     compileOnly "org.apache.xmlgraphics:batik-transcoder:1.11"
     compileOnly "org.apache.xmlgraphics:batik-codec:1.11"
 

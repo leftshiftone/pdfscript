@@ -55,7 +55,7 @@ class PdfTextWriter(private val fontProvider: FontProvider = FontProvider()) {
 
                     contents.get().setFont(font, e.size)
                     contents.get().newLineAtOffset(e.x1, pdHeight.get() - e.y1)
-                    contents.get().showText(e.text)
+                    contents.get().showText(this.fontProvider.sanitize(font, e.text))
                     contents.get().endText()
                 }
                 xPointer.set(e.x1)

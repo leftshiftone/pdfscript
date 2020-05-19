@@ -1,0 +1,3022 @@
+{
+    "apiDependenciesMetadata": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "compile": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "compileClasspath": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:jbig2-imageio": {
+            "locked": "3.0.2",
+            "requested": "3.0.2"
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "compileOnly": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.0.4",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "org.apache.pdfbox:jbig2-imageio": {
+            "locked": "3.0.2",
+            "requested": "3.0.2"
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "compileOnlyDependenciesMetadata": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.0.4",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "org.apache.pdfbox:jbig2-imageio": {
+            "locked": "3.0.2",
+            "requested": "3.0.2"
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "default": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "implementationDependenciesMetadata": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "jacocoAgent": {
+        "org.jacoco:org.jacoco.agent": {
+            "locked": "0.8.5",
+            "requested": "0.8.5"
+        }
+    },
+    "jacocoAnt": {
+        "org.jacoco:org.jacoco.agent": {
+            "locked": "0.8.5",
+            "transitive": [
+                "org.jacoco:org.jacoco.ant"
+            ]
+        },
+        "org.jacoco:org.jacoco.ant": {
+            "locked": "0.8.5"
+        },
+        "org.jacoco:org.jacoco.core": {
+            "locked": "0.8.5",
+            "transitive": [
+                "org.jacoco:org.jacoco.ant",
+                "org.jacoco:org.jacoco.report"
+            ]
+        },
+        "org.jacoco:org.jacoco.report": {
+            "locked": "0.8.5",
+            "transitive": [
+                "org.jacoco:org.jacoco.ant"
+            ]
+        },
+        "org.ow2.asm:asm": {
+            "locked": "7.2",
+            "transitive": [
+                "org.jacoco:org.jacoco.core",
+                "org.ow2.asm:asm-commons",
+                "org.ow2.asm:asm-tree"
+            ]
+        },
+        "org.ow2.asm:asm-analysis": {
+            "locked": "7.2",
+            "transitive": [
+                "org.ow2.asm:asm-commons"
+            ]
+        },
+        "org.ow2.asm:asm-commons": {
+            "locked": "7.2",
+            "transitive": [
+                "org.jacoco:org.jacoco.core"
+            ]
+        },
+        "org.ow2.asm:asm-tree": {
+            "locked": "7.2",
+            "transitive": [
+                "org.jacoco:org.jacoco.core",
+                "org.ow2.asm:asm-analysis",
+                "org.ow2.asm:asm-commons"
+            ]
+        }
+    },
+    "kotlinCompilerClasspath": {
+        "org.jetbrains.intellij.deps:trove4j": {
+            "locked": "1.0.20181211",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-compiler-embeddable"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-compiler-embeddable": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-compiler-embeddable"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-script-runtime": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-compiler-embeddable"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-compiler-embeddable",
+                "org.jetbrains.kotlin:kotlin-reflect"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        }
+    },
+    "kotlinCompilerPluginClasspath": {
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-common"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-script-runtime": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-jvm"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable",
+                "org.jetbrains.kotlin:kotlin-scripting-jvm"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-jvm": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-scripting-common",
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable",
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable",
+                "org.jetbrains.kotlin:kotlin-scripting-jvm"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-scripting-common",
+                "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable"
+            ]
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        }
+    },
+    "runtime": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "runtimeClasspath": {
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        }
+    },
+    "testApiDependenciesMetadata": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "testCompile": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-engine": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.junit.platform:junit-platform-engine": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-engine"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "testCompileClasspath": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "testImplementationDependenciesMetadata": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "testRuntime": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-engine": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.junit.platform:junit-platform-engine": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-engine"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26",
+            "transitive": [
+                "org.slf4j:slf4j-simple"
+            ]
+        },
+        "org.slf4j:slf4j-simple": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    },
+    "testRuntimeClasspath": {
+        "commons-io:commons-io": {
+            "locked": "1.3.1",
+            "transitive": [
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "commons-logging:commons-logging": {
+            "locked": "1.2",
+            "transitive": [
+                "org.apache.pdfbox:fontbox",
+                "org.apache.pdfbox:pdfbox",
+                "org.apache.xmlgraphics:xmlgraphics-commons"
+            ]
+        },
+        "de.rototor.pdfbox:graphics2d": {
+            "locked": "0.25",
+            "requested": "0.25"
+        },
+        "net.coobird:thumbnailator": {
+            "locked": "0.4.8",
+            "requested": "0.4.8"
+        },
+        "org.apache.pdfbox:fontbox": {
+            "locked": "2.0.15",
+            "transitive": [
+                "org.apache.pdfbox:pdfbox"
+            ]
+        },
+        "org.apache.pdfbox:pdfbox": {
+            "locked": "2.0.15",
+            "requested": "2.0.15",
+            "transitive": [
+                "de.rototor.pdfbox:graphics2d"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-anim": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-awt-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-bridge": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-codec": {
+            "locked": "1.11",
+            "requested": "1.11"
+        },
+        "org.apache.xmlgraphics:batik-constants": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-css": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-ext": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-gvt": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-i18n": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-util"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-parser": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-svg-dom"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-script": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svg-dom": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-svggen": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-transcoder": {
+            "locked": "1.11",
+            "requested": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-codec"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-util": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-codec",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-gvt",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-script",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-svggen",
+                "org.apache.xmlgraphics:batik-transcoder",
+                "org.apache.xmlgraphics:batik-xml"
+            ]
+        },
+        "org.apache.xmlgraphics:batik-xml": {
+            "locked": "1.11",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        },
+        "org.apache.xmlgraphics:xmlgraphics-commons": {
+            "locked": "2.3",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-awt-util",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css"
+            ]
+        },
+        "org.apiguardian:apiguardian-api": {
+            "locked": "1.0.0",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params",
+                "org.junit.platform:junit-platform-commons",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
+            "locked": "1.3.41",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.41",
+            "requested": "1.3.41"
+        },
+        "org.jetbrains:annotations": {
+            "locked": "13.0",
+            "transitive": [
+                "org.jetbrains.kotlin:kotlin-stdlib"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter": {
+            "locked": "5.4.2",
+            "requested": "5.4.2"
+        },
+        "org.junit.jupiter:junit-jupiter-api": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter",
+                "org.junit.jupiter:junit-jupiter-engine",
+                "org.junit.jupiter:junit-jupiter-params"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-engine": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.jupiter:junit-jupiter-params": {
+            "locked": "5.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter"
+            ]
+        },
+        "org.junit.platform:junit-platform-commons": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.junit.platform:junit-platform-engine": {
+            "locked": "1.4.2",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-engine"
+            ]
+        },
+        "org.opentest4j:opentest4j": {
+            "locked": "1.1.1",
+            "transitive": [
+                "org.junit.jupiter:junit-jupiter-api",
+                "org.junit.platform:junit-platform-engine"
+            ]
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.26",
+            "requested": "1.7.26",
+            "transitive": [
+                "org.slf4j:slf4j-simple"
+            ]
+        },
+        "org.slf4j:slf4j-simple": {
+            "locked": "1.7.26",
+            "requested": "1.7.26"
+        },
+        "xalan:serializer": {
+            "locked": "2.7.2",
+            "transitive": [
+                "xalan:xalan"
+            ]
+        },
+        "xalan:xalan": {
+            "locked": "2.7.2",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom"
+            ]
+        },
+        "xml-apis:xml-apis": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-dom",
+                "xalan:serializer"
+            ]
+        },
+        "xml-apis:xml-apis-ext": {
+            "locked": "1.3.04",
+            "transitive": [
+                "org.apache.xmlgraphics:batik-anim",
+                "org.apache.xmlgraphics:batik-bridge",
+                "org.apache.xmlgraphics:batik-css",
+                "org.apache.xmlgraphics:batik-dom",
+                "org.apache.xmlgraphics:batik-parser",
+                "org.apache.xmlgraphics:batik-svg-dom",
+                "org.apache.xmlgraphics:batik-transcoder"
+            ]
+        }
+    }
+}

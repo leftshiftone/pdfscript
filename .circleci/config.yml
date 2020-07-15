@@ -12,7 +12,7 @@ version: 2.1
 jobs:
   webhook-completed:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: curlimages/curl:7.70.0
     steps:
       - run:
           name: Webhook completed
@@ -39,7 +39,7 @@ jobs:
           name: Collect test results
           command: find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} $TEST_RESULTS_PATH \;
           when: always
-      - run: ./gradlew assemble --stacktrace
+      - run: ./gradlew assemble publish --stacktrace
       - save_cache:
           paths:
             - ~/.gradle

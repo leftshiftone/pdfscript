@@ -207,8 +207,21 @@ class PdfScriptStream(val document: PDDocument,
         contentStream.get().setNonStrokingColor(color)
     }
 
+    fun setLineWidth(width: Number) {
+        contentStream.get().setLineWidth(width.toFloat())
+    }
+
     fun drawLine(x1: Float, y1: Float, x2: Float, y2: Float) {
         interceptor.drawLine(x1, y1, x2, y2)
+        contentStream.get().moveTo(x1, y1)
+        contentStream.get().lineTo(x2, y2)
+        contentStream.get().stroke()
+    }
+
+    fun drawDashedLine(x1: Float, y1: Float, x2: Float, y2: Float, dashPattern: Optional<FloatArray> = Optional.empty()) {
+        interceptor.drawLine(x1, y1, x2, y2)
+        if (dashPattern.isPresent)
+            contentStream.get().setLineDashPattern (dashPattern.get(), 0f);
         contentStream.get().moveTo(x1, y1)
         contentStream.get().lineTo(x2, y2)
         contentStream.get().stroke()

@@ -26,20 +26,25 @@ class DrawLine(private val x1: Float,
                private val y1: Float,
                private val x2: Float,
                private val y2: Float,
-               private val br: Brush.() -> Unit) : AbstractWritable() {
+               private val br: Brush) : AbstractWritable() {
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         return listOf(Evaluation({ 0f }, { 0f }) { stream, _ ->
-            val brush = Brush()
-            brush.apply(this.br)
+            if (br.fill().isPresent)
+                stream.setNonStrokingColor(br.fill().get())
+            if (br.stroke().isPresent)
+                stream.setStrokingColor(br.stroke().get())
+            if (br.lineWidth().isPresent)
+                stream.setLineWidth(br.lineWidth().get())
 
-            if (brush.fill().isPresent)
-                stream.setNonStrokingColor(brush.fill().get())
+            stream.drawDashedLine(x1, y1, x2, y2, br.lineDashPattern())
 
-            stream.drawLine(x1, y1, x2, y2)
-
-            if (brush.fill().isPresent)
+            if (br.fill().isPresent)
                 stream.setNonStrokingColor("black")
+            if (br.stroke().isPresent)
+                stream.setStrokingColor("black")
+            if (br.lineWidth().isPresent)
+                stream.setLineWidth(1)
         })
     }
 

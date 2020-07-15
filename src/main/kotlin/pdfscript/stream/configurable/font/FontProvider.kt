@@ -40,6 +40,7 @@ class FontProvider {
         if (fonts.containsKey(font.name)) return
         fonts[font.name] = prepareReplacements(font, charReplacement)
         rawFonts[font.name] = font
+        FontsMap.register(font.name, font)
     }
 
     fun getFont(name: String): PDFont {

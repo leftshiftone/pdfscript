@@ -26,19 +26,16 @@ class DrawRect(private val x: Float,
                private val y: Float,
                private val w: Float,
                private val h: Float,
-               private val b: Brush.() -> Unit) : AbstractWritable() {
+               private val b: Brush) : AbstractWritable() {
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         return listOf(Evaluation({ 0f }, { 0f }) { stream, _ ->
-            val brush = Brush()
-            brush.apply(this.b)
-
-            if (brush.fill().isPresent)
-                stream.setNonStrokingColor(brush.fill().get())
+            if (b.fill().isPresent)
+                stream.setNonStrokingColor(b.fill().get())
 
             stream.addRect(x, y, w, h)
 
-            if (brush.fill().isPresent)
+            if (b.fill().isPresent)
                 stream.setNonStrokingColor("black")
         })
     }

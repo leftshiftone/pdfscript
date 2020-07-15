@@ -17,25 +17,29 @@
 package pdfscript.stream.renderable.canvas
 
 import pdfscript.stream.Evaluation
-import pdfscript.stream.configurable.Brush
 import pdfscript.stream.configurable.Context
 import pdfscript.stream.configurable.font.FontProvider
 import pdfscript.stream.renderable.AbstractWritable
+import java.io.ByteArrayInputStream
+import java.io.InputStream
+import java.net.URL
 
-class DrawCircle(private val x: Float,
-                 private val y: Float,
-                 private val r: Float,
-                 private val b: Brush) : AbstractWritable() {
+class DrawImage(private val supplier: () -> InputStream,
+                private val w: Float,
+                private val h: Float,
+                private val x: Float,
+                private val y: Float) : AbstractWritable() {
+
+    constructor(url: URL, w: Float, h: Float, x: Float, y: Float) : this(url::openStream, w, h, x, y)
+    constructor(bytes: ByteArray, w: Float, h:Float, x: Float, y: Float)
+            : this({ ByteArrayInputStream(bytes) }, w, h, x, y)
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
-        return listOf(Evaluation({ 0f }, { 0f }) { stream, _ ->
-            if (b.fill().isPresent)
-                stream.setNonStrokingColor(b.fill().get())
+        // eager svg content loading
+        val bytes = this.supplier().readBytes()
 
-            stream.drawCircle(x, y, r)
-
-            if (b.fill().isPresent)
-                stream.setNonStrokingColor("black")
+        return listOf(Evaluation({ 0f }, { 0f }) { stream, coordinates ->
+            stream.drawImage(ByteArrayInputStream(bytes), w.toInt(), h.toInt(), x, y)
         })
     }
 

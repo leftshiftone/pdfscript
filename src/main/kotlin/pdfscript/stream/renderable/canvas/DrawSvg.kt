@@ -29,10 +29,10 @@ class DrawSvg(private val supplier: () -> InputStream,
               private val x: Float,
               private val y: Float,
               private val s: Float,
-              private val b: Brush.() -> Unit) : AbstractWritable() {
+              private val b: Brush) : AbstractWritable() {
 
-    constructor(url: URL, x: Float, y: Float, s: Float, b: Brush.() -> Unit) : this(url::openStream, x, y, s, b)
-    constructor(bytes: ByteArray, x: Float, y: Float, s: Float, b: Brush.() -> Unit)
+    constructor(url: URL, x: Float, y: Float, s: Float, b: Brush) : this(url::openStream, x, y, s, b)
+    constructor(bytes: ByteArray, x: Float, y: Float, s: Float, b: Brush)
             : this({ ByteArrayInputStream(bytes) }, x, y, s, b)
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {

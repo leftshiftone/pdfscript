@@ -42,6 +42,15 @@ class Brush {
     fun fill(): Optional<String> = Optional.ofNullable(properties.get("fill")?.toString())
     fun fill(color: String) = properties.set("fill", color)
 
+    fun stroke(): Optional<String> = Optional.ofNullable(properties.get("stroke")?.toString())
+    fun stroke(color: String) = properties.set("stroke", color)
+
+    fun lineDashPattern(): Optional<FloatArray> = Optional.ofNullable(properties["lineDashPattern"]).map { it as FloatArray }
+    fun lineDashPattern(vararg lineType: Number) = properties.set("lineDashPattern", lineType.map { it.toFloat() }.toFloatArray())
+
+    fun lineWidth(): Optional<Number> = Optional.ofNullable(properties["lineWidth"]).map { it as Number }
+    fun lineWidth(lineWidth: Number) = properties.set("lineWidth", lineWidth)
+
     fun copy(): Brush {
         val newBrush = Brush()
         newBrush.properties.putAll(properties)

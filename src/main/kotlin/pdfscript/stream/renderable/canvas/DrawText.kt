@@ -25,14 +25,13 @@ import pdfscript.stream.renderable.AbstractWritable
 class DrawText(private val text: String,
                private val x: Float,
                private val y: Float,
-               private val b: Brush.() -> Unit) : AbstractWritable() {
+               private val b: Brush) : AbstractWritable() {
 
     override fun evaluate(context: Context, fontProvider: FontProvider): List<Evaluation> {
         return listOf(Evaluation({ 0f }, { 0f }) { stream, _ ->
-            val brush = Brush()
-            brush.apply(this.b)
+            b.stroke().ifPresent { stream.setNonStrokingColor(it) }
 
-            stream.setFont(brush.font(), brush.fontSize())
+            stream.setFont(b.font(), b.fontSize())
 
             stream.beginText()
             stream.newLineAtOffset(x, y)

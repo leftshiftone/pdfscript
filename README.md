@@ -178,6 +178,7 @@ dinA4 {
       drawLine(0, -200, 10, -200)
       drawRect(0, -300, 10, 10)
       drawSvg("/image.svg", -400, 0, 0.25)
+      drawImage("/image.jpg", 100, 200, -400, -200)
       drawText("text", -500, 0, 0.25)
    }
 }

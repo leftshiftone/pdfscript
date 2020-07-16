@@ -124,7 +124,7 @@ class PdfCanvas(private val context: Context,
 
     fun drawImage(image: String, w: Number, h:Number, x:Number, y:Number) {
         if (!image.startsWith("file:")) throw RuntimeException("image path must start with file:")
-        return drawImage(FileInputStream(image).readBytes(), w, h, x, y)
+        return drawImage(FileInputStream(image.substring("file:".length)).readBytes(), w, h, x, y)
     }
 
     fun useBrush(brush: Brush.() -> Unit, config: PdfCanvas.() -> Unit) {

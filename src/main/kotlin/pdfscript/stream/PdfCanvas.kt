@@ -88,8 +88,12 @@ class PdfCanvas(private val context: Context,
     }
 
     fun drawSvg(image: String, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
-        if (!image.startsWith("file:")) throw RuntimeException("svg path must start with file:")
-        return drawSvg(FileInputStream(image.substring("file:".length)).readBytes(), x, y, s, brush)
+        when (image.substringBefore(":")) {
+            "file" -> drawSvg(FileInputStream(image.substring("file:".length)).readBytes(), x, y, s, brush)
+            "http" -> drawSvg(URL(image).readBytes(), x, y, s, brush)
+            "https" -> drawSvg(URL(image).readBytes(), x, y, s, brush)
+            else -> throw RuntimeException("svg path must start with file:")
+        }
     }
 
     fun drawImage(image: () -> InputStream, w: Number, h: Number, x:Number, y:Number) {
@@ -123,8 +127,12 @@ class PdfCanvas(private val context: Context,
     }
 
     fun drawImage(image: String, w: Number, h:Number, x:Number, y:Number) {
-        if (!image.startsWith("file:")) throw RuntimeException("image path must start with file:")
-        return drawImage(FileInputStream(image.substring("file:".length)).readBytes(), w, h, x, y)
+        when (image.substringBefore(":")) {
+            "file" -> drawImage(FileInputStream(image.substring("file:".length)).readBytes(), w, h, x, y)
+            "http" -> drawImage(URL(image).readBytes(), w, h, x, y)
+            "https" -> drawImage(URL(image).readBytes(), w, h, x, y)
+            else -> throw RuntimeException("image path must start with file:")
+        }
     }
 
     fun useBrush(brush: Brush.() -> Unit, config: PdfCanvas.() -> Unit) {

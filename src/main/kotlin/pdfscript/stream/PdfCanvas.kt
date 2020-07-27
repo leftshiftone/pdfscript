@@ -33,6 +33,7 @@ class PdfCanvas(private val context: Context,
 
     fun withContext(configurer: Context.() -> Unit) = this.context.apply(configurer)
 
+    @JvmOverloads
     fun drawText(text: String, x:Number, y:Number, brush: Brush.() -> Unit = {}) {
         val a = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val b = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -40,6 +41,7 @@ class PdfCanvas(private val context: Context,
         evaluations.addAll(DrawText(text, a, b, this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawLine(x1:Number, y1:Number, x2:Number, y2:Number, brush: Brush.() -> Unit = {}) {
         val a = if (x1.toFloat() < 0) context.format.width() + x1.toFloat() else x1.toFloat()
         val b = if (y1.toFloat() <= 0) context.format.height() + y1.toFloat() else y1.toFloat()
@@ -49,6 +51,7 @@ class PdfCanvas(private val context: Context,
         evaluations.addAll(DrawLine(a, b, c, d, this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawRect(x:Number, y:Number, w:Number, h:Number, brush: Brush.() -> Unit = {}) {
         val x2 = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val y2 = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -56,6 +59,7 @@ class PdfCanvas(private val context: Context,
         evaluations.addAll(DrawRect(x2, y2, w.toFloat(), h.toFloat(), this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawCircle(x:Number, y:Number, r:Number, brush: Brush.() -> Unit = {}) {
         val x2 = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val y2 = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -63,6 +67,7 @@ class PdfCanvas(private val context: Context,
         evaluations.addAll(DrawCircle(x2, y2, r.toFloat(), this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawSvg(image: () -> InputStream, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
         val x2 = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val y2 = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -71,6 +76,7 @@ class PdfCanvas(private val context: Context,
                 this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawSvg(image: URL, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
         val x2 = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val y2 = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -79,6 +85,7 @@ class PdfCanvas(private val context: Context,
                 this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawSvg(image: ByteArray, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
         val x2 = if (x.toFloat() < 0) context.format.width() + x.toFloat() else x.toFloat()
         val y2 = if (y.toFloat() <= 0) context.format.height() + y.toFloat() else y.toFloat()
@@ -87,6 +94,7 @@ class PdfCanvas(private val context: Context,
                 this.brush.copy().apply(brush)).evaluate(context, fontProvider))
     }
 
+    @JvmOverloads
     fun drawSvg(image: String, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
         when (image.substringBefore(":")) {
             "file" -> drawSvg(FileInputStream(image.substring("file:".length)).readBytes(), x, y, s, brush)

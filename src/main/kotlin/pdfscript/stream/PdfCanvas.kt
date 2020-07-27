@@ -139,7 +139,7 @@ class PdfCanvas(private val context: Context,
             "file" -> drawImage(FileInputStream(image.substring("file:".length)).readBytes(), w, h, x, y)
             "http" -> drawImage(loadURL(image), w, h, x, y)
             "https" -> drawImage(loadURL(image), w, h, x, y)
-            else -> throw RuntimeException("image path must start with file:")
+            else -> throw RuntimeException("image path must start with file:, http: or https:")
         }
     }
 

@@ -98,8 +98,8 @@ class PdfCanvas(private val context: Context,
     fun drawSvg(image: String, x:Number, y:Number, s:Number, brush: Brush.() -> Unit = {}) {
         when (image.substringBefore(":")) {
             "file" -> drawSvg(FileInputStream(image.substring("file:".length)).readBytes(), x, y, s, brush)
-            "http" -> drawSvg(URL(image).readBytes(), x, y, s, brush)
-            "https" -> drawSvg(URL(image).readBytes(), x, y, s, brush)
+            "http" -> drawSvg(loadURL(image), x, y, s, brush)
+            "https" -> drawSvg(loadURL(image), x, y, s, brush)
             else -> throw RuntimeException("svg path must start with file:")
         }
     }

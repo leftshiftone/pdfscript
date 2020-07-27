@@ -137,8 +137,8 @@ class PdfCanvas(private val context: Context,
     fun drawImage(image: String, w: Number, h:Number, x:Number, y:Number) {
         when (image.substringBefore(":")) {
             "file" -> drawImage(FileInputStream(image.substring("file:".length)).readBytes(), w, h, x, y)
-            "http" -> drawImage(URL(image).readBytes(), w, h, x, y)
-            "https" -> drawImage(URL(image).readBytes(), w, h, x, y)
+            "http" -> drawImage(loadURL(image), w, h, x, y)
+            "https" -> drawImage(loadURL(image), w, h, x, y)
             else -> throw RuntimeException("image path must start with file:")
         }
     }
@@ -146,6 +146,12 @@ class PdfCanvas(private val context: Context,
     fun useBrush(brush: Brush.() -> Unit, config: PdfCanvas.() -> Unit) {
         val canvasWithBrush = PdfCanvas(context, fontProvider, this.brush.copy().apply(brush)).apply(config)
         this.evaluations.addAll(canvasWithBrush.evaluations)
+    }
+
+    private fun loadURL(url: String):ByteArray {
+        val connection = URL(url).openConnection()
+        connection.addRequestProperty("User-Agent", "java/" + System.getProperty("java.version"))
+        return connection.getInputStream().use { it.readBytes() }
     }
 
 }

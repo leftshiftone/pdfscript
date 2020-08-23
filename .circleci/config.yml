@@ -103,6 +103,21 @@ workflows:
               ignore: /.*/
           requires:
             - build
+  weeklyBuild:
+    triggers:
+      - schedule:
+          cron: "30 0 * * 0"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build:
+          context: asteria
+      - webhook-completed:
+          context: asteria
+          requires:
+            - build
   release:
     jobs:
       - release:

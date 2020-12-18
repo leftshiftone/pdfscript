@@ -38,6 +38,9 @@ repositories {
 
 asteriaEmail {
     smtpHost = System.getenv("ASTERIA_EMAIL_SMTP_HOST")
+    if (System.getenv("ASTERIA_EMAIL_SMTP_PORT")) {
+        smtpPort = System.getenv("ASTERIA_EMAIL_SMTP_PORT").toInteger()
+    }
     smptUser = System.getenv("ASTERIA_EMAIL_SMTP_USER")
     smptPassword = System.getenv("ASTERIA_EMAIL_SMTP_PASSWORD")
     sender = System.getenv("ASTERIA_EMAIL_SENDER")

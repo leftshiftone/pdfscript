@@ -225,6 +225,8 @@ class PdfScriptStream(val document: PDDocument,
         contentStream.get().moveTo(x1, y1)
         contentStream.get().lineTo(x2, y2)
         contentStream.get().stroke()
+        if (dashPattern.isPresent)
+            contentStream.get().setLineDashPattern (emptyArray<Float>().toFloatArray(), 0f);
     }
 
     fun drawCircle(x: Float, y: Float, r: Float) {
@@ -238,13 +240,17 @@ class PdfScriptStream(val document: PDDocument,
         contentStream.get().curveTo(x + k * r, y + r, x + r, y + k * r, x + r, y);
         contentStream.get().curveTo(x + r, y - k * r, x + k * r, y - r, x, y - r);
         contentStream.get().curveTo(x - k * r, y - r, x - r, y - k * r, x - r, y);
-        contentStream.get().fill();
+
+        // FIXME: do not use fillAndStroke if fill or stroke is null
+        contentStream.get().fillAndStroke();
     }
 
     fun addRect(x: Float, y: Float, width: Float, height: Float) {
         interceptor.drawRect(x, y, width, height)
         contentStream.get().addRect(x + 0.5f, y - 0.5f, width, height)
-        contentStream.get().fill()
+
+        // FIXME: do not use fillAndStroke if fill or stroke is null
+        contentStream.get().fillAndStroke()
     }
 
     override fun close() {

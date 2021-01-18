@@ -32,10 +32,14 @@ class DrawRect(private val x: Float,
         return listOf(Evaluation({ 0f }, { 0f }) { stream, _ ->
             if (b.fill().isPresent)
                 stream.setNonStrokingColor(b.fill().get())
+            if (b.stroke().isPresent)
+                stream.setStrokingColor(b.stroke().get())
 
             stream.addRect(x, y, w, h)
 
             if (b.fill().isPresent)
+                stream.setNonStrokingColor("black")
+            if (b.stroke().isPresent)
                 stream.setNonStrokingColor("black")
         })
     }

@@ -97,6 +97,29 @@ class BoldTest {
         Assertions.assertEquals(expected, interceptor.commands)
     }
 
+    @Test
+    fun textWithUnderline() {
+        val interceptor = RawCommandsInterceptor()
+        dinA4 {
+            bold({underline(true)}, "Bold Text")
+        }.execute(interceptor)
+
+        Assertions.assertEquals(listOf("setFont[Helvetica-Bold, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[70.86614, 758.5756]",
+                "showText:[Bold ]",
+                "endText:[]",
+                "setFont[Helvetica, 12.0]",
+                "drawLine(70.86614, 755.7436, 100.86614, 755.7436)",
+                "setFont[Helvetica-Bold, 12.0]",
+                "beginText:[]",
+                "newLineAtOffset:[100.86614, 758.5756]",
+                "showText:[Text ]",
+                "endText:[]",
+                "setFont[Helvetica, 12.0]",
+                "drawLine(100.86614, 755.7436, 128.87415, 755.7436)"), interceptor.commands)
+    }
+
     private fun loadFont(document: PDDocument, path: String): PDFont {
         val fontStream = this::class.java.getResourceAsStream(path)
         return PDType0Font.load(document, fontStream)

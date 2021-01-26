@@ -57,6 +57,14 @@ class Bold(private val text: String, private val config: Context.() -> Unit) : A
             stream.endText()
             stream.setFont(context.font(), context.fontSize())
 
+            if (styler.underline().orElse(false)) {
+                val x1 = coordinates.x
+                val y1 = coordinates.y - styler.boxHeight()
+                val x2 = x1 + styler.lineWidth(mask(text))
+                val y2 = y1
+                stream.drawLine(x1, y1, x2, y2)
+            }
+
             coordinates.moveX(styler.lineWidth(resolved))
         }
     }

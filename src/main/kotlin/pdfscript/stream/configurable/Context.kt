@@ -72,6 +72,9 @@ class Context(val format: PageFormat, val margin: PageMargin) {
     fun align(): Optional<String> = Optional.ofNullable(properties.get("align")).map { it.toString() }
     fun align(align: String) = properties.set("align", align)
 
+    fun underline(): Optional<Boolean> = Optional.ofNullable(properties.get("underline")).map { it.toString().toBoolean() }
+    fun underline(underline: Boolean) = properties.set("underline", underline)
+
     fun ratio(): Optional<List<Float>> = Optional.ofNullable(properties.get("ratio")).map {
         @Suppress("UNCHECKED_CAST")
         it as List<Float>

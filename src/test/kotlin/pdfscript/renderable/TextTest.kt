@@ -186,6 +186,26 @@ class TextTest {
                 ), interceptor.commands)
     }
 
+    @Test
+    fun textWithUnderline() {
+        val interceptor = RawCommandsInterceptor()
+        dinA4 {
+            text({underline(true)}, "Simple Text")
+        }.execute(interceptor)
+
+        Assertions.assertEquals(listOf("setFont[Helvetica, 12.0]",
+            "beginText:[]",
+            "newLineAtOffset:[70.86614, 758.7796]",
+            "showText:[Simple ]",
+            "endText:[]",
+            "drawLine(70.86614, 756.1516, 110.874146, 756.1516)",
+            "beginText:[]",
+            "newLineAtOffset:[110.874146, 758.7796]",
+            "showText:[Text ]",
+            "endText:[]",
+            "drawLine(110.874146, 756.1516, 137.55014, 756.1516)"), interceptor.commands)
+    }
+
     private fun loadFont(document: PDDocument, path: String): PDFont {
         val fontStream = this::class.java.getResourceAsStream(path)
         return PDType0Font.load(document, fontStream)

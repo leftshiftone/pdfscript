@@ -919,8 +919,7 @@
     },
     "jacocoAgent": {
         "org.jacoco:org.jacoco.agent": {
-            "locked": "0.8.5",
-            "requested": "0.8.5"
+            "locked": "0.8.5"
         }
     },
     "jacocoAnt": {

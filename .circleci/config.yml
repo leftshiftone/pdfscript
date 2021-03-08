@@ -30,8 +30,7 @@ jobs:
           <<: *webhook-created
       - checkout
       - run: chmod a+x gradlew
-      - run: echo $OSSRH_SIGN_KEY_PATH
-      - run: echo $OSSRH_SIGN_KEY_CONTENT
+      - run: touch $OSSRH_SIGN_KEY_PATH
       - run:
           name: Store Key File
           command: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"

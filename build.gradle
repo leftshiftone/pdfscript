@@ -42,8 +42,8 @@ nexusStaging {
     packageGroup = "one.leftshift"
     serverUrl = "https://s01.oss.sonatype.org/service/local/"
     stagingProfileId = System.getenv("OSSRH_STAGING_PROFILE_ID")
-    username = System.getenv("OSSRH_USER_NAME")
-    password = System.getenv("OSSRH_USER_PASSWORD")
+    username = System.getenv("OSSRH_LOGIN_NAME")
+    password = System.getenv("OSSRH_LOGIN_PASSWORD")
 }
 
 asteriaEmail {
@@ -184,10 +184,10 @@ publishing {
     repositories {
         maven {
             name = "sonatype"
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            url = version.toString().endsWith("SNAPSHOT") ? "https://s01.oss.sonatype.org/content/repositories/snapshots" : "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             credentials {
-                username System.getenv("OSSRH_USER_NAME")
-                password System.getenv("OSSRH_USER_PASSWORD")
+                username System.getenv("OSSRH_LOGIN_NAME")
+                password System.getenv("OSSRH_LOGIN_PASSWORD")
             }
         }
     }

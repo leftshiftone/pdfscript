@@ -30,7 +30,10 @@ jobs:
           <<: *webhook-created
       - checkout
       - run: chmod a+x gradlew
-      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
+      - run:
+          name: Store Key File
+          command: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
+          when: always
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run: ./gradlew dependencies
@@ -59,7 +62,10 @@ jobs:
       - run:
           <<: *webhook-created
       - checkout
-      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
+      - run:
+          name: Store Key File
+          command: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
+          when: always
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run: gradle final publishReleasePublicationToSonatypeRepository -Prelease.useLastTag=true --max-workers 1 closeAndReleaseRepository --stacktrace

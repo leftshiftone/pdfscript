@@ -17,13 +17,15 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versionKotlin}"
         classpath "org.jetbrains.kotlin:kotlin-allopen:${versionKotlin}"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
     }
 }
 
 apply plugin: "kotlin"
 apply plugin: "org.jetbrains.dokka"
-apply plugin: "com.jfrog.bintray"
+apply plugin: "maven-publish"
+apply plugin: "signing"
+apply plugin: "io.codearte.nexus-staging"
 
 apply plugin: "one.leftshift.asteria-email"
 apply plugin: "one.leftshift.asteria-report"
@@ -34,6 +36,14 @@ apply plugin: "one.leftshift.asteria-version"
 
 repositories {
     jcenter()
+}
+
+nexusStaging {
+    packageGroup = "one.leftshift"
+    serverUrl = "https://s01.oss.sonatype.org/service/local/"
+    stagingProfileId = System.getenv("OSSRH_STAGING_PROFILE_ID")
+    username = System.getenv("OSSRH_USER_NAME")
+    password = System.getenv("OSSRH_USER_PASSWORD")
 }
 
 asteriaEmail {
@@ -128,12 +138,19 @@ task javadocJar(type: Jar) {
     from dokkaJavadoc
     classifier "javadoc"
 }
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier "sources"
+}
+artifacts {
+    archives javadocJar, sourcesJar
+}
 asteriaPublish {
     enableBranchSnapshotRepositories = true
 }
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        release(MavenPublication) {
             artifactId = project.name
             from components.java
             artifact sourceJar
@@ -164,19 +181,20 @@ publishing {
             }
         }
     }
-}
-
-bintray {
-    logger.info "Bintray deploy with user [${System.getenv('BINTRAY_USER')}] while working on ${project.name}"
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    publish = true
-    pkg {
-        repo = "pdfscript"
-        name = "${project.group}.${project.name}"
-        userOrg = "leftshiftone"
-        licenses = ["Apache-2.0"]
-        vcsUrl = "https://github.com/leftshiftone/pdfscript.git"
-        publications = ["mavenJava"]
+    repositories {
+        maven {
+            name = "sonatype"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username System.getenv("OSSRH_USER_NAME")
+                password System.getenv("OSSRH_USER_PASSWORD")
+            }
+        }
     }
+}
+signing.keyId = System.getenv("OSSRH_SIGN_KEY_ID")
+signing.password = System.getenv("OSSRH_SIGN_KEY_PASSWORD")
+signing.secretKeyRingFile = System.getenv("OSSRH_SIGN_KEY_PATH")
+signing {
+    sign publishing.publications
 }

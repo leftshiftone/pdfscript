@@ -58,9 +58,10 @@ jobs:
       - run:
           <<: *webhook-created
       - checkout
+      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > $OSSRH_SIGN_KEY_PATH
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
-      - run: ./gradlew final bintrayUpload -Prelease.useLastTag=true --stacktrace
+      - run: gradle final publishReleasePublicationToSonatypeRepository -Prelease.useLastTag=true --max-workers 1 closeAndReleaseRepository --stacktrace
       - save_cache:
           paths:
             - ~/.gradle

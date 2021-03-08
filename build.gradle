@@ -192,9 +192,9 @@ publishing {
         }
     }
 }
-signing.keyId = System.getenv("OSSRH_SIGN_KEY_ID")
-signing.password = System.getenv("OSSRH_SIGN_KEY_PASSWORD")
-signing.secretKeyRingFile = System.getenv("OSSRH_SIGN_KEY_PATH")
+ext."signing.keyId" = System.getenv("OSSRH_SIGN_KEY_ID")
+ext."signing.password" = System.getenv("OSSRH_SIGN_KEY_PASSWORD")
+ext."signing.secretKeyRingFile" = System.getenv("OSSRH_SIGN_KEY_PATH")
 signing {
     sign publishing.publications
 }

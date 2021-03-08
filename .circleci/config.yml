@@ -30,11 +30,7 @@ jobs:
           <<: *webhook-created
       - checkout
       - run: chmod a+x gradlew
-      - run: touch $OSSRH_SIGN_KEY_PATH
-      - run:
-          name: Store Key File
-          command: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
-          when: always
+      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > gpg_key
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run: ./gradlew dependencies

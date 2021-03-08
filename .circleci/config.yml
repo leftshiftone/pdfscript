@@ -30,12 +30,12 @@ jobs:
           <<: *webhook-created
       - checkout
       - run: chmod a+x gradlew
+      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run: ./gradlew dependencies
       - run: mkdir -p $TEST_RESULTS_PATH
       - run: ./gradlew test --stacktrace
-      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > $OSSRH_SIGN_KEY_PATH
       - run:
           name: Collect test results
           command: find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} $TEST_RESULTS_PATH \;
@@ -59,7 +59,7 @@ jobs:
       - run:
           <<: *webhook-created
       - checkout
-      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > $OSSRH_SIGN_KEY_PATH
+      - run: echo $OSSRH_SIGN_KEY_CONTENT | base64 --decode > "$OSSRH_SIGN_KEY_PATH"
       - restore_cache:
           key: cache-gradle-{{ checksum "build.gradle" }}
       - run: gradle final publishReleasePublicationToSonatypeRepository -Prelease.useLastTag=true --max-workers 1 closeAndReleaseRepository --stacktrace

@@ -1,6 +1,7 @@
 [![CircleCI branch](https://img.shields.io/circleci/project/github/leftshiftone/pdfscript/master.svg?style=flat-square)](https://circleci.com/gh/leftshiftone/pdfscript)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/leftshiftone/pdfscript.svg?style=flat-square)](https://github.com/leftshiftone/pdfscript/tags)
-[![Bintray](https://img.shields.io/badge/dynamic/json.svg?label=bintray&query=name&style=flat-square&url=https%3A%2F%2Fapi.bintray.com%2Fpackages%2Fleftshiftone%2Fpdfscript%2Fone.leftshift.pdfscript.pdfscript%2Fversions%2F_latest)](https://bintray.com/leftshiftone/pdfscript/one.leftshift.pdfscript.pdfscript/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/one.leftshift.pdfscript/pdfscript?style=flat-square)](https://mvnrepository.com/artifact/one.leftshift.pdfscript/pdfscript)
+
 
 # PDFScript
 
